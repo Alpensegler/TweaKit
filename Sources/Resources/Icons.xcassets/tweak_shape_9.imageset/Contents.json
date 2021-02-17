@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "tweak_shape_9.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}

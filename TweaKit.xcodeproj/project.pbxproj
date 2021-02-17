@@ -7,8 +7,103 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5701336C263C00A50094D143 /* Tradable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701336B263C00A50094D143 /* Tradable.swift */; };
+		57013372263C04120094D143 /* Tradable+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57013371263C04120094D143 /* Tradable+Tests.swift */; };
+		570CFAE026745A2E00E67D6B /* TweakFloatingParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CFADF26745A2E00E67D6B /* TweakFloatingParticipant.swift */; };
+		570CFAE426745D7700E67D6B /* TweakFloatingTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CFAE326745D7700E67D6B /* TweakFloatingTransitioner.swift */; };
+		570CFAEA2674C76D00E67D6B /* TweakFloatingBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570CFAE92674C76D00E67D6B /* TweakFloatingBall.swift */; };
+		5713150C2610B3F90040C380 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 571315072610B0B60040C380 /* Icons.xcassets */; };
+		571315102610B4480040C380 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5713150F2610B4480040C380 /* UIImage+Extension.swift */; };
+		5713AE4B25D542EC001D12EB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5713AE4A25D542EC001D12EB /* Constants.swift */; };
+		5713AEB725D7D7E7001D12EB /* Tweak+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5713AEB625D7D7E7001D12EB /* Tweak+Info.swift */; };
+		571406DF2641423000236D7D /* TweakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571406DE2641423000236D7D /* TweakView.swift */; };
+		571406ED2641481100236D7D /* TweakPrimaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571406EC2641481100236D7D /* TweakPrimaryView.swift */; };
+		571406F32641484A00236D7D /* TweakSecondaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571406F22641484A00236D7D /* TweakSecondaryView.swift */; };
+		5717A8D3264372A0008DBCEA /* TweakSecondaryViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5717A8D2264372A0008DBCEA /* TweakSecondaryViewSelector.swift */; };
+		571EFFD226414CCA0068D878 /* TweakPrimaryViewRecycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571EFFD126414CCA0068D878 /* TweakPrimaryViewRecycler.swift */; };
+		5722280D264794AB00AB4F5E /* TweakSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5722280C264794AB00AB4F5E /* TweakSearcher.swift */; };
+		5723DCCA25FF5E4F00BC0420 /* TradedTweakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5723DCC925FF5E4F00BC0420 /* TradedTweakable.swift */; };
+		572EEA642688BE9300CFFD50 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572EEA632688BE9300CFFD50 /* UIApplication+Extension.swift */; };
+		573CC40E2658B3EC002E7681 /* TweakSecondaryViewColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573CC40D2658B3EC002E7681 /* TweakSecondaryViewColorPicker.swift */; };
+		573CC4142658EB42002E7681 /* TweakTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573CC4132658EB42002E7681 /* TweakTextFields.swift */; };
+		573EEB832642755500C10F8F /* DispatchQueue+Extensionn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573EEB822642755500C10F8F /* DispatchQueue+Extensionn.swift */; };
+		573EEB8D2642839800C10F8F /* TweakSecondaryViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573EEB8C2642839800C10F8F /* TweakSecondaryViewContainer.swift */; };
+		573EEB932642844000C10F8F /* TweakSecondaryViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573EEB922642844000C10F8F /* TweakSecondaryViewAnimator.swift */; };
+		5744B8D7267F583200E703AF /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5744B8D6267F583200E703AF /* Matcher.swift */; };
+		5744B8DE268027D700E703AF /* Matcher+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5744B8DA268027BB00E703AF /* Matcher+Tests.swift */; };
+		5746AB1D2686CC2A007E676A /* TweakFloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746AB1C2686CC2A007E676A /* TweakFloatingPanel.swift */; };
+		5748B1C22643B85A00D7F082 /* TweakSecondaryViewReorderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5748B1C12643B85A00D7F082 /* TweakSecondaryViewReorderer.swift */; };
+		574D8E92262288600091A65B /* TweakListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D8E91262288600091A65B /* TweakListViewController.swift */; };
+		575084532623001500620301 /* TweakListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575084522623001500620301 /* TweakListViewCell.swift */; };
+		575084572623005D00620301 /* ListView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575084562623005D00620301 /* ListView+Extension.swift */; };
+		5750845D2623EC1B00620301 /* TweakListViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750845C2623EC1B00620301 /* TweakListViewHeader.swift */; };
+		57580CCB264F7DE9009AFBA8 /* TweakPrimaryViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57580CCA264F7DE9009AFBA8 /* TweakPrimaryViewContainer.swift */; };
+		57580CCF264FCBA5009AFBA8 /* TweakPrimaryViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57580CCE264FCBA5009AFBA8 /* TweakPrimaryViewPlaceholder.swift */; };
+		57580CD3264FCFCC009AFBA8 /* TweakPrimaryViewDisclosurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57580CD2264FCFCC009AFBA8 /* TweakPrimaryViewDisclosurer.swift */; };
+		57580CE1264FF67D009AFBA8 /* TweakPrimaryViewSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57580CE0264FF67D009AFBA8 /* TweakPrimaryViewSwitcher.swift */; };
+		5758104426135E2000D9AE05 /* TweakContext+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758104326135E2000D9AE05 /* TweakContext+UI.swift */; };
+		5759FF23262B20EE0035F4DB /* CoreAnimation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759FF22262B20EE0035F4DB /* CoreAnimation+Extension.swift */; };
+		5759FF2B262BC29C0035F4DB /* TweaKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759FF2A262BC29C0035F4DB /* TweaKit.swift */; };
+		5759FF34262BD1C10035F4DB /* TweakActionInitiator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759FF33262BD1C10035F4DB /* TweakActionInitiator.swift */; };
+		575F547025D28F1D008156A9 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F546F25D28F1D008156A9 /* Array+Extension.swift */; };
+		575F547C25D29603008156A9 /* Array+Extension+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F547B25D29603008156A9 /* Array+Extension+Tests.swift */; };
+		576B068F25FF951B00590F68 /* TweakTrader+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B068925FF951700590F68 /* TweakTrader+Tests.swift */; };
+		576B863326469EEE00F75DD7 /* TweakSearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B863226469EEE00F75DD7 /* TweakSearchHistoryViewController.swift */; };
+		576B86392646A29A00F75DD7 /* HitOutsideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B86382646A29A00F75DD7 /* HitOutsideView.swift */; };
+		576B86432646BB4E00F75DD7 /* TweakSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576B86422646BB4E00F75DD7 /* TweakSearchViewController.swift */; };
+		576EC60B265909D40059E371 /* CoreGraphics+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576EC60A265909D40059E371 /* CoreGraphics+Extension.swift */; };
+		57750292266201FF00671277 /* TweakPrimaryViewStrider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57750291266201FF00671277 /* TweakPrimaryViewStrider.swift */; };
+		577F90CA25D3A1FC00BFC7D2 /* TweakContext+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F90C425D3A1F900BFC7D2 /* TweakContext+Tests.swift */; };
+		577F90D425D3CF7200BFC7D2 /* TweakList+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F90D325D3CF7200BFC7D2 /* TweakList+Tests.swift */; };
+		577F90D725D3CF7C00BFC7D2 /* TweakSection+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F90CF25D3CF5800BFC7D2 /* TweakSection+Tests.swift */; };
+		577F90DD25D3D0CF00BFC7D2 /* Tweaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F90DC25D3D0CF00BFC7D2 /* Tweaks.swift */; };
+		577F90E325D3EB7400BFC7D2 /* ResultBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F90E225D3EB7400BFC7D2 /* ResultBuilder.swift */; };
+		577F90EF25D407CA00BFC7D2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F90EE25D407CA00BFC7D2 /* String+Extension.swift */; };
+		577F916025D40ACE00BFC7D2 /* String+Extension+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F915C25D40ACA00BFC7D2 /* String+Extension+Tests.swift */; };
+		577F916625D4E85700BFC7D2 /* TweakInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F916525D4E85700BFC7D2 /* TweakInfo.swift */; };
+		577F916E25D4EAEF00BFC7D2 /* NumericTweak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F916D25D4EAEF00BFC7D2 /* NumericTweak.swift */; };
+		577F917425D4F3D500BFC7D2 /* TweakType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577F917325D4F3D500BFC7D2 /* TweakType.swift */; };
+		5782E5FE2610809F0091CB16 /* TweakRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5782E5FD2610809F0091CB16 /* TweakRootViewController.swift */; };
+		5782E6042610865F0091CB16 /* TweakWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5782E6032610865F0091CB16 /* TweakWindow.swift */; };
+		57891088264FFCFF006A7F88 /* TweakPrimaryViewColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57891087264FFCFF006A7F88 /* TweakPrimaryViewColorPicker.swift */; };
+		5789A1F1262AA8CD003035EE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5789A1F0262AA8CD003035EE /* UIViewController+Extension.swift */; };
+		578A753E26509CF500BD7794 /* TweakPrimaryViewTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A753D26509CF500BD7794 /* TweakPrimaryViewTextField.swift */; };
+		5794E908266BB456000F833A /* TweakListViewScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5794E907266BB456000F833A /* TweakListViewScene.swift */; };
+		579A6D5425FB76B900B68A46 /* SelectableTweak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579A6D5325FB76B900B68A46 /* SelectableTweak.swift */; };
+		57B02618263FD97E00B1B6D3 /* TweakListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B02617263FD97E00B1B6D3 /* TweakListEmptyView.swift */; };
+		57B02682263FEF7300B1B6D3 /* TweakableTweak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B02681263FEF7300B1B6D3 /* TweakableTweak.swift */; };
+		57B41DA825DBE0FE00FA15D5 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41DA725DBE0FE00FA15D5 /* Reference.swift */; };
+		57B41DB225DBE85500FA15D5 /* Comparable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41DB125DBE85500FA15D5 /* Comparable+Extension.swift */; };
+		57B41DBD25DBEA4B00FA15D5 /* Comparable+Extension+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41DB725DBE9FB00FA15D5 /* Comparable+Extension+Tests.swift */; };
+		57B41DCF25DBF8C300FA15D5 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41DCE25DBF8C300FA15D5 /* Storable.swift */; };
+		57B41DDD25DC01DE00FA15D5 /* TweakStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41DDC25DC01DE00FA15D5 /* TweakStore.swift */; };
+		57B41E5725DCE6DB00FA15D5 /* Tweak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41E5625DCE6DB00FA15D5 /* Tweak.swift */; };
+		57B41E6C25DCF6EF00FA15D5 /* TweakStore+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41E6B25DCF6EF00FA15D5 /* TweakStore+Tests.swift */; };
+		57B41E7825DCFA6C00FA15D5 /* Storable+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41E7725DCFA6C00FA15D5 /* Storable+Tests.swift */; };
+		57B41E7F25DD26EF00FA15D5 /* Tweak+Info+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41E7E25DD26EF00FA15D5 /* Tweak+Info+Tests.swift */; };
+		57BF138425D1601900347322 /* Tweakable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BF138325D1601900347322 /* Tweakable.swift */; };
+		57BF138825D166E000347322 /* TweakSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BF138725D166E000347322 /* TweakSection.swift */; };
+		57BF138E25D169D700347322 /* TweakList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BF138D25D169D700347322 /* TweakList.swift */; };
+		57BF139225D1705300347322 /* TweakContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BF139125D1705300347322 /* TweakContext.swift */; };
+		57C6FAB426884EAB009E5782 /* TweakContext+Facade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C6FAB326884EAB009E5782 /* TweakContext+Facade.swift */; };
+		57D2103225FA536B00EF573A /* FloatingNumber+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2103125FA536B00EF573A /* FloatingNumber+Extension.swift */; };
+		57D2104325FA592100EF573A /* FloatingNumber+Extension+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2103725FA552700EF573A /* FloatingNumber+Extension+Tests.swift */; };
+		57D902CA25FCAED50072400C /* TweakTrader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D902C925FCAED50072400C /* TweakTrader.swift */; };
+		57D902CE25FCB0540072400C /* TweakTradeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D902CD25FCB0540072400C /* TweakTradeContainer.swift */; };
+		57D902D625FCB1500072400C /* TweakImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D902D525FCB1500072400C /* TweakImporter.swift */; };
+		57D902DE25FCB15E0072400C /* TweakExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D902DD25FCB15E0072400C /* TweakExporter.swift */; };
+		57D902E225FCB48B0072400C /* TweakError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D902E125FCB48B0072400C /* TweakError.swift */; };
 		57EF7CC624CDADB500913A74 /* TweaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EF7CBC24CDADB500913A74 /* TweaKit.framework */; };
-		57EF7CD724CDAE7700913A74 /* Tweak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EF7CD624CDAE7700913A74 /* Tweak.swift */; };
+		57F9FB4825F5B556004A1739 /* TweakSegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F9FB4725F5B556004A1739 /* TweakSegmentedViewController.swift */; };
+		57F9FB4E25F5B607004A1739 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F9FB4D25F5B607004A1739 /* UIColor+Extension.swift */; };
+		57F9FB5A25F5C004004A1739 /* UIColor+Extension+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F9FB5925F5C004004A1739 /* UIColor+Extension+Tests.swift */; };
+		57FBFEDE2651216B006B3820 /* TweakContext+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FBFEDD2651216B006B3820 /* TweakContext+Delegate.swift */; };
+		57FBFEE926514C10006B3820 /* TweakSearcher+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FBFEE826514C10006B3820 /* TweakSearcher+Tests.swift */; };
+		57FBFEEF26514C65006B3820 /* TweakPrimaryViewRecycler+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FBFEEE26514C65006B3820 /* TweakPrimaryViewRecycler+Tests.swift */; };
+		57FBFEF3265151B5006B3820 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FBFEF2265151B5006B3820 /* Debouncer.swift */; };
+		57FBFEFA265152B8006B3820 /* Debouncer+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FBFEF9265152B8006B3820 /* Debouncer+Tests.swift */; };
+		57FD42C62643B58E0062984F /* TweakSecondaryViewItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FD42C52643B58E0062984F /* TweakSecondaryViewItemConvertible.swift */; };
+		57FE50E3262F010400F052CC /* NotifyToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FE50E2262F010400F052CC /* NotifyToken.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,11 +117,106 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5701336B263C00A50094D143 /* Tradable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tradable.swift; sourceTree = "<group>"; };
+		57013371263C04120094D143 /* Tradable+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tradable+Tests.swift"; sourceTree = "<group>"; };
+		570CFADF26745A2E00E67D6B /* TweakFloatingParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakFloatingParticipant.swift; sourceTree = "<group>"; };
+		570CFAE326745D7700E67D6B /* TweakFloatingTransitioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakFloatingTransitioner.swift; sourceTree = "<group>"; };
+		570CFAE92674C76D00E67D6B /* TweakFloatingBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakFloatingBall.swift; sourceTree = "<group>"; };
+		571315072610B0B60040C380 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
+		5713150F2610B4480040C380 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		5713AE4A25D542EC001D12EB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5713AEB625D7D7E7001D12EB /* Tweak+Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tweak+Info.swift"; sourceTree = "<group>"; };
+		571406DE2641423000236D7D /* TweakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakView.swift; sourceTree = "<group>"; };
+		571406EC2641481100236D7D /* TweakPrimaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryView.swift; sourceTree = "<group>"; };
+		571406F22641484A00236D7D /* TweakSecondaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryView.swift; sourceTree = "<group>"; };
+		5717A8D2264372A0008DBCEA /* TweakSecondaryViewSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewSelector.swift; sourceTree = "<group>"; };
+		571EFFD126414CCA0068D878 /* TweakPrimaryViewRecycler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewRecycler.swift; sourceTree = "<group>"; };
+		5722280C264794AB00AB4F5E /* TweakSearcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSearcher.swift; sourceTree = "<group>"; };
+		5723DCC925FF5E4F00BC0420 /* TradedTweakable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradedTweakable.swift; sourceTree = "<group>"; };
+		572EEA632688BE9300CFFD50 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		573CC40D2658B3EC002E7681 /* TweakSecondaryViewColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewColorPicker.swift; sourceTree = "<group>"; };
+		573CC4132658EB42002E7681 /* TweakTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakTextFields.swift; sourceTree = "<group>"; };
+		573EEB822642755500C10F8F /* DispatchQueue+Extensionn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensionn.swift"; sourceTree = "<group>"; };
+		573EEB8C2642839800C10F8F /* TweakSecondaryViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewContainer.swift; sourceTree = "<group>"; };
+		573EEB922642844000C10F8F /* TweakSecondaryViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewAnimator.swift; sourceTree = "<group>"; };
+		5744B8D6267F583200E703AF /* Matcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
+		5744B8DA268027BB00E703AF /* Matcher+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Matcher+Tests.swift"; sourceTree = "<group>"; };
+		5746AB1C2686CC2A007E676A /* TweakFloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakFloatingPanel.swift; sourceTree = "<group>"; };
+		5748B1C12643B85A00D7F082 /* TweakSecondaryViewReorderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewReorderer.swift; sourceTree = "<group>"; };
+		574D8E91262288600091A65B /* TweakListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListViewController.swift; sourceTree = "<group>"; };
+		575084522623001500620301 /* TweakListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListViewCell.swift; sourceTree = "<group>"; };
+		575084562623005D00620301 /* ListView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListView+Extension.swift"; sourceTree = "<group>"; };
+		5750845C2623EC1B00620301 /* TweakListViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListViewHeader.swift; sourceTree = "<group>"; };
+		57580CCA264F7DE9009AFBA8 /* TweakPrimaryViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewContainer.swift; sourceTree = "<group>"; };
+		57580CCE264FCBA5009AFBA8 /* TweakPrimaryViewPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewPlaceholder.swift; sourceTree = "<group>"; };
+		57580CD2264FCFCC009AFBA8 /* TweakPrimaryViewDisclosurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewDisclosurer.swift; sourceTree = "<group>"; };
+		57580CE0264FF67D009AFBA8 /* TweakPrimaryViewSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewSwitcher.swift; sourceTree = "<group>"; };
+		5758104326135E2000D9AE05 /* TweakContext+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakContext+UI.swift"; sourceTree = "<group>"; };
+		5759FF22262B20EE0035F4DB /* CoreAnimation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreAnimation+Extension.swift"; sourceTree = "<group>"; };
+		5759FF2A262BC29C0035F4DB /* TweaKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweaKit.swift; sourceTree = "<group>"; };
+		5759FF33262BD1C10035F4DB /* TweakActionInitiator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakActionInitiator.swift; sourceTree = "<group>"; };
+		575F546F25D28F1D008156A9 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		575F547B25D29603008156A9 /* Array+Extension+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension+Tests.swift"; sourceTree = "<group>"; };
+		576B068925FF951700590F68 /* TweakTrader+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakTrader+Tests.swift"; sourceTree = "<group>"; };
+		576B863226469EEE00F75DD7 /* TweakSearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSearchHistoryViewController.swift; sourceTree = "<group>"; };
+		576B86382646A29A00F75DD7 /* HitOutsideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitOutsideView.swift; sourceTree = "<group>"; };
+		576B86422646BB4E00F75DD7 /* TweakSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSearchViewController.swift; sourceTree = "<group>"; };
+		576EC60A265909D40059E371 /* CoreGraphics+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Extension.swift"; sourceTree = "<group>"; };
+		57750291266201FF00671277 /* TweakPrimaryViewStrider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewStrider.swift; sourceTree = "<group>"; };
+		577F90C425D3A1F900BFC7D2 /* TweakContext+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakContext+Tests.swift"; sourceTree = "<group>"; };
+		577F90CF25D3CF5800BFC7D2 /* TweakSection+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakSection+Tests.swift"; sourceTree = "<group>"; };
+		577F90D325D3CF7200BFC7D2 /* TweakList+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakList+Tests.swift"; sourceTree = "<group>"; };
+		577F90DC25D3D0CF00BFC7D2 /* Tweaks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweaks.swift; sourceTree = "<group>"; };
+		577F90E225D3EB7400BFC7D2 /* ResultBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBuilder.swift; sourceTree = "<group>"; };
+		577F90EE25D407CA00BFC7D2 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		577F915C25D40ACA00BFC7D2 /* String+Extension+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension+Tests.swift"; sourceTree = "<group>"; };
+		577F916525D4E85700BFC7D2 /* TweakInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakInfo.swift; sourceTree = "<group>"; };
+		577F916D25D4EAEF00BFC7D2 /* NumericTweak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTweak.swift; sourceTree = "<group>"; };
+		577F917325D4F3D500BFC7D2 /* TweakType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakType.swift; sourceTree = "<group>"; };
+		5782E5FD2610809F0091CB16 /* TweakRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakRootViewController.swift; sourceTree = "<group>"; };
+		5782E6032610865F0091CB16 /* TweakWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakWindow.swift; sourceTree = "<group>"; };
+		57891087264FFCFF006A7F88 /* TweakPrimaryViewColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewColorPicker.swift; sourceTree = "<group>"; };
+		5789A1F0262AA8CD003035EE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		578A753D26509CF500BD7794 /* TweakPrimaryViewTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewTextField.swift; sourceTree = "<group>"; };
+		5794E907266BB456000F833A /* TweakListViewScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListViewScene.swift; sourceTree = "<group>"; };
+		579A6D5325FB76B900B68A46 /* SelectableTweak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTweak.swift; sourceTree = "<group>"; };
+		57B02617263FD97E00B1B6D3 /* TweakListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListEmptyView.swift; sourceTree = "<group>"; };
+		57B02681263FEF7300B1B6D3 /* TweakableTweak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakableTweak.swift; sourceTree = "<group>"; };
+		57B41DA725DBE0FE00FA15D5 /* Reference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
+		57B41DB125DBE85500FA15D5 /* Comparable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Extension.swift"; sourceTree = "<group>"; };
+		57B41DB725DBE9FB00FA15D5 /* Comparable+Extension+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Extension+Tests.swift"; sourceTree = "<group>"; };
+		57B41DCE25DBF8C300FA15D5 /* Storable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
+		57B41DDC25DC01DE00FA15D5 /* TweakStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakStore.swift; sourceTree = "<group>"; };
+		57B41E5625DCE6DB00FA15D5 /* Tweak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweak.swift; sourceTree = "<group>"; };
+		57B41E6B25DCF6EF00FA15D5 /* TweakStore+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakStore+Tests.swift"; sourceTree = "<group>"; };
+		57B41E7725DCFA6C00FA15D5 /* Storable+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storable+Tests.swift"; sourceTree = "<group>"; };
+		57B41E7E25DD26EF00FA15D5 /* Tweak+Info+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tweak+Info+Tests.swift"; sourceTree = "<group>"; };
+		57BF138325D1601900347322 /* Tweakable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweakable.swift; sourceTree = "<group>"; };
+		57BF138725D166E000347322 /* TweakSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSection.swift; sourceTree = "<group>"; };
+		57BF138D25D169D700347322 /* TweakList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakList.swift; sourceTree = "<group>"; };
+		57BF139125D1705300347322 /* TweakContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakContext.swift; sourceTree = "<group>"; };
+		57C6FAB326884EAB009E5782 /* TweakContext+Facade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakContext+Facade.swift"; sourceTree = "<group>"; };
+		57D2103125FA536B00EF573A /* FloatingNumber+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingNumber+Extension.swift"; sourceTree = "<group>"; };
+		57D2103725FA552700EF573A /* FloatingNumber+Extension+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingNumber+Extension+Tests.swift"; sourceTree = "<group>"; };
+		57D902C925FCAED50072400C /* TweakTrader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakTrader.swift; sourceTree = "<group>"; };
+		57D902CD25FCB0540072400C /* TweakTradeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakTradeContainer.swift; sourceTree = "<group>"; };
+		57D902D525FCB1500072400C /* TweakImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakImporter.swift; sourceTree = "<group>"; };
+		57D902DD25FCB15E0072400C /* TweakExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakExporter.swift; sourceTree = "<group>"; };
+		57D902E125FCB48B0072400C /* TweakError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakError.swift; sourceTree = "<group>"; };
 		57EF7CBC24CDADB500913A74 /* TweaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TweaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EF7CC024CDADB500913A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57EF7CC524CDADB500913A74 /* TweaKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweaKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EF7CCC24CDADB500913A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		57EF7CD624CDAE7700913A74 /* Tweak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweak.swift; sourceTree = "<group>"; };
+		57F9FB4725F5B556004A1739 /* TweakSegmentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSegmentedViewController.swift; sourceTree = "<group>"; };
+		57F9FB4D25F5B607004A1739 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		57F9FB5925F5C004004A1739 /* UIColor+Extension+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension+Tests.swift"; sourceTree = "<group>"; };
+		57FBFEDD2651216B006B3820 /* TweakContext+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakContext+Delegate.swift"; sourceTree = "<group>"; };
+		57FBFEE826514C10006B3820 /* TweakSearcher+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakSearcher+Tests.swift"; sourceTree = "<group>"; };
+		57FBFEEE26514C65006B3820 /* TweakPrimaryViewRecycler+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakPrimaryViewRecycler+Tests.swift"; sourceTree = "<group>"; };
+		57FBFEF2265151B5006B3820 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
+		57FBFEF9265152B8006B3820 /* Debouncer+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debouncer+Tests.swift"; sourceTree = "<group>"; };
+		57FD42C52643B58E0062984F /* TweakSecondaryViewItemConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewItemConvertible.swift; sourceTree = "<group>"; };
+		57FE50E2262F010400F052CC /* NotifyToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyToken.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +238,290 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		571315042610B0780040C380 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				571315072610B0B60040C380 /* Icons.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5713AE3F25D53903001D12EB /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				57B41DCE25DBF8C300FA15D5 /* Storable.swift */,
+				57B41DDC25DC01DE00FA15D5 /* TweakStore.swift */,
+				57FE50E2262F010400F052CC /* NotifyToken.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		5713AEBC25D7DFB7001D12EB /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				577F916525D4E85700BFC7D2 /* TweakInfo.swift */,
+				5713AEB625D7D7E7001D12EB /* Tweak+Info.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		5713AEBF25D93B45001D12EB /* TweakType */ = {
+			isa = PBXGroup;
+			children = (
+				577F917325D4F3D500BFC7D2 /* TweakType.swift */,
+				57B41E5625DCE6DB00FA15D5 /* Tweak.swift */,
+				57B02681263FEF7300B1B6D3 /* TweakableTweak.swift */,
+				577F916D25D4EAEF00BFC7D2 /* NumericTweak.swift */,
+				579A6D5325FB76B900B68A46 /* SelectableTweak.swift */,
+			);
+			path = TweakType;
+			sourceTree = "<group>";
+		};
+		571406DD2641421400236D7D /* Tweak */ = {
+			isa = PBXGroup;
+			children = (
+				571406DE2641423000236D7D /* TweakView.swift */,
+				571406EA264147E100236D7D /* PrimaryView */,
+				571406EB264147F000236D7D /* SecondaryView */,
+			);
+			path = Tweak;
+			sourceTree = "<group>";
+		};
+		571406EA264147E100236D7D /* PrimaryView */ = {
+			isa = PBXGroup;
+			children = (
+				571406EC2641481100236D7D /* TweakPrimaryView.swift */,
+				571EFFD126414CCA0068D878 /* TweakPrimaryViewRecycler.swift */,
+				57580CCA264F7DE9009AFBA8 /* TweakPrimaryViewContainer.swift */,
+				57580CCE264FCBA5009AFBA8 /* TweakPrimaryViewPlaceholder.swift */,
+				57580CD2264FCFCC009AFBA8 /* TweakPrimaryViewDisclosurer.swift */,
+				57580CE0264FF67D009AFBA8 /* TweakPrimaryViewSwitcher.swift */,
+				57891087264FFCFF006A7F88 /* TweakPrimaryViewColorPicker.swift */,
+				578A753D26509CF500BD7794 /* TweakPrimaryViewTextField.swift */,
+				57750291266201FF00671277 /* TweakPrimaryViewStrider.swift */,
+			);
+			path = PrimaryView;
+			sourceTree = "<group>";
+		};
+		571406EB264147F000236D7D /* SecondaryView */ = {
+			isa = PBXGroup;
+			children = (
+				571406F22641484A00236D7D /* TweakSecondaryView.swift */,
+				573EEB8C2642839800C10F8F /* TweakSecondaryViewContainer.swift */,
+				573EEB922642844000C10F8F /* TweakSecondaryViewAnimator.swift */,
+				57FD42C52643B58E0062984F /* TweakSecondaryViewItemConvertible.swift */,
+				5748B1C12643B85A00D7F082 /* TweakSecondaryViewReorderer.swift */,
+				5717A8D2264372A0008DBCEA /* TweakSecondaryViewSelector.swift */,
+				573CC40D2658B3EC002E7681 /* TweakSecondaryViewColorPicker.swift */,
+			);
+			path = SecondaryView;
+			sourceTree = "<group>";
+		};
+		5723DCC425FF3FD600BC0420 /* Trader */ = {
+			isa = PBXGroup;
+			children = (
+				57013371263C04120094D143 /* Tradable+Tests.swift */,
+				576B068925FF951700590F68 /* TweakTrader+Tests.swift */,
+			);
+			path = Trader;
+			sourceTree = "<group>";
+		};
+		5723DCD125FF60B800BC0420 /* Tweakable */ = {
+			isa = PBXGroup;
+			children = (
+				57BF138325D1601900347322 /* Tweakable.swift */,
+				5723DCC925FF5E4F00BC0420 /* TradedTweakable.swift */,
+			);
+			path = Tweakable;
+			sourceTree = "<group>";
+		};
+		574D8E902622883F0091A65B /* List */ = {
+			isa = PBXGroup;
+			children = (
+				574D8E91262288600091A65B /* TweakListViewController.swift */,
+				5794E907266BB456000F833A /* TweakListViewScene.swift */,
+				5750845C2623EC1B00620301 /* TweakListViewHeader.swift */,
+				575084522623001500620301 /* TweakListViewCell.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		5759FF32262BD19C0035F4DB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5759FF33262BD1C10035F4DB /* TweakActionInitiator.swift */,
+				57B02617263FD97E00B1B6D3 /* TweakListEmptyView.swift */,
+				573CC4132658EB42002E7681 /* TweakTextFields.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		575F540925D28E93008156A9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				575F546F25D28F1D008156A9 /* Array+Extension.swift */,
+				57B41DB125DBE85500FA15D5 /* Comparable+Extension.swift */,
+				577F90EE25D407CA00BFC7D2 /* String+Extension.swift */,
+				57D2103125FA536B00EF573A /* FloatingNumber+Extension.swift */,
+				573EEB822642755500C10F8F /* DispatchQueue+Extensionn.swift */,
+				576EC60A265909D40059E371 /* CoreGraphics+Extension.swift */,
+				5759FF22262B20EE0035F4DB /* CoreAnimation+Extension.swift */,
+				57F9FB4D25F5B607004A1739 /* UIColor+Extension.swift */,
+				5713150F2610B4480040C380 /* UIImage+Extension.swift */,
+				575084562623005D00620301 /* ListView+Extension.swift */,
+				5789A1F0262AA8CD003035EE /* UIViewController+Extension.swift */,
+				572EEA632688BE9300CFFD50 /* UIApplication+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		575F540A25D28EB4008156A9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				5713AE4A25D542EC001D12EB /* Constants.swift */,
+				577F90E225D3EB7400BFC7D2 /* ResultBuilder.swift */,
+				57D902E125FCB48B0072400C /* TweakError.swift */,
+				57B41DA725DBE0FE00FA15D5 /* Reference.swift */,
+				57FBFEF2265151B5006B3820 /* Debouncer.swift */,
+				5744B8D6267F583200E703AF /* Matcher.swift */,
+				576B86382646A29A00F75DD7 /* HitOutsideView.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		575F547A25D295D8008156A9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				575F547B25D29603008156A9 /* Array+Extension+Tests.swift */,
+				57B41DB725DBE9FB00FA15D5 /* Comparable+Extension+Tests.swift */,
+				577F915C25D40ACA00BFC7D2 /* String+Extension+Tests.swift */,
+				57D2103725FA552700EF573A /* FloatingNumber+Extension+Tests.swift */,
+				57F9FB5925F5C004004A1739 /* UIColor+Extension+Tests.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		5765F20326633D9B00BD4C58 /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				577F90C425D3A1F900BFC7D2 /* TweakContext+Tests.swift */,
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+		576B863126469E3800F75DD7 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5722280C264794AB00AB4F5E /* TweakSearcher.swift */,
+				576B86422646BB4E00F75DD7 /* TweakSearchViewController.swift */,
+				576B863226469EEE00F75DD7 /* TweakSearchHistoryViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		577F90C325D3A19D00BFC7D2 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				577F90D325D3CF7200BFC7D2 /* TweakList+Tests.swift */,
+				577F90CF25D3CF5800BFC7D2 /* TweakSection+Tests.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		5782E609261090AA0091CB16 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				5782E6032610865F0091CB16 /* TweakWindow.swift */,
+				5782E5FD2610809F0091CB16 /* TweakRootViewController.swift */,
+				57F9FB4725F5B556004A1739 /* TweakSegmentedViewController.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		5794E902266B711A000F833A /* Floating */ = {
+			isa = PBXGroup;
+			children = (
+				570CFADF26745A2E00E67D6B /* TweakFloatingParticipant.swift */,
+				570CFAE326745D7700E67D6B /* TweakFloatingTransitioner.swift */,
+				570CFAE92674C76D00E67D6B /* TweakFloatingBall.swift */,
+				5746AB1C2686CC2A007E676A /* TweakFloatingPanel.swift */,
+			);
+			path = Floating;
+			sourceTree = "<group>";
+		};
+		57B41E6325DCF45600FA15D5 /* Tweak */ = {
+			isa = PBXGroup;
+			children = (
+				57B41E7E25DD26EF00FA15D5 /* Tweak+Info+Tests.swift */,
+			);
+			path = Tweak;
+			sourceTree = "<group>";
+		};
+		57B41E6A25DCF5B500FA15D5 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				57B41E7725DCFA6C00FA15D5 /* Storable+Tests.swift */,
+				57B41E6B25DCF6EF00FA15D5 /* TweakStore+Tests.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		57B41E8E25DD482F00FA15D5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				57FBFEDC26512160006B3820 /* Context */,
+				57BF139525D1706700347322 /* Container */,
+				57BF139625D1719100347322 /* Tweak */,
+				5713AE3F25D53903001D12EB /* Store */,
+				57D902C225FCAE6F0072400C /* Trader */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		57B41E8F25DD486900FA15D5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				577F90DC25D3D0CF00BFC7D2 /* Tweaks.swift */,
+				5765F20326633D9B00BD4C58 /* Context */,
+				577F90C325D3A19D00BFC7D2 /* Container */,
+				57B41E6325DCF45600FA15D5 /* Tweak */,
+				57B41E6A25DCF5B500FA15D5 /* Store */,
+				5723DCC425FF3FD600BC0420 /* Trader */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		57BF139525D1706700347322 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				57BF138D25D169D700347322 /* TweakList.swift */,
+				57BF138725D166E000347322 /* TweakSection.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
+		57BF139625D1719100347322 /* Tweak */ = {
+			isa = PBXGroup;
+			children = (
+				5723DCD125FF60B800BC0420 /* Tweakable */,
+				5713AEBF25D93B45001D12EB /* TweakType */,
+				5713AEBC25D7DFB7001D12EB /* Info */,
+			);
+			path = Tweak;
+			sourceTree = "<group>";
+		};
+		57D902C225FCAE6F0072400C /* Trader */ = {
+			isa = PBXGroup;
+			children = (
+				5701336B263C00A50094D143 /* Tradable.swift */,
+				57D902C925FCAED50072400C /* TweakTrader.swift */,
+				57D902D525FCB1500072400C /* TweakImporter.swift */,
+				57D902DD25FCB15E0072400C /* TweakExporter.swift */,
+				57D902CD25FCB0540072400C /* TweakTradeContainer.swift */,
+			);
+			path = Trader;
+			sourceTree = "<group>";
+		};
 		57EF7CB224CDADB500913A74 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +544,12 @@
 			isa = PBXGroup;
 			children = (
 				57EF7CC024CDADB500913A74 /* Info.plist */,
+				5759FF2A262BC29C0035F4DB /* TweaKit.swift */,
+				57B41E8E25DD482F00FA15D5 /* Core */,
+				57F9FB4625F4DA6B004A1739 /* UI */,
+				575F540925D28E93008156A9 /* Extension */,
+				575F540A25D28EB4008156A9 /* Utility */,
+				571315042610B0780040C380 /* Resources */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -78,8 +558,54 @@
 			isa = PBXGroup;
 			children = (
 				57EF7CCC24CDADB500913A74 /* Info.plist */,
+				57B41E8F25DD486900FA15D5 /* Core */,
+				57FBFEE726514BB9006B3820 /* UI */,
+				575F547A25D295D8008156A9 /* Extension */,
+				57FBFEF82651529C006B3820 /* Utility */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		57F9FB4625F4DA6B004A1739 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5758104326135E2000D9AE05 /* TweakContext+UI.swift */,
+				5782E609261090AA0091CB16 /* Container */,
+				576B863126469E3800F75DD7 /* Search */,
+				5794E902266B711A000F833A /* Floating */,
+				574D8E902622883F0091A65B /* List */,
+				571406DD2641421400236D7D /* Tweak */,
+				5759FF32262BD19C0035F4DB /* Common */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		57FBFEDC26512160006B3820 /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				57BF139125D1705300347322 /* TweakContext.swift */,
+				57FBFEDD2651216B006B3820 /* TweakContext+Delegate.swift */,
+				57C6FAB326884EAB009E5782 /* TweakContext+Facade.swift */,
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+		57FBFEE726514BB9006B3820 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				57FBFEE826514C10006B3820 /* TweakSearcher+Tests.swift */,
+				57FBFEEE26514C65006B3820 /* TweakPrimaryViewRecycler+Tests.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		57FBFEF82651529C006B3820 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				57FBFEF9265152B8006B3820 /* Debouncer+Tests.swift */,
+				5744B8DA268027BB00E703AF /* Matcher+Tests.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +665,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1230;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = daycam;
 				TargetAttributes = {
 					57EF7CBB24CDADB500913A74 = {
@@ -175,6 +701,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5713150C2610B3F90040C380 /* Icons.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +740,108 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57EF7CD724CDAE7700913A74 /* Tweak.swift in Sources */,
+				573EEB8D2642839800C10F8F /* TweakSecondaryViewContainer.swift in Sources */,
+				5717A8D3264372A0008DBCEA /* TweakSecondaryViewSelector.swift in Sources */,
+				57580CD3264FCFCC009AFBA8 /* TweakPrimaryViewDisclosurer.swift in Sources */,
+				5759FF23262B20EE0035F4DB /* CoreAnimation+Extension.swift in Sources */,
+				5789A1F1262AA8CD003035EE /* UIViewController+Extension.swift in Sources */,
+				579A6D5425FB76B900B68A46 /* SelectableTweak.swift in Sources */,
+				5759FF2B262BC29C0035F4DB /* TweaKit.swift in Sources */,
+				57B41DA825DBE0FE00FA15D5 /* Reference.swift in Sources */,
+				57D902CE25FCB0540072400C /* TweakTradeContainer.swift in Sources */,
+				576B86432646BB4E00F75DD7 /* TweakSearchViewController.swift in Sources */,
+				57FE50E3262F010400F052CC /* NotifyToken.swift in Sources */,
+				57580CCB264F7DE9009AFBA8 /* TweakPrimaryViewContainer.swift in Sources */,
+				57D2103225FA536B00EF573A /* FloatingNumber+Extension.swift in Sources */,
+				57F9FB4E25F5B607004A1739 /* UIColor+Extension.swift in Sources */,
+				573EEB932642844000C10F8F /* TweakSecondaryViewAnimator.swift in Sources */,
+				57D902D625FCB1500072400C /* TweakImporter.swift in Sources */,
+				573CC4142658EB42002E7681 /* TweakTextFields.swift in Sources */,
+				57580CCF264FCBA5009AFBA8 /* TweakPrimaryViewPlaceholder.swift in Sources */,
+				575084532623001500620301 /* TweakListViewCell.swift in Sources */,
+				57B41DDD25DC01DE00FA15D5 /* TweakStore.swift in Sources */,
+				5744B8D7267F583200E703AF /* Matcher.swift in Sources */,
+				571EFFD226414CCA0068D878 /* TweakPrimaryViewRecycler.swift in Sources */,
+				577F90EF25D407CA00BFC7D2 /* String+Extension.swift in Sources */,
+				577F917425D4F3D500BFC7D2 /* TweakType.swift in Sources */,
+				5758104426135E2000D9AE05 /* TweakContext+UI.swift in Sources */,
+				57FBFEF3265151B5006B3820 /* Debouncer.swift in Sources */,
+				5722280D264794AB00AB4F5E /* TweakSearcher.swift in Sources */,
+				57750292266201FF00671277 /* TweakPrimaryViewStrider.swift in Sources */,
+				57891088264FFCFF006A7F88 /* TweakPrimaryViewColorPicker.swift in Sources */,
+				57D902CA25FCAED50072400C /* TweakTrader.swift in Sources */,
+				576B86392646A29A00F75DD7 /* HitOutsideView.swift in Sources */,
+				571406DF2641423000236D7D /* TweakView.swift in Sources */,
+				577F916E25D4EAEF00BFC7D2 /* NumericTweak.swift in Sources */,
+				577F90E325D3EB7400BFC7D2 /* ResultBuilder.swift in Sources */,
+				57BF138425D1601900347322 /* Tweakable.swift in Sources */,
+				573CC40E2658B3EC002E7681 /* TweakSecondaryViewColorPicker.swift in Sources */,
+				574D8E92262288600091A65B /* TweakListViewController.swift in Sources */,
+				5748B1C22643B85A00D7F082 /* TweakSecondaryViewReorderer.swift in Sources */,
+				57B02618263FD97E00B1B6D3 /* TweakListEmptyView.swift in Sources */,
+				576EC60B265909D40059E371 /* CoreGraphics+Extension.swift in Sources */,
+				57B02682263FEF7300B1B6D3 /* TweakableTweak.swift in Sources */,
+				572EEA642688BE9300CFFD50 /* UIApplication+Extension.swift in Sources */,
+				57580CE1264FF67D009AFBA8 /* TweakPrimaryViewSwitcher.swift in Sources */,
+				577F916625D4E85700BFC7D2 /* TweakInfo.swift in Sources */,
+				5794E908266BB456000F833A /* TweakListViewScene.swift in Sources */,
+				57FBFEDE2651216B006B3820 /* TweakContext+Delegate.swift in Sources */,
+				576B863326469EEE00F75DD7 /* TweakSearchHistoryViewController.swift in Sources */,
+				57BF139225D1705300347322 /* TweakContext.swift in Sources */,
+				57BF138825D166E000347322 /* TweakSection.swift in Sources */,
+				5750845D2623EC1B00620301 /* TweakListViewHeader.swift in Sources */,
+				570CFAE026745A2E00E67D6B /* TweakFloatingParticipant.swift in Sources */,
+				57B41E5725DCE6DB00FA15D5 /* Tweak.swift in Sources */,
+				575F547025D28F1D008156A9 /* Array+Extension.swift in Sources */,
+				57D902E225FCB48B0072400C /* TweakError.swift in Sources */,
+				570CFAE426745D7700E67D6B /* TweakFloatingTransitioner.swift in Sources */,
+				5746AB1D2686CC2A007E676A /* TweakFloatingPanel.swift in Sources */,
+				575084572623005D00620301 /* ListView+Extension.swift in Sources */,
+				571406ED2641481100236D7D /* TweakPrimaryView.swift in Sources */,
+				5723DCCA25FF5E4F00BC0420 /* TradedTweakable.swift in Sources */,
+				57F9FB4825F5B556004A1739 /* TweakSegmentedViewController.swift in Sources */,
+				5713AEB725D7D7E7001D12EB /* Tweak+Info.swift in Sources */,
+				5782E6042610865F0091CB16 /* TweakWindow.swift in Sources */,
+				573EEB832642755500C10F8F /* DispatchQueue+Extensionn.swift in Sources */,
+				57D902DE25FCB15E0072400C /* TweakExporter.swift in Sources */,
+				57B41DB225DBE85500FA15D5 /* Comparable+Extension.swift in Sources */,
+				571406F32641484A00236D7D /* TweakSecondaryView.swift in Sources */,
+				57BF138E25D169D700347322 /* TweakList.swift in Sources */,
+				570CFAEA2674C76D00E67D6B /* TweakFloatingBall.swift in Sources */,
+				5759FF34262BD1C10035F4DB /* TweakActionInitiator.swift in Sources */,
+				5701336C263C00A50094D143 /* Tradable.swift in Sources */,
+				57FD42C62643B58E0062984F /* TweakSecondaryViewItemConvertible.swift in Sources */,
+				578A753E26509CF500BD7794 /* TweakPrimaryViewTextField.swift in Sources */,
+				57B41DCF25DBF8C300FA15D5 /* Storable.swift in Sources */,
+				57C6FAB426884EAB009E5782 /* TweakContext+Facade.swift in Sources */,
+				571315102610B4480040C380 /* UIImage+Extension.swift in Sources */,
+				5782E5FE2610809F0091CB16 /* TweakRootViewController.swift in Sources */,
+				5713AE4B25D542EC001D12EB /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57EF7CC124CDADB500913A74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57B41E6C25DCF6EF00FA15D5 /* TweakStore+Tests.swift in Sources */,
+				57FBFEEF26514C65006B3820 /* TweakPrimaryViewRecycler+Tests.swift in Sources */,
+				57F9FB5A25F5C004004A1739 /* UIColor+Extension+Tests.swift in Sources */,
+				577F90DD25D3D0CF00BFC7D2 /* Tweaks.swift in Sources */,
+				57FBFEE926514C10006B3820 /* TweakSearcher+Tests.swift in Sources */,
+				57D2104325FA592100EF573A /* FloatingNumber+Extension+Tests.swift in Sources */,
+				577F90CA25D3A1FC00BFC7D2 /* TweakContext+Tests.swift in Sources */,
+				577F90D425D3CF7200BFC7D2 /* TweakList+Tests.swift in Sources */,
+				57B41DBD25DBEA4B00FA15D5 /* Comparable+Extension+Tests.swift in Sources */,
+				57B41E7F25DD26EF00FA15D5 /* Tweak+Info+Tests.swift in Sources */,
+				576B068F25FF951B00590F68 /* TweakTrader+Tests.swift in Sources */,
+				577F90D725D3CF7C00BFC7D2 /* TweakSection+Tests.swift in Sources */,
+				5744B8DE268027D700E703AF /* Matcher+Tests.swift in Sources */,
+				57013372263C04120094D143 /* Tradable+Tests.swift in Sources */,
+				57B41E7825DCFA6C00FA15D5 /* Storable+Tests.swift in Sources */,
+				57FBFEFA265152B8006B3820 /* Debouncer+Tests.swift in Sources */,
+				575F547C25D29603008156A9 /* Array+Extension+Tests.swift in Sources */,
+				577F916025D40ACE00BFC7D2 /* String+Extension+Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +1003,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -403,7 +1031,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
