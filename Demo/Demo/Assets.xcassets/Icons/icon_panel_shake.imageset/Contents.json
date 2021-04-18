@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icon_panel_shake.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

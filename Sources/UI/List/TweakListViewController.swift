@@ -261,7 +261,7 @@ private extension TweakListViewController {
             if name.isEmpty {
                 tableView.emptyView?.setText(text: "No Tweaks")
             } else {
-                tableView.emptyView?.setText(text: "No Tweaks in \(name)")
+                tableView.emptyView?.setText(text: #"No Tweaks in \#(name)"#)
             }
         case let .search(keyword):
             if keyword.isEmpty {

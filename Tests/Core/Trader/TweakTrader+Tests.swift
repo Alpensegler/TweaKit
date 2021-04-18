@@ -85,7 +85,7 @@ class TweakTraderTests: XCTestCase {
         XCTAssertNil(destination.string)
         context.trader.export(tweaks: context.tweaks.compactMap { $0 as? AnyTradableTweak }, to: destination) { [unowned self] error in
             XCTAssertNil(error)
-            XCTAssertEqual(destination.string?.removingWhiteSapce(), importString.removingWhiteSapce().replacingOccurrences(of: "\"tweak\":\"Bool\",\"value\":false", with: "\"tweak\":\"Bool\",\"value\":true"))
+            XCTAssertEqual(destination.string?.removingWhiteSapce(), importString.removingWhiteSapce().replacingOccurrences(of: #""tweak":"Bool","value":false"#, with: #""tweak":"Bool","value":true"#))
             exp.fulfill()
         }
         wait(for: [exp], timeout: 0.5)

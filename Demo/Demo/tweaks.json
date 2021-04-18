@@ -1,0 +1,45 @@
+{
+  "supported_version" : 1,
+  "tweaks" : [
+    {
+      "list" : "Root View",
+      "section" : "Interaction",
+      "tweak" : "Shake To Show Tweaks",
+      "value" : false
+    },
+    {
+      "list" : "Root View",
+      "section" : "UI",
+      "tweak" : "Navigation Title",
+      "value" : "Example"
+    },
+    {
+      "list" : "Sketch",
+      "section" : "Actions",
+      "tweak" : "Order",
+      "value" : [
+        "undo",
+        "redo",
+        "clear"
+      ]
+    },
+    {
+      "list" : "Sketch",
+      "section" : "Info",
+      "tweak" : "Name",
+      "value" : "The Sketch"
+    },
+    {
+      "list" : "Sketch",
+      "section" : "Line",
+      "tweak" : "Line Color",
+      "value" : "#FFFF0000"
+    },
+    {
+      "list" : "Sketch",
+      "section" : "Line",
+      "tweak" : "Line Width",
+      "value" : 1.4
+    },
+  ]
+}

@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,18 +18,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TweaKit Demo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rH6-bN-rru">
-                                <rect key="frame" x="163" y="417" width="89" height="63"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_launch_title" translatesAutoresizingMaskIntoConstraints="NO" id="J5a-XC-NZ0">
+                                <rect key="frame" x="134.5" y="347" width="145" height="28"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="145" id="Smn-yW-5he"/>
+                                    <constraint firstAttribute="height" constant="28" id="Wdm-DI-cIt"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_launch_stoat" translatesAutoresizingMaskIntoConstraints="NO" id="aXJ-Ir-mTp">
+                                <rect key="frame" x="50" y="461" width="314" height="383"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="383" id="7cQ-cd-R3f"/>
+                                    <constraint firstAttribute="width" constant="314" id="T6z-D1-ngm"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="color_background_primary"/>
                         <constraints>
-                            <constraint firstItem="rH6-bN-rru" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3xd-jy-Yzl"/>
-                            <constraint firstItem="rH6-bN-rru" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ACh-3q-4RT"/>
+                            <constraint firstItem="J5a-XC-NZ0" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="0dw-iY-7lR"/>
+                            <constraint firstItem="aXJ-Ir-mTp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3qy-0h-ZmO"/>
+                            <constraint firstItem="aXJ-Ir-mTp" firstAttribute="top" secondItem="J5a-XC-NZ0" secondAttribute="bottom" constant="86" id="PAH-id-U4R"/>
+                            <constraint firstAttribute="bottom" secondItem="aXJ-Ir-mTp" secondAttribute="bottom" constant="52" id="eg1-4L-Wck"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,8 +50,13 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <image name="icon_launch_stoat" width="314" height="383"/>
+        <image name="icon_launch_title" width="145" height="28"/>
+        <namedColor name="color_background_primary">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

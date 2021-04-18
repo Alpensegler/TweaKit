@@ -38,12 +38,14 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
     func testSearchInstantly() {
         var didShowLoading = false
         var tweakResults: [String] = []
+        var searchingKeyword: String = ""
         searcher.bind { event in
             switch event {
             case .showLoading:
                 didShowLoading = true
-            case .updateTweakResults(let tweaks):
+            case let .updateTweakResults(tweaks, keyword):
                 tweakResults = tweaks.flatMap { $0.map(\.name) }
+                searchingKeyword = keyword
             default:
                 break
             }
@@ -54,12 +56,14 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
         search(with: "BC", debounce: false)
         XCTAssertTrue(didShowLoading)
         XCTAssertEqual(tweakResults, ["ABC", "BCD"])
+        XCTAssertEqual(searchingKeyword, "BC")
         
         didShowLoading = false
         tweakResults = ["PLACEHODER"]
         search(with: "XYZ", debounce: false)
         XCTAssertTrue(didShowLoading)
         XCTAssertTrue(tweakResults.isEmpty)
+        XCTAssertEqual(searchingKeyword, "XYZ")
     }
     
     func testSearchDebounced() {
@@ -70,10 +74,11 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
             switch event {
             case .showLoading:
                 didShowLoading = true
-            case .updateTweakResults(let tweaks):
+            case let .updateTweakResults(tweaks, keyword):
                 tweakResults = tweaks.flatMap { $0.map(\.name) }
                 XCTAssertTrue(didShowLoading)
                 XCTAssertEqual(tweakResults, ["ABC", "BCD"])
+                XCTAssertEqual(keyword, "BC")
                 exp.fulfill()
             default:
                 break
