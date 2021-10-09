@@ -12,8 +12,8 @@ public enum Logger {
         print(message)
     }
     
-    static func log(_ message: () -> String) {
-        log("[TweaKit] ".appending(message()))
+    static func log(_ message: () -> String, file: StaticString = #file, function: StaticString = #function, line: Int = #line) {
+        log("[TweaKit] [\(file): \(function) - \(line)] ".appending(message()))
     }
 }
 

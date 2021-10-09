@@ -21,6 +21,18 @@ import Foundation
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 extension DispatchQueue {
+    static var isMain: Bool {
+        getSpecific(key: token) != nil
+    }
+    
+    private static var token: DispatchSpecificKey<Void> = {
+        let key = DispatchSpecificKey<Void>()
+        main.setSpecific(key: key, value: ())
+        return key
+    }()
+}
+
+extension DispatchQueue {
     static func ensureInMain() {
         dispatchPrecondition(condition: .onQueue(main))
     }

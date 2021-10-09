@@ -19,6 +19,8 @@
 		571406DF2641423000236D7D /* TweakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571406DE2641423000236D7D /* TweakView.swift */; };
 		571406ED2641481100236D7D /* TweakPrimaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571406EC2641481100236D7D /* TweakPrimaryView.swift */; };
 		571406F32641484A00236D7D /* TweakSecondaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571406F22641484A00236D7D /* TweakSecondaryView.swift */; };
+		5715B3D326AD5EA200695779 /* TweakStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5715B3D226AD5EA200695779 /* TweakStoreCache.swift */; };
+		5715B3D526AD6C7800695779 /* TweakStorePersistency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5715B3D426AD6C7800695779 /* TweakStorePersistency.swift */; };
 		5717A8D3264372A0008DBCEA /* TweakSecondaryViewSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5717A8D2264372A0008DBCEA /* TweakSecondaryViewSelector.swift */; };
 		571EFFD226414CCA0068D878 /* TweakPrimaryViewRecycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571EFFD126414CCA0068D878 /* TweakPrimaryViewRecycler.swift */; };
 		5722280D264794AB00AB4F5E /* TweakSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5722280C264794AB00AB4F5E /* TweakSearcher.swift */; };
@@ -31,6 +33,8 @@
 		573EEB932642844000C10F8F /* TweakSecondaryViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573EEB922642844000C10F8F /* TweakSecondaryViewAnimator.swift */; };
 		5744B8D7267F583200E703AF /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5744B8D6267F583200E703AF /* Matcher.swift */; };
 		5744B8DE268027D700E703AF /* Matcher+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5744B8DA268027BB00E703AF /* Matcher+Tests.swift */; };
+		574620D32689737400BAD25C /* TweakStoreNotifier+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574620D22689737400BAD25C /* TweakStoreNotifier+Tests.swift */; };
+		574620DA268977B100BAD25C /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574620D62689756300BAD25C /* Lock.swift */; };
 		5746AB1D2686CC2A007E676A /* TweakFloatingPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746AB1C2686CC2A007E676A /* TweakFloatingPanel.swift */; };
 		5748B1C22643B85A00D7F082 /* TweakSecondaryViewReorderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5748B1C12643B85A00D7F082 /* TweakSecondaryViewReorderer.swift */; };
 		574D8E92262288600091A65B /* TweakListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D8E91262288600091A65B /* TweakListViewController.swift */; };
@@ -72,7 +76,6 @@
 		579A6D5425FB76B900B68A46 /* SelectableTweak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579A6D5325FB76B900B68A46 /* SelectableTweak.swift */; };
 		57B02618263FD97E00B1B6D3 /* TweakListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B02617263FD97E00B1B6D3 /* TweakListEmptyView.swift */; };
 		57B02682263FEF7300B1B6D3 /* TweakableTweak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B02681263FEF7300B1B6D3 /* TweakableTweak.swift */; };
-		57B41DA825DBE0FE00FA15D5 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41DA725DBE0FE00FA15D5 /* Reference.swift */; };
 		57B41DB225DBE85500FA15D5 /* Comparable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41DB125DBE85500FA15D5 /* Comparable+Extension.swift */; };
 		57B41DBD25DBEA4B00FA15D5 /* Comparable+Extension+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41DB725DBE9FB00FA15D5 /* Comparable+Extension+Tests.swift */; };
 		57B41DCF25DBF8C300FA15D5 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B41DCE25DBF8C300FA15D5 /* Storable.swift */; };
@@ -103,7 +106,9 @@
 		57FBFEF3265151B5006B3820 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FBFEF2265151B5006B3820 /* Debouncer.swift */; };
 		57FBFEFA265152B8006B3820 /* Debouncer+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FBFEF9265152B8006B3820 /* Debouncer+Tests.swift */; };
 		57FD42C62643B58E0062984F /* TweakSecondaryViewItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FD42C52643B58E0062984F /* TweakSecondaryViewItemConvertible.swift */; };
-		57FE50E3262F010400F052CC /* NotifyToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FE50E2262F010400F052CC /* NotifyToken.swift */; };
+		57FE50E3262F010400F052CC /* TweakStoreNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FE50E2262F010400F052CC /* TweakStoreNotifier.swift */; };
+		57FF7E4126DB87CF00F01557 /* TweakStoreCache+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FF7E4026DB87CF00F01557 /* TweakStoreCache+Tests.swift */; };
+		57FF7E4326DB89F700F01557 /* TweakStorePersistency+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FF7E4226DB89F700F01557 /* TweakStorePersistency+Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +134,8 @@
 		571406DE2641423000236D7D /* TweakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakView.swift; sourceTree = "<group>"; };
 		571406EC2641481100236D7D /* TweakPrimaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryView.swift; sourceTree = "<group>"; };
 		571406F22641484A00236D7D /* TweakSecondaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryView.swift; sourceTree = "<group>"; };
+		5715B3D226AD5EA200695779 /* TweakStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakStoreCache.swift; sourceTree = "<group>"; };
+		5715B3D426AD6C7800695779 /* TweakStorePersistency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakStorePersistency.swift; sourceTree = "<group>"; };
 		5717A8D2264372A0008DBCEA /* TweakSecondaryViewSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewSelector.swift; sourceTree = "<group>"; };
 		571EFFD126414CCA0068D878 /* TweakPrimaryViewRecycler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewRecycler.swift; sourceTree = "<group>"; };
 		5722280C264794AB00AB4F5E /* TweakSearcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSearcher.swift; sourceTree = "<group>"; };
@@ -141,6 +148,8 @@
 		573EEB922642844000C10F8F /* TweakSecondaryViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewAnimator.swift; sourceTree = "<group>"; };
 		5744B8D6267F583200E703AF /* Matcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
 		5744B8DA268027BB00E703AF /* Matcher+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Matcher+Tests.swift"; sourceTree = "<group>"; };
+		574620D22689737400BAD25C /* TweakStoreNotifier+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakStoreNotifier+Tests.swift"; sourceTree = "<group>"; };
+		574620D62689756300BAD25C /* Lock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lock.swift; sourceTree = "<group>"; };
 		5746AB1C2686CC2A007E676A /* TweakFloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakFloatingPanel.swift; sourceTree = "<group>"; };
 		5748B1C12643B85A00D7F082 /* TweakSecondaryViewReorderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewReorderer.swift; sourceTree = "<group>"; };
 		574D8E91262288600091A65B /* TweakListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListViewController.swift; sourceTree = "<group>"; };
@@ -182,7 +191,6 @@
 		579A6D5325FB76B900B68A46 /* SelectableTweak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTweak.swift; sourceTree = "<group>"; };
 		57B02617263FD97E00B1B6D3 /* TweakListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListEmptyView.swift; sourceTree = "<group>"; };
 		57B02681263FEF7300B1B6D3 /* TweakableTweak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakableTweak.swift; sourceTree = "<group>"; };
-		57B41DA725DBE0FE00FA15D5 /* Reference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		57B41DB125DBE85500FA15D5 /* Comparable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Extension.swift"; sourceTree = "<group>"; };
 		57B41DB725DBE9FB00FA15D5 /* Comparable+Extension+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Extension+Tests.swift"; sourceTree = "<group>"; };
 		57B41DCE25DBF8C300FA15D5 /* Storable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
@@ -216,7 +224,9 @@
 		57FBFEF2265151B5006B3820 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		57FBFEF9265152B8006B3820 /* Debouncer+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debouncer+Tests.swift"; sourceTree = "<group>"; };
 		57FD42C52643B58E0062984F /* TweakSecondaryViewItemConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewItemConvertible.swift; sourceTree = "<group>"; };
-		57FE50E2262F010400F052CC /* NotifyToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyToken.swift; sourceTree = "<group>"; };
+		57FE50E2262F010400F052CC /* TweakStoreNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakStoreNotifier.swift; sourceTree = "<group>"; };
+		57FF7E4026DB87CF00F01557 /* TweakStoreCache+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakStoreCache+Tests.swift"; sourceTree = "<group>"; };
+		57FF7E4226DB89F700F01557 /* TweakStorePersistency+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TweakStorePersistency+Tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,7 +261,9 @@
 			children = (
 				57B41DCE25DBF8C300FA15D5 /* Storable.swift */,
 				57B41DDC25DC01DE00FA15D5 /* TweakStore.swift */,
-				57FE50E2262F010400F052CC /* NotifyToken.swift */,
+				5715B3D226AD5EA200695779 /* TweakStoreCache.swift */,
+				5715B3D426AD6C7800695779 /* TweakStorePersistency.swift */,
+				57FE50E2262F010400F052CC /* TweakStoreNotifier.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -380,8 +392,8 @@
 			children = (
 				5713AE4A25D542EC001D12EB /* Constants.swift */,
 				577F90E225D3EB7400BFC7D2 /* ResultBuilder.swift */,
+				574620D62689756300BAD25C /* Lock.swift */,
 				57D902E125FCB48B0072400C /* TweakError.swift */,
-				57B41DA725DBE0FE00FA15D5 /* Reference.swift */,
 				57FBFEF2265151B5006B3820 /* Debouncer.swift */,
 				5744B8D6267F583200E703AF /* Matcher.swift */,
 				576B86382646A29A00F75DD7 /* HitOutsideView.swift */,
@@ -462,6 +474,9 @@
 			children = (
 				57B41E7725DCFA6C00FA15D5 /* Storable+Tests.swift */,
 				57B41E6B25DCF6EF00FA15D5 /* TweakStore+Tests.swift */,
+				57FF7E4026DB87CF00F01557 /* TweakStoreCache+Tests.swift */,
+				57FF7E4226DB89F700F01557 /* TweakStorePersistency+Tests.swift */,
+				574620D22689737400BAD25C /* TweakStoreNotifier+Tests.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -747,10 +762,10 @@
 				5789A1F1262AA8CD003035EE /* UIViewController+Extension.swift in Sources */,
 				579A6D5425FB76B900B68A46 /* SelectableTweak.swift in Sources */,
 				5759FF2B262BC29C0035F4DB /* TweaKit.swift in Sources */,
-				57B41DA825DBE0FE00FA15D5 /* Reference.swift in Sources */,
+				5715B3D526AD6C7800695779 /* TweakStorePersistency.swift in Sources */,
 				57D902CE25FCB0540072400C /* TweakTradeContainer.swift in Sources */,
 				576B86432646BB4E00F75DD7 /* TweakSearchViewController.swift in Sources */,
-				57FE50E3262F010400F052CC /* NotifyToken.swift in Sources */,
+				57FE50E3262F010400F052CC /* TweakStoreNotifier.swift in Sources */,
 				57580CCB264F7DE9009AFBA8 /* TweakPrimaryViewContainer.swift in Sources */,
 				57D2103225FA536B00EF573A /* FloatingNumber+Extension.swift in Sources */,
 				57F9FB4E25F5B607004A1739 /* UIColor+Extension.swift in Sources */,
@@ -770,6 +785,7 @@
 				57750292266201FF00671277 /* TweakPrimaryViewStrider.swift in Sources */,
 				57891088264FFCFF006A7F88 /* TweakPrimaryViewColorPicker.swift in Sources */,
 				57D902CA25FCAED50072400C /* TweakTrader.swift in Sources */,
+				574620DA268977B100BAD25C /* Lock.swift in Sources */,
 				576B86392646A29A00F75DD7 /* HitOutsideView.swift in Sources */,
 				571406DF2641423000236D7D /* TweakView.swift in Sources */,
 				577F916E25D4EAEF00BFC7D2 /* NumericTweak.swift in Sources */,
@@ -787,6 +803,7 @@
 				5794E908266BB456000F833A /* TweakListViewScene.swift in Sources */,
 				57FBFEDE2651216B006B3820 /* TweakContext+Delegate.swift in Sources */,
 				576B863326469EEE00F75DD7 /* TweakSearchHistoryViewController.swift in Sources */,
+				5715B3D326AD5EA200695779 /* TweakStoreCache.swift in Sources */,
 				57BF139225D1705300347322 /* TweakContext.swift in Sources */,
 				57BF138825D166E000347322 /* TweakSection.swift in Sources */,
 				5750845D2623EC1B00620301 /* TweakListViewHeader.swift in Sources */,
@@ -829,6 +846,7 @@
 				57F9FB5A25F5C004004A1739 /* UIColor+Extension+Tests.swift in Sources */,
 				577F90DD25D3D0CF00BFC7D2 /* Tweaks.swift in Sources */,
 				57FBFEE926514C10006B3820 /* TweakSearcher+Tests.swift in Sources */,
+				57FF7E4126DB87CF00F01557 /* TweakStoreCache+Tests.swift in Sources */,
 				57D2104325FA592100EF573A /* FloatingNumber+Extension+Tests.swift in Sources */,
 				577F90CA25D3A1FC00BFC7D2 /* TweakContext+Tests.swift in Sources */,
 				577F90D425D3CF7200BFC7D2 /* TweakList+Tests.swift in Sources */,
@@ -838,6 +856,8 @@
 				577F90D725D3CF7C00BFC7D2 /* TweakSection+Tests.swift in Sources */,
 				5744B8DE268027D700E703AF /* Matcher+Tests.swift in Sources */,
 				57013372263C04120094D143 /* Tradable+Tests.swift in Sources */,
+				57FF7E4326DB89F700F01557 /* TweakStorePersistency+Tests.swift in Sources */,
+				574620D32689737400BAD25C /* TweakStoreNotifier+Tests.swift in Sources */,
 				57B41E7825DCFA6C00FA15D5 /* Storable+Tests.swift in Sources */,
 				57FBFEFA265152B8006B3820 /* Debouncer+Tests.swift in Sources */,
 				575F547C25D29603008156A9 /* Array+Extension+Tests.swift in Sources */,

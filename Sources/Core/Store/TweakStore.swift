@@ -7,198 +7,268 @@
 
 import Foundation
 
-// The storage implementation (now is UserDefault) may be replaced in the future.
-
 final class TweakStore {
-    private let name: String
+    private let cache: TweakStoreCache
+    private let persistency: TweakStorePersistency
+    private let notifier: TweakStoreNotifier
     
-    private let cache = NSCache<NSString, Reference<Storable>>()
-    private let persistency: UserDefaults
-    
-    typealias ValueChangeHandler = (Data?, Data?, Bool) -> Void
-    private var notifyKeys: [NotifyToken: String] = [:] // key: token, value: listened key
-    private var notifyTokens: [String: Set<NotifyToken>] = [:] // key: listened key, value: tokens
-    private var notifyHandlers: [NotifyToken: ValueChangeHandler] = [:] // key: token, value: handler
+    private let lock: Lock
     
     init(name: String, appGroupID: String? = nil) {
-        self.name = name
-        self.cache.name = name
-        self.persistency = appGroupID.flatMap { UserDefaults(suiteName: $0) }
-            ?? UserDefaults(suiteName: name)
-            ?? .standard
+        self.cache = TweakStoreCache()
+        self.persistency = TweakStorePersistency(name: name, appGroupID: appGroupID)
+        self.notifier = TweakStoreNotifier()
+        
+        self.lock = Lock()
     }
 }
 
 extension TweakStore {
-    func hasValue(forKey rawKey: String) -> Bool {
-        let key = _key(from: rawKey)
+    func hasValue(forKey key: String) -> Bool {
+        _lock(); defer { _unlock() }
+        
         return _hasCachedValue(forKey: key)
             || _hasPersistentValue(forKey: key)
     }
     
-    func value<Value: Storable>(forKey rawKey: String) -> Value? {
-        let key = _key(from: rawKey)
+    func value<Value: Storable>(forKey key: String) -> Value? {
+        _lock(); defer { _unlock() }
+        
         if let cached: Value = _cachedValue(forKey: key) {
             return cached
-        } else if let persistent: Value = _persistentValue(forKey: key) {
-            _setCacheValue(persistent, forKey: key, manually: false)
+        } else if let persistent = _persistentData(forKey: key).flatMap(Value.convert(from:)) {
+            _setCacheValue(persistent, forKey: key)
             return persistent
         } else {
             return nil
         }
     }
     
-    func setValue(_ value: Storable, forKey rawKey: String, manually: Bool = false) {
-        let key = _key(from: rawKey)
-        _setCacheValue(value, forKey: key, manually: manually)
-        _setPersistentValue(value, forKey: key, manually: manually)
+    func setValue(_ value: Storable, forKey key: String, manually: Bool = false) {
+        _lock()
+        
+        let tokens = _getNotifyTokens(forKey: key)
+        var needNotify = false
+        var oldData: Data?
+        if !tokens.isEmpty {
+            needNotify = true
+            oldData = _rawData(forKey: key)
+        }
+        
+        let newData = value.convertToData()
+        guard _setPersistentData(newData, forKey: key) else {
+            _unlock()
+            return
+        }
+        
+        _setCacheValue(value, forKey: key)
+        
+        _unlock()
+        
+        if needNotify {
+            _notifiy(tokens: tokens, old: oldData, new: newData, manually: manually)
+        }
     }
     
-    func removeValue(forKey rawKey: String) {
-        let key = _key(from: rawKey)
+    func removeValue(forKey key: String, manually: Bool = false) {
+        _lock()
+        
+        let tokens = _getNotifyTokens(forKey: key)
+        var needNotify = false
+        var oldData: Data?
+        if !tokens.isEmpty {
+            needNotify = true
+            oldData = _rawData(forKey: key)
+        }
+        
+        guard _removePersistentValue(forKey: key) else {
+            _unlock()
+            return
+        }
+        
         _removeCacheValue(forKey: key)
-        _removePersistentValue(forKey: key)
+
+        _unlock()
+        
+        if needNotify, oldData != nil {
+            _notifiy(tokens: tokens, old: oldData, new: nil, manually: manually)
+        }
     }
     
     func removeAll() {
+        _lock()
+        
+        let tokens = _getAllNotifyTokens()
+        var oldDatas: [String: Data] = [:]
+        for key in tokens.keys {
+            guard let oldData = _rawData(forKey: key) else { continue }
+            oldDatas[key] = oldData
+        }
+        
+        guard _removeAllPersistentValues() else {
+            _unlock()
+            return
+        }
+        
         _removeAllCachedValues()
-        _removeAllPersistentValues()
+        _unlock()
+        
+        for (key, data) in oldDatas {
+            _notifiy(tokens: tokens[key, default: []], old: data, new: nil, manually: false)
+        }
     }
     
-    func rawData(forKey rawKey: String) -> Data? {
-        let key = _key(from: rawKey)
-        return _persistentData(forKey: key)
+    func rawData(forKey key: String) -> Data? {
+        _lock(); defer { _unlock() }
+        
+        return _rawData(forKey: key)
     }
     
-    func setRawData(_ data: Data, forKey rawKey: String, manually: Bool = false) {
-        let key = _key(from: rawKey)
+    func setRawData(_ data: Data, forKey key: String, manually: Bool = false) {
+        _lock()
+        
+        let oldData = _rawData(forKey: key)
+        guard _setPersistentData(data, forKey: key) else {
+            _unlock()
+            return
+        }
+        
         _removeCacheValue(forKey: key)
-        _setPersistentData(data, forKey: key, manually: manually)
+        let tokens = _getNotifyTokens(forKey: key)
+        
+        _unlock()
+        
+        _notifiy(tokens: tokens, old: oldData, new: data, manually: manually)
     }
     
-    func startNotifying(forKey rawKey: String, handler: @escaping ValueChangeHandler) -> NotifyToken {
-        let key = _key(from: rawKey)
+    func startNotifying(forKey key: String, handler: @escaping TweakStoreNotifier.ValueChangeHandler) -> NotifyToken {
+        _lock(); defer { _unlock() }
+        
         return _startNotifying(forKey: key, handler: handler)
     }
     
     func stopNotifying(ForToken token: NotifyToken) {
+        _lock(); defer { _unlock() }
+        
         _stopNotifying(ForToken: token)
     }
     
-    func stopNotifying(forKey rawKey: String) {
-        let key = _key(from: rawKey)
+    func stopNotifying(forKey key: String) {
+        _lock(); defer { _unlock() }
+        
         _stopNotifying(forKey: key)
     }
 }
 
 private extension TweakStore {
+    func _lock() {
+        lock.lock()
+    }
+    
+    func _unlock() {
+        lock.unlock()
+    }
+}
+
+private extension TweakStore {
+    func _rawData(forKey key: String) -> Data? {
+        _cachedData(forKey: key) ?? _persistentData(forKey: key)
+    }
+}
+
+private extension TweakStore {
     func _hasCachedValue(forKey key: String) -> Bool {
-        cache.object(forKey: key as NSString) != nil
+        cache.hasValue(forKey: key)
     }
     
     func _cachedValue<Value: Storable>(forKey key: String) -> Value? {
-        cache.object(forKey: key as NSString)?.value as? Value
+        cache.value(forKey: key)
     }
     
-    func _setCacheValue(_ value: Storable, forKey key: String, manually: Bool) {
-        cache.setObject(.init(value: value), forKey: key as NSString)
+    func _setCacheValue(_ value: Storable, forKey key: String) {
+        cache.setValue(value, forKey: key)
     }
     
     func _removeCacheValue(forKey key: String) {
-        cache.removeObject(forKey: key as NSString)
+        cache.removeValue(forKey: key)
     }
     
     func _removeAllCachedValues() {
-        cache.removeAllObjects()
+        cache.removeAll()
+    }
+    
+    func _cachedData(forKey key: String) -> Data? {
+        cache.data(forkey: key)
     }
 }
 
 private extension TweakStore {
     func _hasPersistentValue(forKey key: String) -> Bool {
-        persistency.data(forKey: key) != nil
-    }
-
-    func _persistentValue<Value: Storable>(forKey key: String) -> Value? {
-        persistency.data(forKey: key).flatMap({ Value.convert(from: $0) })
+        persistency.hasData(forKey: key)
     }
     
-    func _setPersistentValue(_ value: Storable, forKey key: String, manually: Bool) {
-        _setPersistentData(value.convertToData(), forKey: key, manually: manually)
+    func _removePersistentValue(forKey key: String) -> Bool {
+        do {
+            try persistency.removeData(forKey: key)
+            return true
+        } catch {
+            Logger.log("fail to remove persistent value for \(key), error: \(error)")
+            return false
+        }
     }
     
-    func _removePersistentValue(forKey key: String) {
-        _removePersistentData(forKey: key)
-    }
-    
-    func _removeAllPersistentValues() {
-        for key in persistency.dictionaryRepresentation().keys {
-            guard key.hasPrefix(Constants.storeKeyMagicWord) else { continue }
-            _removePersistentData(forKey: key)
+    func _removeAllPersistentValues() -> Bool {
+        do {
+            try persistency.removeAll()
+            return true
+        } catch {
+            Logger.log("fail to remove all persistent values, error: \(error)")
+            return false
         }
     }
     
     func _persistentData(forKey key: String) -> Data? {
-        persistency.data(forKey: key)
+        do {
+            return try persistency.data(forKey: key)
+        } catch {
+            Logger.log("fail to get persistent value for \(key), error: \(error)")
+            return nil
+        }
     }
     
-    func _setPersistentData(_ data: Data, forKey key: String, manually: Bool) {
-        let oldData = persistency.data(forKey: key)
-        if oldData == data { return }
-        persistency.setValue(data, forKey: key)
-        _notifiy(forKey: key, old: oldData, new: data, manually: manually)
-    }
-    
-    func _removePersistentData(forKey key: String) {
-        let old = persistency.data(forKey: key)
-        if old == nil { return }
-        persistency.removeObject(forKey: key)
-        _notifiy(forKey: key, old: old, new: nil, manually: false)
+    func _setPersistentData(_ data: Data, forKey key: String) -> Bool {
+        do {
+            try persistency.setData(data, forKey: key)
+            return true
+        } catch {
+            Logger.log("fail to persist value for \(key), error: \(error)")
+            return false
+        }
     }
 }
 
 private extension TweakStore {
-    func _startNotifying(forKey key: String, handler: @escaping ValueChangeHandler) -> NotifyToken {
-        let token = NotifyToken(store: self)
-        notifyKeys[token] = key
-        notifyTokens[key, default: []].insert(token)
-        notifyHandlers[token] = handler
-        return token
+    func _startNotifying(forKey key: String, handler: @escaping TweakStoreNotifier.ValueChangeHandler) -> NotifyToken {
+        notifier.startNotifying(forKey: key, store: self, handler: handler)
     }
     
     func _stopNotifying(ForToken token: NotifyToken) {
-        if let key = notifyKeys.removeValue(forKey: token) {
-            notifyTokens[key, default: []].remove(token)
-        }
-        notifyHandlers.removeValue(forKey: token)
+        notifier.stopNotifying(ForToken: token)
     }
     
     func _stopNotifying(forKey key: String) {
-        guard let tokens = notifyTokens.removeValue(forKey: key) else { return }
-        tokens.forEach {
-            notifyKeys.removeValue(forKey: $0)
-            notifyHandlers.removeValue(forKey: $0)
-        }
+        notifier.stopNotifying(forKey: key)
     }
     
-    func _notifiy(forKey key: String, old: Data?, new: Data?, manually: Bool) {
-        guard let tokens = self.notifyTokens[key] else { return }
-        tokens.forEach { notifyHandlers[$0]?(old, new, manually) }
-    }
-}
-
-private extension TweakStore {
-    func _key(from rawKey: String) -> String {
-        if rawKey.hasPrefix(Constants.storeKeyMagicWord) { return rawKey }
-        return Constants.storeKeyMagicWord.appending(rawKey)
+    func _getNotifyTokens(forKey key: String) -> Set<NotifyToken> {
+        notifier.getNotifyTokens(forKey: key)
     }
     
-    func _rawKey(from key: String) -> String {
-        guard key.hasPrefix(Constants.storeKeyMagicWord) else { return key }
-        return String(key.utf8.dropFirst(Constants.storeKeyMagicWordCount))!
+    func _getAllNotifyTokens() -> [String: Set<NotifyToken>] {
+        notifier.getAllNotifyTokens()
     }
-}
-
-private extension Constants {
-    static let storeKeyMagicWord = "§§TweaKit§§"
-    static let storeKeyMagicWordCount = storeKeyMagicWord.utf8.count
+    
+    func _notifiy(tokens: Set<NotifyToken>, old: Data?, new: Data?, manually: Bool) {
+        notifier.notifiy(forTokens: tokens, old: old, new: new, manually: manually)
+    }
 }
