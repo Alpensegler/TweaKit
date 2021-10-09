@@ -76,7 +76,7 @@ extension TweakSegmentedViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if #available(iOS 12.0, *), previousTraitCollection?.userInterfaceStyle == traitCollection.userInterfaceStyle {
+        if previousTraitCollection?.userInterfaceStyle == traitCollection.userInterfaceStyle {
             _correctTitleProgress()
         }
     }
@@ -689,7 +689,7 @@ extension TweakSegmentContentCell {
 private extension TweakSegmentContentCell {
     func _layoutUI() {
         listViewController.tableView.frame = contentView.bounds
-        listViewController.tableView.scrollIndicatorInsets.bottom = window?.safeAreaInsets.bottom ?? 0
+        listViewController.tableView.verticalScrollIndicatorInsets.bottom = window?.safeAreaInsets.bottom ?? 0
     }
 }
 

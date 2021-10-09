@@ -45,7 +45,7 @@ private extension TweakListEmptyView {
     
     func _layoutUI() {
         imageView.center.x = frame.midX
-        imageView.frame.origin.y = UIApplication.tk_shared.statusBarOrientation.isPortrait ? 56 : 16
+        imageView.frame.origin.y = UIApplication.tk_shared.isLandscape ? 16 : 56
         label.center.x = frame.midX
         label.frame.origin.y = imageView.frame.maxY + 1
         label.frame.size.width = frame.width * 0.5

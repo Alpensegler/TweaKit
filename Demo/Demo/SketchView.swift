@@ -264,7 +264,7 @@ private extension SketchActionView {
             buttons[action] = button
             button.setImage(sketchView.image(for: action), for: .normal)
             button.addTarget(sketchView, action: sketchView.selector(for: action), for: .touchUpInside)
-            if #available(iOS 13.0, *) { button.layer.cornerCurve = .circular }
+            button.layer.cornerCurve = .circular
             button.layer.cornerRadius = buttonSize.height * 0.5
             button.layer.shadowPath = UIBezierPath(roundedRect: .init(origin: .zero, size: buttonSize), cornerRadius: buttonSize.height * 0.5).cgPath
             button.layer.shadowColor = UIColor.black.withAlphaComponent(0.06).cgColor
@@ -285,11 +285,6 @@ private extension SketchActionView {
     }
     
     func _calibratetButton(for action: SketchAction) {
-        guard let button = buttons[action] else { return }
-        if #available(iOS 13.0, *), traitCollection.userInterfaceStyle == .dark {
-            button.layer.shadowOpacity = 0
-        } else {
-            button.layer.shadowOpacity = 1
-        }
+        buttons[action]?.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
 }

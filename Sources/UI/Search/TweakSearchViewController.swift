@@ -189,7 +189,7 @@ private extension TweakSearchViewController {
 
 private extension TweakSearchViewController {
     var dimmingView: UIView? {
-        if #available(iOS 13.0, *), traitCollection.userInterfaceIdiom == .phone {
+        if traitCollection.userInterfaceIdiom == .phone {
             // hack logic to get the card presentation style dimming view through "Debug View Hierarchy"
             // window
             // -- UITransitionView
@@ -206,7 +206,7 @@ private extension TweakSearchViewController {
     }
     
     var containerView: UIView {
-        if #available(iOS 13.0, *), traitCollection.userInterfaceIdiom == .phone {
+        if traitCollection.userInterfaceIdiom == .phone {
             return presentationController?.containerView ?? view
         } else {
             return view
@@ -328,12 +328,7 @@ private extension TweakSearchViewController {
     }
     
     func _loadingIndicator() -> UIActivityIndicatorView {
-        let v: UIActivityIndicatorView
-        if #available(iOS 13.0, *) {
-            v = UIActivityIndicatorView(style: .medium)
-        } else {
-            v = UIActivityIndicatorView(style: .gray)
-        }
+        let v = UIActivityIndicatorView(style: .medium)
         return v
     }
     

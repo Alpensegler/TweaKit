@@ -104,22 +104,16 @@ private extension ViewController {
         sketchColorIndicatorShadowView.layer.shadowColor = UIColor.black.withAlphaComponent(0.12).cgColor
         sketchColorIndicatorShadowView.layer.shadowRadius = 5
         sketchColorIndicatorShadowView.layer.shadowOffset = .init(width: 0, height: 6)
-        if #available(iOS 13.0, *) {
-            sketchColorIndicatorView.layer.cornerCurve = .circular
-            sketchColorIndicatorShadowView.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
-        } else {
-            sketchColorIndicatorShadowView.layer.shadowOpacity = 1
-        }
+        sketchColorIndicatorView.layer.cornerCurve = .circular
+        sketchColorIndicatorShadowView.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
     
     func _setupTip() {
-        shakeTipView.layer.cornerRadius = 10
-        longPressTipView.layer.cornerRadius = 10
-        if #available(iOS 13.0, *) {
-            shakeTipView.layer.cornerCurve = .continuous
-            longPressTipView.layer.cornerCurve = .continuous
-        }
         shakeTipView.isHidden = !Tweaks.rootViewEnableShake
+        shakeTipView.layer.cornerRadius = 10
+        shakeTipView.layer.cornerCurve = .continuous
+        longPressTipView.layer.cornerRadius = 10
+        longPressTipView.layer.cornerCurve = .continuous
         orLabel.isHidden = shakeTipView.isHidden
         longPressTipViewLeadingToCenter.isActive = !shakeTipView.isHidden
         longPressTipViewLeadingToShakeTip.isActive = shakeTipView.isHidden
@@ -230,12 +224,7 @@ private extension ViewController {
     }
     
     func _updateColors() {
-        guard #available(iOS 13.0, *) else { return }
-        if traitCollection.userInterfaceStyle == .dark {
-            sketchColorIndicatorShadowView.layer.shadowOpacity = 0
-        } else {
-            sketchColorIndicatorShadowView.layer.shadowOpacity = 1
-        }
+        sketchColorIndicatorShadowView.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
     
     func _updatePlaceholder(hasContent: Bool) {

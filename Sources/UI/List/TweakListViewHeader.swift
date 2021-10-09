@@ -105,9 +105,7 @@ private extension TweakListSectionHeader {
     }
     
     func _toggleShadow() {
-        if #available(iOS 13.0, *) {
-            background.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
-        }
+        background.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
 }
 

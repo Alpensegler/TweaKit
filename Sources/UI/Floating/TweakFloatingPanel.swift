@@ -181,9 +181,7 @@ private extension TweakFloatingPanel {
     }
     
     func _calibrateUI() {
-        if #available(iOS 13.0, *) {
-            view.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
-        }
+        view.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
     
     func _reposition() {

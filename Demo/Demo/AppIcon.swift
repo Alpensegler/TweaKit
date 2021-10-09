@@ -171,9 +171,7 @@ private extension AppIconSecondaryView.Cell {
     func _setupUI() {
         contentView.layer.borderColor = UIColor(named: "color_app_icon_label_selected")?.cgColor
         contentView.layer.cornerRadius = 20
-        if #available(iOS 13.0, *) {
-            contentView.layer.cornerCurve = .continuous
-        }
+        contentView.layer.cornerCurve = .continuous
         
         contentView.addSubview(iconImageView)
         contentView.addSubview(nameLabel)

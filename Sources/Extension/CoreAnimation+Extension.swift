@@ -11,9 +11,7 @@ extension CALayer {
     func addCorner(radius: CGFloat, mask: CACornerMask = .all, continuous: Bool = true, clipsContent: Bool = false) {
         cornerRadius = radius
         maskedCorners = mask
-        if #available(iOS 13.0, *) {
-            cornerCurve = continuous ? .continuous :.circular
-        }
+        cornerCurve = continuous ? .continuous :.circular
         masksToBounds = clipsContent
     }
     

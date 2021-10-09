@@ -33,13 +33,10 @@ extension TweakSearchHistoryViewController {
             if scrollToTop, !histories.isEmpty {
                 tableView.scrollToRow(at: .init(row: 0, section: 0), at: .bottom, animated: false)
             }
-            return
-        }
-        
-        if #available(iOS 13, *), !tableView.isHidden {
-            _reloadPartially(with: histories)
-        } else {
+        } else if tableView.isHidden {
             _reloadAll(with: histories)
+        } else {
+            _reloadPartially(with: histories)
         }
     }
 }

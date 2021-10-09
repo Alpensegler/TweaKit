@@ -82,15 +82,16 @@ extension UIColor: Storable {
 
 extension Array: Storable where Element: Storable {
     public static func convert(from data: Data) -> [Element]? {
-        let datas = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Data]
+        let datas = try? JSONDecoder().decode([Data].self, from: data)
         let array = datas?.compactMap { Element.convert(from: $0) }
         return array?.count == datas?.count ? array : nil
     }
     
+    // swiftlint:disable force_try
     public func convertToData() -> Data {
-        let datas = map { $0.convertToData() }
-        return NSKeyedArchiver.archivedData(withRootObject: datas)
+        return try! JSONEncoder().encode(map { $0.convertToData() })
     }
+    // swiftlint:enable force_try
 }
 
 extension Storable where Self: RawRepresentable, RawValue: Storable {

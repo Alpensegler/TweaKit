@@ -131,9 +131,7 @@ private extension TweakFloatingBall {
     }
     
     func _calibrateUI() {
-        if #available(iOS 13.0, *) {
-            layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
-        }
+        layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
 }
 

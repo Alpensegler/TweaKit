@@ -7,7 +7,7 @@ Pod::Spec.new do |spec|
   spec.author = { 'Cokile': 'cokile@sunday37.com' }
   spec.source = { git: 'https://github.com/sundayfun/TweaKit.git', tag: spec.version.to_s }
 
-  spec.ios.deployment_target = '11.0'
+  spec.ios.deployment_target = '13.0'
   spec.swift_versions = ['5.4']
 
   spec.source_files = 'Sources/**/*.swift'

@@ -68,9 +68,9 @@ extension TweakSecondaryViewContainer: UIViewControllerTransitioningDelegate {
 extension TweakSecondaryViewContainer: TweakSecondaryViewAnimatorDelegate {
     func animatorPortraitPresentTargetHeight(_ animator: TweakSecondaryViewAnimator) -> CGFloat {
         let topInset = Constants.UI.SecondaryView.titleHeight + Constants.UI.SecondaryView.hairlineHeight
-        let bottomInset = UIApplication.tk_shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        let bottomInset: CGFloat = 27 // always has a bottom inset no matter if the device has home indicator
         let minHeight: CGFloat = 550
-        let maxHeight = UIScreen.main.bounds.height - UIApplication.tk_shared.statusBarFrame.height - Constants.UI.SecondaryView.navigationBarHeight
+        let maxHeight = UIScreen.main.bounds.height - UIApplication.tk_shared.statusBarHeight - Constants.UI.SecondaryView.navigationBarHeight
         return (topInset + secondaryView.estimatedHeight + bottomInset).clamped(from: minHeight, to: maxHeight)
     }
     

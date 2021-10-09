@@ -17,11 +17,7 @@ extension UIColor {
     }
     
     convenience init(light: UIColor, dark: UIColor) {
-        if #available(iOS 13.0, *) {
-            self.init(dynamicProvider: { $0.userInterfaceStyle == .dark ? dark : light })
-        } else {
-            self.init(cgColor: light.cgColor)
-        }
+        self.init(dynamicProvider: { $0.userInterfaceStyle == .dark ? dark : light })
     }
 }
 

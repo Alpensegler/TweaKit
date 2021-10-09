@@ -38,32 +38,32 @@ class StringExtensionTests: XCTestCase {
     }
     
     // Comparsion result from shell command: md5
-        func testMD5Consistency() {
-            let lhs = "TweaKit"
-            let rhs = "fdf33e0888b7541550533df7676e4367"
-            XCTAssertEqual(lhs.md5, rhs)
-            XCTAssertEqual(lhs.md5, rhs)
-            XCTAssertEqual(lhs.md5, rhs)
+    func testSHA256Consistency() {
+        let lhs = "TweaKit"
+        let rhs = "17de357825fc04f8ab580087f9ceeb382c81da12b53c004760516d44dbfb6c62"
+        XCTAssertEqual(lhs.sha256, rhs)
+        XCTAssertEqual(lhs.sha256, rhs)
+        XCTAssertEqual(lhs.sha256, rhs)
+    }
+    
+    // Comparsion result from shell command: md5
+    func testSHA256Correctness() {
+        XCTAssertEqual("TweaKit".sha256, "17de357825fc04f8ab580087f9ceeb382c81da12b53c004760516d44dbfb6c62")
+        XCTAssertEqual("TweaKit".lowercased().sha256, "4bf6410b193c36c62e7fc8cdec6f83a0f2d6914312636d6f54cbc2ec9f5c4995")
+        XCTAssertEqual("TweaKit".uppercased().sha256, "f250dea140bebca3ec0c5fc15e3fba690a5414d10ec9d05a3ef48ef505551ab7")
+    }
+    
+    func testShortStringSHA256Performance() {
+        measure {
+            _ = "TweaKit".sha256
         }
+    }
+    
+    func testLongStringSHA256Performance() {
+        let sample = Array(repeating: "TweaKit", count: 100_000).joined()
         
-        // Comparsion result from shell command: md5
-        func testMD5Correctness() {
-            XCTAssertEqual("TweaKit".md5, "fdf33e0888b7541550533df7676e4367")
-            XCTAssertEqual("TweaKit".lowercased().md5, "03fcd11573d3428deebec36c54acf927")
-            XCTAssertEqual("TweaKit".uppercased().md5, "41a5558db5ee58da097ece5a3405dd02")
+        measure {
+            _ = sample.sha256
         }
-        
-        func testShortStringMD5Performance() {
-            measure {
-                _ = "TweaKit".md5
-            }
-        }
-        
-        func testLongStringMD5Performance() {
-            let sample = Array(repeating: "TweaKit", count: 100_000).joined()
-            
-            measure {
-                _ = sample.md5
-            }
-        }
+    }
 }

@@ -162,9 +162,7 @@ private extension TweakListViewCell {
     }
     
     func _toggleShadow() {
-        if #available(iOS 13.0, *) {
-            bottomBackground.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
-        }
+        bottomBackground.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
 }
 

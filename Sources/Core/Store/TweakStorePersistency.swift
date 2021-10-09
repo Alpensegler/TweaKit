@@ -90,7 +90,7 @@ private extension TweakStorePersistency {
 
 private extension TweakStorePersistency {
     func _url(forKey key: String) -> URL {
-        let raw = key.md5.utf8
+        let raw = key.sha256.utf8
         let prefix = String(raw.prefix(2))!
         let remain = String(raw.dropFirst(2))!
         return baseURL.appendingPathComponent(prefix).appendingPathComponent(remain)

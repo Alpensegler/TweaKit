@@ -15,6 +15,18 @@ extension UIApplication {
 
 extension UIApplication {
     var isLandscape: Bool {
-        statusBarOrientation.isLandscape
+        if let orientation = windows.first(where: \.isKeyWindow)?.windowScene?.interfaceOrientation {
+            return orientation.isLandscape
+        } else {
+            return false
+        }
+    }
+    
+    var statusBarHeight: CGFloat {
+        if let manager = windows.first(where: \.isKeyWindow)?.windowScene?.statusBarManager {
+            return manager.statusBarFrame.height
+        } else {
+            return 0
+        }
     }
 }
