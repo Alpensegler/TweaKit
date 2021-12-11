@@ -44,15 +44,15 @@ protocol TweakFloatingSecondaryParticipant: TweakFloatingParticipant {
 // MARK: - TweakFloatingAudience
 
 protocol TweakFloatingAudience: AnyObject {
-    func willTransist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory)
-    func transist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory)
-    func didTransist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory)
+    func willTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory)
+    func transit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory)
+    func didTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory)
 }
 
 extension TweakFloatingAudience {
-    func willTransist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) { }
-    func transist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) { }
-    func didTransist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) { }
+    func willTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) { }
+    func transit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) { }
+    func didTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) { }
 }
 
 extension TweakFloatingAudience {

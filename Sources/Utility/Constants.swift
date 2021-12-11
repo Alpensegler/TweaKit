@@ -40,7 +40,7 @@ extension Constants {
             UIColor(light: UIColor(hexString: "80201F42")!, dark: UIColor(hexString: "80E1E1EF")!)
         }
         
-        static var searchBachground: UIColor {
+        static var searchBackground: UIColor {
             UIColor(light: UIColor(hexString: "1E767680")!, dark: UIColor(hexString: "3C767680")!)
         }
         static var searchText: UIColor {
@@ -50,7 +50,7 @@ extension Constants {
             UIColor(light: UIColor(hexString: "963C3C43")!, dark: UIColor(hexString: "96EBEBF5")!)
         }
         
-        static var seperator: UIColor {
+        static var separator: UIColor {
             UIColor(light: UIColor(hexString: "80E2E2E3")!, dark: UIColor(hexString: "803C3C3C")!)
         }
         

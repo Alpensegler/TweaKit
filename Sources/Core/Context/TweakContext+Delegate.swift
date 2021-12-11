@@ -15,7 +15,7 @@ public protocol TweakContextDelegate: AnyObject {
     
     // Search
     func shouldFuzzySearch(for context: TweakContext) -> Bool
-    func shouldSmartCaseSerch(for context: TweakContext) -> Bool
+    func shouldSmartcaseSearch(for context: TweakContext) -> Bool
     func shouldCaseSensitiveSearch(for context: TweakContext) -> Bool
     func maxSearchHistoryCount(for context: TweakContext) -> Int
     func searchDebounceDueTime(for context: TweakContext) -> TimeInterval
@@ -31,9 +31,9 @@ public extension TweakContextDelegate {
 
 public extension TweakContextDelegate {
     func shouldFuzzySearch(for context: TweakContext) -> Bool { true }
-    func shouldSmartCaseSerch(for context: TweakContext) -> Bool { true }
+    func shouldSmartcaseSearch(for context: TweakContext) -> Bool { true }
     func shouldCaseSensitiveSearch(for context: TweakContext) -> Bool { false }
-    func maxSearchHistoryCount(for context: TweakContext) -> Int { Constants.UI.Search.maxHistotyCount }
+    func maxSearchHistoryCount(for context: TweakContext) -> Int { Constants.UI.Search.maxHistoryCount }
     func searchDebounceDueTime(for context: TweakContext) -> TimeInterval { Constants.UI.Search.debounceDueTime }
 }
 
@@ -58,8 +58,8 @@ extension TweakContext {
         delegate?.shouldFuzzySearch(for: self) ?? true
     }
     
-    func shouldSmartCaseSerch() -> Bool {
-        delegate?.shouldSmartCaseSerch(for: self) ?? true
+    func shouldSmartcaseSearch() -> Bool {
+        delegate?.shouldSmartcaseSearch(for: self) ?? true
     }
     
     func shouldCaseSensitiveSearch() -> Bool {
@@ -67,7 +67,7 @@ extension TweakContext {
     }
     
     func maxSearchHistoryCount() -> Int {
-        delegate?.maxSearchHistoryCount(for: self) ?? Constants.UI.Search.maxHistotyCount
+        delegate?.maxSearchHistoryCount(for: self) ?? Constants.UI.Search.maxHistoryCount
     }
     
     func searchDebounceDueTime() -> TimeInterval {

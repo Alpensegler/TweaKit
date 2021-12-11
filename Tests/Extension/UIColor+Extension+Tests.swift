@@ -84,7 +84,7 @@ private extension UIColorExtensionTests {
     typealias RGBA = (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat)
 }
 
-// A tolerant comparison rather than UIColor's exact Equtable implementation
+// A tolerant comparison rather than UIColor's exact Equatable implementation
 // A UIColor instance's alpha component may has some deviation if initialized from hexString with alpha
 // e.g. 0x1A is not exactly 0.1
 extension UIColor {

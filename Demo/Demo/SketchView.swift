@@ -133,7 +133,7 @@ private extension SketchView {
         }
     }
     
-    func _clearUndos() {
+    func _clearUndo() {
         undoManager?.removeAllActions(withTarget: self)
     }
     
@@ -179,7 +179,7 @@ private extension SketchView {
     
     @objc func _clear(_ sender: UIButton) {
         _clearLines()
-        _clearUndos()
+        _clearUndo()
         _notifyUpdate()
         setNeedsDisplay()
     }
@@ -197,7 +197,7 @@ private extension SketchView {
     }
 }
 
-// MARK: - Aciton
+// MARK: - Action
 
 enum SketchAction: String, CaseIterable, TradedTweakable, TweakSecondaryViewItemConvertible {
     case clear
@@ -217,7 +217,7 @@ extension SketchActionView {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        _calibratetButtons(for: buttons.keys.map { $0 })
+        _calibrateButtons(for: buttons.keys.map { $0 })
     }
 }
 
@@ -227,7 +227,7 @@ extension SketchActionView {
         let newButtonCount = actions.count
         _upsertButtons(for: actions, in: sketchView)
         _layoutButtons(for: actions)
-        _calibratetButtons(for: actions)
+        _calibrateButtons(for: actions)
         if oldButtonCount != newButtonCount {
             invalidateIntrinsicContentSize()
         }
@@ -247,9 +247,9 @@ private extension SketchActionView {
         }
     }
     
-    func _calibratetButtons(for actions: [SketchAction]) {
+    func _calibrateButtons(for actions: [SketchAction]) {
         actions.forEach {
-            _calibratetButton(for: $0)
+            _calibrateButton(for: $0)
         }
     }
 }
@@ -284,7 +284,7 @@ private extension SketchActionView {
         button.frame = .init(origin: .init(x: 0, y: CGFloat(index) * (buttonSize.height + buttonPadding)), size: buttonSize)
     }
     
-    func _calibratetButton(for action: SketchAction) {
+    func _calibrateButton(for action: SketchAction) {
         buttons[action]?.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
 }

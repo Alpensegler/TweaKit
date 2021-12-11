@@ -73,7 +73,7 @@ private extension TweakSecondaryViewReorderer {
 private extension TweakSecondaryViewReorderer {
     final class Cell: UITableViewCell {
         private lazy var displayTextLabel = _displayTextLabel()
-        private lazy var seperator = _separator()
+        private lazy var separator = _separator()
 
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -97,7 +97,7 @@ private extension TweakSecondaryViewReorderer.Cell {
     func _setupUI() {
         backgroundColor = .clear
         selectionStyle = .none
-        contentView.addSubview(seperator)
+        contentView.addSubview(separator)
         contentView.addSubview(displayTextLabel)
     }
     
@@ -110,10 +110,10 @@ private extension TweakSecondaryViewReorderer.Cell {
             displayTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
             displayTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.UI.SecondaryView.horizontalPadding),
             displayTextLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
-            seperator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.UI.SecondaryView.horizontalPadding),
-            seperator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.UI.SecondaryView.horizontalPadding),
-            seperator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            seperator.heightAnchor.constraint(equalToConstant: 1),
+            separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.UI.SecondaryView.horizontalPadding),
+            separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.UI.SecondaryView.horizontalPadding),
+            separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            separator.heightAnchor.constraint(equalToConstant: 1),
         ])
     }
 }
@@ -130,7 +130,7 @@ private extension TweakSecondaryViewReorderer.Cell {
     func _separator() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false
-        v.backgroundColor = Constants.Color.seperator
+        v.backgroundColor = Constants.Color.separator
         return v
     }
 }

@@ -86,7 +86,7 @@ private extension TweakSearchHistoryViewController {
 private extension TweakSearchHistoryViewController {
     @available(iOS 13, *)
     func _reloadPartially(with newHistories: [String]) {
-        let oldHistories = self.histories
+        let oldHistories = histories
         histories = newHistories
         let diff = newHistories.difference(from: oldHistories)
         var deletedIndexPaths: [IndexPath] = []
@@ -238,7 +238,7 @@ private extension TweakSearchHistoryCell {
     
     func _hairline() -> UIView {
         let v = UIView()
-        v.backgroundColor = Constants.Color.seperator
+        v.backgroundColor = Constants.Color.separator
         v.isUserInteractionEnabled = false
         return v
     }

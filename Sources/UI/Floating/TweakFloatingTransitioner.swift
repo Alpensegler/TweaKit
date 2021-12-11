@@ -70,17 +70,17 @@ private extension TweakFloatingTransitioner {
     }
     
     func _animateParticipants(from: TweakFloatingParticipant, to: TweakFloatingParticipant, completion: (() -> Void)? = nil) {
-        _notifyAudiences { $0.willTransist(fromCategory: from.category, toCategory: to.category) }
+        _notifyAudiences { $0.willTransit(fromCategory: from.category, toCategory: to.category) }
         from.prepareTransition(to: to.category)
         to.prepareTransition(from: from.category)
         CATransaction.begin()
         CATransaction.setCompletionBlock { [unowned self] in
             from.completeTransition(to: to.category)
             to.completeTransition(from: from.category)
-            _notifyAudiences { $0.didTransist(fromCategory: from.category, toCategory: to.category) }
+            _notifyAudiences { $0.didTransit(fromCategory: from.category, toCategory: to.category) }
             completion?()
         }
-        _notifyAudiences { $0.transist(fromCategory: from.category, toCategory: to.category) }
+        _notifyAudiences { $0.transit(fromCategory: from.category, toCategory: to.category) }
         from.transit(to: to.category)
         to.transit(from: from.category)
         CATransaction.commit()
@@ -115,15 +115,15 @@ private final class AnyWeakTweakFloatingAudience: TweakFloatingAudience {
         self.audience = audience
     }
     
-    func willTransist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
-        audience?.willTransist(fromCategory: fromCategory, toCategory: toCategory)
+    func willTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
+        audience?.willTransit(fromCategory: fromCategory, toCategory: toCategory)
     }
     
-    func transist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
-        audience?.transist(fromCategory: fromCategory, toCategory: toCategory)
+    func transit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
+        audience?.transit(fromCategory: fromCategory, toCategory: toCategory)
     }
     
-    func didTransist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
-        audience?.didTransist(fromCategory: fromCategory, toCategory: toCategory)
+    func didTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
+        audience?.didTransit(fromCategory: fromCategory, toCategory: toCategory)
     }
 }

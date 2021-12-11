@@ -42,15 +42,15 @@ final class TweakSecondaryViewAnimator: NSObject, UIViewControllerAnimatedTransi
         
         let isPresenting = fromVC === toVC.presentingViewController
         if isPresenting {
-            _animateforPresentation(fromVC: fromVC, toVC: toVC, container: container, completion: completion)
+            _animateForPresentation(fromVC: fromVC, toVC: toVC, container: container, completion: completion)
         } else {
-            _animateforDismissal(fromVC: fromVC, toVC: toVC, container: container, completion: completion)
+            _animateForDismissal(fromVC: fromVC, toVC: toVC, container: container, completion: completion)
         }
     }
 }
 
 private extension TweakSecondaryViewAnimator {
-    func _animateforPresentation(fromVC: UIViewController, toVC: UIViewController, container: UIView, completion: @escaping () -> Void) {
+    func _animateForPresentation(fromVC: UIViewController, toVC: UIViewController, container: UIView, completion: @escaping () -> Void) {
         let maskView = UIView(frame: fromVC.view.bounds)
         maskView.alpha = 0
         maskView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -86,7 +86,7 @@ private extension TweakSecondaryViewAnimator {
         CATransaction.commit()
     }
     
-    func _animateforDismissal(fromVC: UIViewController, toVC: UIViewController, container: UIView, completion: @escaping () -> Void) {
+    func _animateForDismissal(fromVC: UIViewController, toVC: UIViewController, container: UIView, completion: @escaping () -> Void) {
         let maskAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity), fromValue: 1, toValue: 0, duration: duration)
         let fromVCAnimation = CABasicAnimation(keyPath: "transform.translation.y", fromValue: 0, toValue: fromVC.view.frame.height, duration: duration)
         CATransaction.begin()

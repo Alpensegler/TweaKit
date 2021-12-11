@@ -52,7 +52,7 @@ extension TweakStoreNotifier {
         notifyTokens
     }
     
-    func notifiy(forTokens tokens: Set<NotifyToken>, old: Data?, new: Data?, manually: Bool) {
+    func notify(forTokens tokens: Set<NotifyToken>, old: Data?, new: Data?, manually: Bool) {
         if tokens.isEmpty { return }
         
         let handlers = tokens.compactMap { notifyHandlers[$0] }

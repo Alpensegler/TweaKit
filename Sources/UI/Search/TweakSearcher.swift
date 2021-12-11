@@ -14,7 +14,7 @@ protocol TweakSearcherDelegate: AnyObject {
 final class TweakSearcher {
     weak var delegate: TweakSearcherDelegate?
     
-    private let retriver: Retriver
+    private let retriever: Retriever
     private let recorder: Recorder
     private let debouncer: Debouncer
     private var eventHandler: ((Event) -> Void)?
@@ -24,9 +24,9 @@ final class TweakSearcher {
     }
     
     init(context: TweakContext) {
-        self.retriver = .init(context: context)
-        self.recorder = .init(context: context)
-        self.debouncer = .init(context: context)
+        retriever = .init(context: context)
+        recorder = .init(context: context)
+        debouncer = .init(context: context)
     }
 }
 
@@ -64,8 +64,8 @@ extension TweakSearcher {
         let job = { [weak self] in
             guard let self = self else { return }
             guard self.delegate?.currentKeyword == keyword else {
-                // different keywords means the job is for a legacy serch, simply ignore it
-                Logger.log("ignore legacy seach with keyword: \(keyword), current keyword: \(String(describing: self.delegate?.currentKeyword))")
+                // different keywords means the job is for a legacy search, simply ignore it
+                Logger.log("ignore legacy search with keyword: \(keyword), current keyword: \(String(describing: self.delegate?.currentKeyword))")
                 return
             }
             self._activateEvent(.updateTweakResults(self._search(with: keyword), keyword))
@@ -114,7 +114,7 @@ extension TweakSearcher {
 
 private extension TweakSearcher {
     func _search(with keyword: String) -> [[AnyTweak]] {
-        retriver.retriveTweaks(with: keyword)
+        retriever.retrieveTweaks(with: keyword)
     }
     
     func _debounceSearch(job: @escaping () -> Void) {
@@ -154,10 +154,10 @@ private extension TweakSearcher {
     }
 }
 
-// MARK: - Retriver
+// MARK: - Retriever
 
 private extension TweakSearcher {
-    final class Retriver {
+    final class Retriever {
         private unowned let context: TweakContext
         
         init(context: TweakContext) {
@@ -166,10 +166,10 @@ private extension TweakSearcher {
     }
 }
 
-extension TweakSearcher.Retriver {
-    func retriveTweaks(with keyword: String) -> [[AnyTweak]] {
+extension TweakSearcher.Retriever {
+    func retrieveTweaks(with keyword: String) -> [[AnyTweak]] {
         let isFuzzy = context.shouldFuzzySearch()
-        let isSmartCase = context.shouldSmartCaseSerch()
+        let isSmartcase = context.shouldSmartcaseSearch()
         let isCaseSensitive = context.shouldCaseSensitiveSearch()
         
         var sections: [String: Section] = [:]
@@ -178,8 +178,8 @@ extension TweakSearcher.Retriver {
             guard let sectionName = tweak.section?.name else { continue }
             
             // ignore list name since it has way less weight in search
-            let sectionMatch = Matcher.match(haystack: sectionName, with: keyword, isFuzzy: isFuzzy, isSmartCase: isSmartCase, isCaseSensitive: isCaseSensitive)
-            let tweakMatch = Matcher.match(haystack: tweak.name, with: keyword, isFuzzy: isFuzzy, isSmartCase: isSmartCase, isCaseSensitive: isCaseSensitive)
+            let sectionMatch = Matcher.match(haystack: sectionName, with: keyword, isFuzzy: isFuzzy, isSmartcase: isSmartcase, isCaseSensitive: isCaseSensitive)
+            let tweakMatch = Matcher.match(haystack: tweak.name, with: keyword, isFuzzy: isFuzzy, isSmartcase: isSmartcase, isCaseSensitive: isCaseSensitive)
             guard sectionMatch.isMatched || tweakMatch.isMatched else { continue }
             
             let score = max(sectionMatch.score, tweakMatch.score)
@@ -198,7 +198,7 @@ extension TweakSearcher.Retriver {
     }
 }
 
-private extension TweakSearcher.Retriver {
+private extension TweakSearcher.Retriever {
     final class Section {
         private(set) var score: Matcher.Score
         private(set) var tweaks: [AnyTweak]
@@ -227,8 +227,8 @@ private extension TweakSearcher {
         
         init(context: TweakContext) {
             self.contextName = context.name
-            self.maxCount = context.delegate?.maxSearchHistoryCount(for: context) ?? Constants.UI.Search.maxHistotyCount
-            _retriveHistories()
+            self.maxCount = context.delegate?.maxSearchHistoryCount(for: context) ?? Constants.UI.Search.maxHistoryCount
+            _retrieveHistories()
         }
     }
 }
@@ -281,12 +281,12 @@ extension TweakSearcher.Recorder {
         records.removeValue(forKey: contextName)
     }
     
-    private func _retriveHistories() {
+    private func _retrieveHistories() {
         guard let data = UserDefaults.standard.data(forKey: Constants.Keys.searchHistories) else { return }
         do {
             records = try JSONDecoder().decode([String: [Record]].self, from: data)
         } catch {
-            Logger.log("failed to retrive histories: \(error.localizedDescription)")
+            Logger.log("failed to retrieve histories: \(error.localizedDescription)")
         }
     }
     
@@ -327,7 +327,7 @@ private extension Debouncer {
 
 extension Constants.UI {
     enum Search {
-        static let maxHistotyCount = 10
+        static let maxHistoryCount = 10
         static let debounceDueTime: TimeInterval = 0.3
     }
 }

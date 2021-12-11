@@ -24,7 +24,7 @@ public final class TweakPrimaryViewColorPicker: UIView {
  
 public extension TweakPrimaryViewColorPicker {
     override var intrinsicContentSize: CGSize {
-        return .init(
+        .init(
             width: labelSize.width + colorView.frame.width + padding,
             height: max(labelSize.height, colorView.frame.height)
         )

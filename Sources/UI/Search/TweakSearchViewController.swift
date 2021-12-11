@@ -58,7 +58,7 @@ extension TweakSearchViewController {
 
 extension TweakSearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
+        true
     }
 }
 
@@ -79,13 +79,13 @@ extension TweakSearchViewController: TweakSearchHistoryViewControllerDelegate {
 }
 
 extension TweakSearchViewController: TweakFloatingAudience {
-    func willTransist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
+    func willTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
         guard fromCategory == .searchList else { return }
         _endTyping()
         _toggleDimmingViewToShow(false)
     }
     
-    func transist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
+    func transit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
         if fromCategory == .searchList {
             _toggleContainerToShow(false, animated: true)
         } else if toCategory == .searchList {
@@ -93,7 +93,7 @@ extension TweakSearchViewController: TweakFloatingAudience {
         }
     }
     
-    func didTransist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
+    func didTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
         if fromCategory == .searchList {
             _toggleContainerToShow(false, animated: false)
             _toggleDimmingViewToShow(false)
@@ -175,14 +175,14 @@ private extension TweakSearchViewController {
 
 private extension TweakSearchViewController {
     func _registerNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(_onWillTernimate), name: UIApplication.willTerminateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(_onWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
     }
     
     func _unregisterNotifications() {
         NotificationCenter.default.removeObserver(self)
     }
     
-    @objc func _onWillTernimate(_ notification: Notification) {
+    @objc func _onWillTerminate(_ notification: Notification) {
         _deactivateSearch()
     }
 }
@@ -226,7 +226,7 @@ private extension TweakSearchViewController {
         let key = "floating-opacity"
         
         guard animated else {
-            disableImplicityAnimation {
+            disableImplicitAnimation {
                 containerView.layer.opacity = flag ? 1 : 0
                 containerView.layer.removeAnimation(forKey: key)
             }
@@ -296,7 +296,7 @@ private extension TweakSearchViewController {
         f.clearButtonMode = .whileEditing
         f.returnKeyType = .search
         f.enablesReturnKeyAutomatically = true
-        f.backgroundColor = Constants.Color.searchBachground
+        f.backgroundColor = Constants.Color.searchBackground
         f.font = .systemFont(ofSize: 17)
         f.textColor = Constants.Color.searchText
         f.tintColor = f.textColor
@@ -323,7 +323,7 @@ private extension TweakSearchViewController {
     func _hairline() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false
-        v.backgroundColor = Constants.Color.seperator
+        v.backgroundColor = Constants.Color.separator
         return v
     }
     

@@ -69,7 +69,7 @@ private extension TweakImporter {
             let id = [box.list, box.section, box.tweak].joined(separator: Constants.idSeparator)
             
             guard let tweak = context.tweaks.first(where: { $0.id == id }) else {
-                Logger.log("👊 tweak with id: (\(id)) is inexisted")
+                Logger.log("👊 tweak with id: (\(id)) is not in context \(context.name)")
                 continue
             }
             

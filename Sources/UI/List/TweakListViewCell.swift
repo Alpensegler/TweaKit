@@ -79,13 +79,13 @@ extension TweakListViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        guard _checkCanManuallyHightlight() else { return }
+        guard _checkCanManuallyHighlight() else { return }
         _setHighlight(selected, animated: animated)
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
-        guard _checkCanManuallyHightlight() else { return }
+        guard _checkCanManuallyHighlight() else { return }
         _setHighlight(highlighted, animated: animated)
     }
 }
@@ -197,7 +197,7 @@ private extension TweakListViewCell {
         primaryViewContainer.recycle(by: delegate.primaryViewRecycler)
     }
     
-    func _checkCanManuallyHightlight() -> Bool {
+    func _checkCanManuallyHighlight() -> Bool {
         tweak.isUserInteractionEnabled && tweak.hasSecondaryView
     }
     

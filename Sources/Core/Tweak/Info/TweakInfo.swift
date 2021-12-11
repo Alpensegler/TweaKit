@@ -74,11 +74,11 @@ extension TweakInfo {
         let rawValue: String
         
         init(rawValue value: String) {
-            self.rawValue = value
+            rawValue = value
         }
         
         init(stringLiteral value: String) {
-            self.rawValue = value
+            rawValue = value
         }
         
         static func == (lhs: TweakInfo.Key<InfoType>, rhs: TweakInfo.Key<InfoType>) -> Bool {

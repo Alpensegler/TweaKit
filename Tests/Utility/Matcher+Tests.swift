@@ -21,7 +21,7 @@ class MatcherTests: XCTestCase {
             ("", true, true, true, false),
         ]
         for trial in trials {
-            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartCase: trial.isSmartCase, isCaseSensitive: trial.isCaseSensitive)
+            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartcase: trial.isSmartcase, isCaseSensitive: trial.isCaseSensitive)
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
@@ -38,7 +38,7 @@ class MatcherTests: XCTestCase {
             ("AbC", true, true, true, true),
         ]
         for trial in trials {
-            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartCase: trial.isSmartCase, isCaseSensitive: trial.isCaseSensitive)
+            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartcase: trial.isSmartcase, isCaseSensitive: trial.isCaseSensitive)
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
@@ -55,7 +55,7 @@ class MatcherTests: XCTestCase {
             ("abc", true, true, true, false),
         ]
         for trial in trials {
-            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartCase: trial.isSmartCase, isCaseSensitive: trial.isCaseSensitive)
+            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartcase: trial.isSmartcase, isCaseSensitive: trial.isCaseSensitive)
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
@@ -72,12 +72,12 @@ class MatcherTests: XCTestCase {
             ("ABC", true, true, true, false),
         ]
         for trial in trials {
-            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartCase: trial.isSmartCase, isCaseSensitive: trial.isCaseSensitive)
+            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartcase: trial.isSmartcase, isCaseSensitive: trial.isCaseSensitive)
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
     
-    func testMixedCaseSerach() {
+    func testMixedCaseSearch() {
         let trials: [SearchTrail] = [
             ("abC", false, false, false, true),
             ("abC", true, false, false, true),
@@ -89,7 +89,7 @@ class MatcherTests: XCTestCase {
             ("abC", true, true, true, false),
         ]
         for trial in trials {
-            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartCase: trial.isSmartCase, isCaseSensitive: trial.isCaseSensitive)
+            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartcase: trial.isSmartcase, isCaseSensitive: trial.isCaseSensitive)
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
@@ -115,7 +115,7 @@ class MatcherTests: XCTestCase {
             ("CG3", true, true, true, true),
         ]
         for trial in trials {
-            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartCase: trial.isSmartCase, isCaseSensitive: trial.isCaseSensitive)
+            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: trial.isFuzzy, isSmartcase: trial.isSmartcase, isCaseSensitive: trial.isCaseSensitive)
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
@@ -140,14 +140,14 @@ class MatcherTests: XCTestCase {
             ("Ē", false, true),
         ]
         for trial in trials {
-            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: true, isSmartCase: false, isCaseSensitive: trial.isCaseSensitive)
+            let result = Matcher.match(haystack: haystack, with: trial.needle, isFuzzy: true, isSmartcase: false, isCaseSensitive: trial.isCaseSensitive)
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
     
     func testPerformance() {
         measure {
-            _ = Matcher.match(haystack: "A Sample Tweak Section", with: "se", isFuzzy: true, isSmartCase: true, isCaseSensitive: false)
+            _ = Matcher.match(haystack: "A Sample Tweak Section", with: "se", isFuzzy: true, isSmartcase: true, isCaseSensitive: false)
         }
     }
 }
@@ -155,5 +155,5 @@ class MatcherTests: XCTestCase {
 private extension MatcherTests {
     var haystack: String { "AbCdEfG 1234567" }
     
-    typealias SearchTrail = (needle: String, isFuzzy: Bool, isSmartCase: Bool, isCaseSensitive: Bool, matched: Bool)
+    typealias SearchTrail = (needle: String, isFuzzy: Bool, isSmartcase: Bool, isCaseSensitive: Bool, matched: Bool)
 }

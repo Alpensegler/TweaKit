@@ -37,7 +37,7 @@ class StringExtensionTests: XCTestCase {
         }
     }
     
-    // Comparsion result from shell command: md5
+    // Comparing result from shell command: md5
     func testSHA256Consistency() {
         let lhs = "TweaKit"
         let rhs = "17de357825fc04f8ab580087f9ceeb382c81da12b53c004760516d44dbfb6c62"
@@ -46,7 +46,7 @@ class StringExtensionTests: XCTestCase {
         XCTAssertEqual(lhs.sha256, rhs)
     }
     
-    // Comparsion result from shell command: md5
+    // Comparing result from shell command: md5
     func testSHA256Correctness() {
         XCTAssertEqual("TweaKit".sha256, "17de357825fc04f8ab580087f9ceeb382c81da12b53c004760516d44dbfb6c62")
         XCTAssertEqual("TweaKit".lowercased().sha256, "4bf6410b193c36c62e7fc8cdec6f83a0f2d6914312636d6f54cbc2ec9f5c4995")

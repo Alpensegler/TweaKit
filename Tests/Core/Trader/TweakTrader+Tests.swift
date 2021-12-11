@@ -66,7 +66,7 @@ class TweakTraderTests: XCTestCase {
         XCTAssertNil(destination.string)
         context.trader.export(tweaks: context.tweaks.compactMap { $0 as? AnyTradableTweak }, to: destination) { [unowned self] error in
             XCTAssertNil(error)
-            XCTAssertEqual(destination.string?.removingWhiteSapce(), importString.removingWhiteSapce())
+            XCTAssertEqual(destination.string?.removingWhiteSpace(), importString.removingWhiteSpace())
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1)
@@ -85,7 +85,7 @@ class TweakTraderTests: XCTestCase {
         XCTAssertNil(destination.string)
         context.trader.export(tweaks: context.tweaks.compactMap { $0 as? AnyTradableTweak }, to: destination) { [unowned self] error in
             XCTAssertNil(error)
-            XCTAssertEqual(destination.string?.removingWhiteSapce(), importString.removingWhiteSapce().replacingOccurrences(of: #""tweak":"Bool","value":false"#, with: #""tweak":"Bool","value":true"#))
+            XCTAssertEqual(destination.string?.removingWhiteSpace(), importString.removingWhiteSpace().replacingOccurrences(of: #""tweak":"Bool","value":false"#, with: #""tweak":"Bool","value":true"#))
             exp.fulfill()
         }
         wait(for: [exp], timeout: 0.5)
@@ -139,7 +139,7 @@ class TweakTraderTests: XCTestCase {
         XCTAssertNil(destination.string)
         context.trader.export(tweaks: context.tweaks.compactMap { $0 as? AnyTradableTweak }, to: destination) { [unowned self] error in
             XCTAssertNil(error)
-            XCTAssertEqual(destination.string?.removingWhiteSapce(), exportString.removingWhiteSapce())
+            XCTAssertEqual(destination.string?.removingWhiteSpace(), exportString.removingWhiteSpace())
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1)
@@ -252,8 +252,7 @@ private final class TweakTradeTestDestination: TweakTradeDestination {
 }
 
 private extension String {
-    func removingWhiteSapce() -> String {
-        return replacingOccurrences(of: " ", with: "")
-            .replacingOccurrences(of: "\n", with: "")
+    func removingWhiteSpace() -> String {
+        replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
     }
 }

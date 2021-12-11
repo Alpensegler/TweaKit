@@ -53,7 +53,7 @@ extension UIColor {
     }
     
     func toRGBHexString(includeAlpha: Bool = false, includePrefix: Bool = true) -> String {
-        let rgba = self.rgba
+        let rgba = rgba
         let (r, g, b, a) = (rgba.r, rgba.g, rgba.b, rgba.a * 255)
         
         var format = String(repeating: "%02lX", count: includeAlpha ? 4 : 3)

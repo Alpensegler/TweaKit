@@ -26,7 +26,7 @@ class TweakTextField: UITextField {
 // MARK: - TweakValidatedTextField
 
 class TweakValidatedTextField: TweakTextField {
-    var inputingTextTransformer: ((String) -> String?)?
+    var inputTextTransformer: ((String) -> String?)?
     var canCommitText: ((String) -> Bool)?
     var commitText: ((String) -> Void)?
     
@@ -48,12 +48,12 @@ class TweakValidatedTextField: TweakTextField {
 extension TweakValidatedTextField: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return false }
-        guard let transformer = inputingTextTransformer else { return true }
+        guard let transformer = inputTextTransformer else { return true }
         
         // keep cursor location when set textField.text
         // https://stackoverflow.com/questions/26284271/format-uitextfield-text-without-having-cursor-move-to-the-end
-        let begining = textField.beginningOfDocument
-        let cursorLocation = textField.position(from: begining, offset: range.location + string.utf16.count)
+        let beginning = textField.beginningOfDocument
+        let cursorLocation = textField.position(from: beginning, offset: range.location + string.utf16.count)
         
         if let finalText = transformer((text as NSString).replacingCharacters(in: range, with: string)) {
             textField.text = finalText
@@ -94,7 +94,7 @@ private extension TweakValidatedTextField {
 
 extension UITextField {
     func addItems(_ items: [UIBarButtonItem]) {
-        // specify a frame that can have enough space to hold done button to supress the auto layout constraints warning:
+        // specify a frame that can have enough space to hold done button to suppress the auto layout constraints warning:
         // https://stackoverflow.com/a/61725757/4155933
         let toolBar = UIToolbar(frame: .init(x: 0, y: 0, width: 100, height: 44))
         toolBar.items = items

@@ -232,7 +232,7 @@ private extension TweakPrimaryViewStrider {
 }
 
 private final class TextField: TweakValidatedTextField {
-    // setting adjustsFontSizeToFitWidth to true will add spacing arrond text
+    // setting adjustsFontSizeToFitWidth to true will add spacing around text
     // -6 is value after multiple trails (remember to change this value when changing the width of text field)
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         bounds.insetBy(dx: -6, dy: 0)

@@ -59,7 +59,7 @@ extension TweakFloatingPanel: TweakFloatingSecondaryParticipant {
     
     func prepareTransition(from category: TweakFloatingParticipantCategory) {
         guard category == .ball else { return }
-        _beginAppearanceTransistion(isAppear: true)
+        _beginAppearanceTransition(isAppear: true)
         _addToWindow()
     }
     
@@ -77,10 +77,10 @@ extension TweakFloatingPanel: TweakFloatingSecondaryParticipant {
     func prepareTransition(to category: TweakFloatingParticipantCategory) {
         switch category {
         case .ball:
-            _beginAppearanceTransistion(isAppear: false)
+            _beginAppearanceTransition(isAppear: false)
             _fakeFloatingToBall()
         case .normalList, .searchList:
-            _beginAppearanceTransistion(isAppear: false)
+            _beginAppearanceTransition(isAppear: false)
         case .panel:
             break
         }
@@ -157,7 +157,7 @@ private extension TweakFloatingPanel {
     }
     
     func _layoutUI() {
-        disableImplicityAnimation {
+        disableImplicitAnimation {
             view.layer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: view.layer.cornerRadius).cgPath
         }
         
@@ -191,7 +191,7 @@ private extension TweakFloatingPanel {
 }
 
 private extension TweakFloatingPanel {
-    func _beginAppearanceTransistion(isAppear: Bool) {
+    func _beginAppearanceTransition(isAppear: Bool) {
         view.isUserInteractionEnabled = false
         beginAppearanceTransition(isAppear, animated: true)
     }
@@ -228,19 +228,19 @@ private extension TweakFloatingPanel {
             let scaleAnim = CABasicAnimation(keyPath: "transform.scale", toValue: scale, duration: duration)
             image.add(scaleAnim, forKey: "icon-scale")
             let position = CGPoint(x: Constants.UI.Floating.ballSize.half, y: Constants.UI.Floating.ballSize.half)
-            let postionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), toValue: position, duration: duration)
-            image.add(postionAnim, forKey: "icon-position")
+            let positionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), toValue: position, duration: duration)
+            image.add(positionAnim, forKey: "icon-position")
         }
 
         if let background = iconBackground {
-            let bacgroundScale = ceil(max(snapshot.frame.width / background.frame.halfWidth, snapshot.frame.height / background.frame.halfHeight))
-            let anim = CABasicAnimation(keyPath: "transform.scale", toValue: bacgroundScale, duration: duration)
-            background.add(anim, forKey: "background-sacle")
+            let backgroundScale = ceil(max(snapshot.frame.width / background.frame.halfWidth, snapshot.frame.height / background.frame.halfHeight))
+            let anim = CABasicAnimation(keyPath: "transform.scale", toValue: backgroundScale, duration: duration)
+            background.add(anim, forKey: "background-scale")
         }
         
         if let ballPosition = context.floatingTransitioner?.ballPosition() {
-            let postionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), toValue: ballPosition, duration: duration)
-            snapshot.layer.add(postionAnim, forKey: "snapshot-position")
+            let positionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), toValue: ballPosition, duration: duration)
+            snapshot.layer.add(positionAnim, forKey: "snapshot-position")
             let ballSize = CGSize(width: Constants.UI.Floating.ballSize, height: Constants.UI.Floating.ballSize)
             let sizeAnim = CABasicAnimation(keyPath: "bounds.size", fromValue: snapshot.frame.size, toValue: ballSize, duration: duration)
             snapshot.layer.add(sizeAnim, forKey: "snapshot-size")
@@ -389,17 +389,17 @@ private extension TweakFloatingPanel {
 
 private extension TweakFloatingPanel {
     func _frame(in window: TweakWindow, heightLevel: HeightLevel) -> CGRect {
-        let height = ceil(window.bounds.height * heightLevel.precentage)
+        let height = ceil(window.bounds.height * heightLevel.percentage)
         return .init(x: 0, y: window.bounds.height - height, width: window.bounds.width, height: height)
     }
 }
 
 private extension TweakFloatingPanel {
-    @objc func _transistToBall(_ sender: UIButton) {
+    @objc func _transitToBall(_ sender: UIButton) {
         context.floatingTransitioner?.animateTransition(from: self, to: TweakFloatingBall(context: context), tweaks: tweaks)
     }
     
-    @objc func _transistToList(_ sender: UIButton) {
+    @objc func _transitToList(_ sender: UIButton) {
         context.floatingTransitioner?.animateBackToPrimary(from: self)
     }
     
@@ -430,7 +430,7 @@ private extension TweakFloatingPanel {
         let b = HitOutsideButton(type: .system)
         b.extendInset = .init(inset: -11)
         b.setImage(Constants.Assets.floatButton, for: .normal)
-        b.addTarget(self, action: #selector(_transistToBall), for: .touchUpInside)
+        b.addTarget(self, action: #selector(_transitToBall), for: .touchUpInside)
         b.sizeToFit()
         return b
     }
@@ -439,7 +439,7 @@ private extension TweakFloatingPanel {
         let b = HitOutsideButton(type: .system)
         b.extendInset = .init(inset: -11)
         b.setImage(Constants.Assets.cross, for: .normal)
-        b.addTarget(self, action: #selector(_transistToList), for: .touchUpInside)
+        b.addTarget(self, action: #selector(_transitToList), for: .touchUpInside)
         b.sizeToFit()
         return b
     }
@@ -488,7 +488,7 @@ private extension TweakFloatingPanel {
         case medium
         case short
         
-        var precentage: CGFloat {
+        var percentage: CGFloat {
             switch self {
             case .tall: return 0.85
             case .medium: return 0.6

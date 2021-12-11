@@ -28,7 +28,7 @@
 		572EEA642688BE9300CFFD50 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572EEA632688BE9300CFFD50 /* UIApplication+Extension.swift */; };
 		573CC40E2658B3EC002E7681 /* TweakSecondaryViewColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573CC40D2658B3EC002E7681 /* TweakSecondaryViewColorPicker.swift */; };
 		573CC4142658EB42002E7681 /* TweakTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573CC4132658EB42002E7681 /* TweakTextFields.swift */; };
-		573EEB832642755500C10F8F /* DispatchQueue+Extensionn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573EEB822642755500C10F8F /* DispatchQueue+Extensionn.swift */; };
+		573EEB832642755500C10F8F /* DispatchQueue+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573EEB822642755500C10F8F /* DispatchQueue+Extension.swift */; };
 		573EEB8D2642839800C10F8F /* TweakSecondaryViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573EEB8C2642839800C10F8F /* TweakSecondaryViewContainer.swift */; };
 		573EEB932642844000C10F8F /* TweakSecondaryViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573EEB922642844000C10F8F /* TweakSecondaryViewAnimator.swift */; };
 		5744B8D7267F583200E703AF /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5744B8D6267F583200E703AF /* Matcher.swift */; };
@@ -143,7 +143,7 @@
 		572EEA632688BE9300CFFD50 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		573CC40D2658B3EC002E7681 /* TweakSecondaryViewColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewColorPicker.swift; sourceTree = "<group>"; };
 		573CC4132658EB42002E7681 /* TweakTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakTextFields.swift; sourceTree = "<group>"; };
-		573EEB822642755500C10F8F /* DispatchQueue+Extensionn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensionn.swift"; sourceTree = "<group>"; };
+		573EEB822642755500C10F8F /* DispatchQueue+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extension.swift"; sourceTree = "<group>"; };
 		573EEB8C2642839800C10F8F /* TweakSecondaryViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewContainer.swift; sourceTree = "<group>"; };
 		573EEB922642844000C10F8F /* TweakSecondaryViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakSecondaryViewAnimator.swift; sourceTree = "<group>"; };
 		5744B8D6267F583200E703AF /* Matcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
@@ -375,7 +375,7 @@
 				57B41DB125DBE85500FA15D5 /* Comparable+Extension.swift */,
 				577F90EE25D407CA00BFC7D2 /* String+Extension.swift */,
 				57D2103125FA536B00EF573A /* FloatingNumber+Extension.swift */,
-				573EEB822642755500C10F8F /* DispatchQueue+Extensionn.swift */,
+				573EEB822642755500C10F8F /* DispatchQueue+Extension.swift */,
 				576EC60A265909D40059E371 /* CoreGraphics+Extension.swift */,
 				5759FF22262B20EE0035F4DB /* CoreAnimation+Extension.swift */,
 				57F9FB4D25F5B607004A1739 /* UIColor+Extension.swift */,
@@ -819,7 +819,7 @@
 				57F9FB4825F5B556004A1739 /* TweakSegmentedViewController.swift in Sources */,
 				5713AEB725D7D7E7001D12EB /* Tweak+Info.swift in Sources */,
 				5782E6042610865F0091CB16 /* TweakWindow.swift in Sources */,
-				573EEB832642755500C10F8F /* DispatchQueue+Extensionn.swift in Sources */,
+				573EEB832642755500C10F8F /* DispatchQueue+Extension.swift in Sources */,
 				57D902DE25FCB15E0072400C /* TweakExporter.swift in Sources */,
 				57B41DB225DBE85500FA15D5 /* Comparable+Extension.swift in Sources */,
 				571406F32641484A00236D7D /* TweakSecondaryView.swift in Sources */,

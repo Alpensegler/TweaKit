@@ -82,14 +82,14 @@ extension UIColor: Storable {
 
 extension Array: Storable where Element: Storable {
     public static func convert(from data: Data) -> [Element]? {
-        let datas = try? JSONDecoder().decode([Data].self, from: data)
-        let array = datas?.compactMap { Element.convert(from: $0) }
-        return array?.count == datas?.count ? array : nil
+        let data = try? JSONDecoder().decode([Data].self, from: data)
+        let array = data?.compactMap { Element.convert(from: $0) }
+        return array?.count == data?.count ? array : nil
     }
     
     // swiftlint:disable force_try
     public func convertToData() -> Data {
-        return try! JSONEncoder().encode(map { $0.convertToData() })
+        try! JSONEncoder().encode(map { $0.convertToData() })
     }
     // swiftlint:enable force_try
 }

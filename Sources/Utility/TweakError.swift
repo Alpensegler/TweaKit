@@ -33,11 +33,11 @@ public extension TweakError {
             case .contextNotFound:
                 return "tweak context is missing."
             case .corruptedData(let inner):
-                return "data corruputed, due to \(inner)."
+                return "data corrupted, due to \(inner)."
             case let .unsupportedVersion(expected, current):
-                return "unsupported version, exptected: <= \(expected), current: \(current)."
+                return "unsupported version, expected: <= \(expected), current: \(current)."
             case .sourceFailure(let inner):
-                return "receiving from rsource failed, due to \(inner)"
+                return "receiving from resource failed, due to \(inner)"
             case .destinationFailure(let inner):
                 return "shipping to destination failed, due to \(inner)"
             case .unmarshalFailure:

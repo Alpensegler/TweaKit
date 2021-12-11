@@ -198,7 +198,7 @@ private extension TweakSecondaryViewContainer {
     
     func _hairline() -> UIView {
         let v = UIView()
-        v.backgroundColor = Constants.Color.seperator
+        v.backgroundColor = Constants.Color.separator
         return v
     }
 }

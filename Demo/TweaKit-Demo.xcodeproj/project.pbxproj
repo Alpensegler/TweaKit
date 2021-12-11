@@ -15,8 +15,8 @@
 		575F539425D28375008156A9 /* TweaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575F539325D28375008156A9 /* TweaKit.framework */; };
 		575F539525D28375008156A9 /* TweaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 575F539325D28375008156A9 /* TweaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57A50EDD264505620088AFCA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A50EDC264505620088AFCA /* AppIcon.swift */; };
-		57A50EE0264506C70088AFCA /* AppIconDarkRazer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A50EDE264506C70088AFCA /* AppIconDarkRazer@3x.png */; };
-		57A50EE1264506C70088AFCA /* AppIconDarkRazer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A50EDF264506C70088AFCA /* AppIconDarkRazer@2x.png */; };
+		57A50EE0264506C70088AFCA /* AppIconDarkLaser@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A50EDE264506C70088AFCA /* AppIconDarkLaser@3x.png */; };
+		57A50EE1264506C70088AFCA /* AppIconDarkLaser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A50EDF264506C70088AFCA /* AppIconDarkLaser@2x.png */; };
 		57A91DFD262C4260007D737B /* Tweaks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A91DFC262C4260007D737B /* Tweaks.swift */; };
 		57A91DFF262C6DEE007D737B /* SketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A91DFE262C6DEE007D737B /* SketchView.swift */; };
 		57A91E65262D1E69007D737B /* tweaks.json in Resources */ = {isa = PBXBuildFile; fileRef = 57A91E64262D1E69007D737B /* tweaks.json */; };
@@ -46,8 +46,8 @@
 		575F538725D2827F008156A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		575F539325D28375008156A9 /* TweaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TweaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57A50EDC264505620088AFCA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
-		57A50EDE264506C70088AFCA /* AppIconDarkRazer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconDarkRazer@3x.png"; sourceTree = "<group>"; };
-		57A50EDF264506C70088AFCA /* AppIconDarkRazer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconDarkRazer@2x.png"; sourceTree = "<group>"; };
+		57A50EDE264506C70088AFCA /* AppIconDarkLaser@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconDarkLaser@3x.png"; sourceTree = "<group>"; };
+		57A50EDF264506C70088AFCA /* AppIconDarkLaser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconDarkLaser@2x.png"; sourceTree = "<group>"; };
 		57A91DFC262C4260007D737B /* Tweaks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweaks.swift; sourceTree = "<group>"; };
 		57A91DFE262C6DEE007D737B /* SketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchView.swift; sourceTree = "<group>"; };
 		57A91E64262D1E69007D737B /* tweaks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tweaks.json; sourceTree = "<group>"; };
@@ -111,8 +111,8 @@
 		57A50EE3264517CC0088AFCA /* AppIcons */ = {
 			isa = PBXGroup;
 			children = (
-				57A50EDF264506C70088AFCA /* AppIconDarkRazer@2x.png */,
-				57A50EDE264506C70088AFCA /* AppIconDarkRazer@3x.png */,
+				57A50EDF264506C70088AFCA /* AppIconDarkLaser@2x.png */,
+				57A50EDE264506C70088AFCA /* AppIconDarkLaser@3x.png */,
 			);
 			path = AppIcons;
 			sourceTree = "<group>";
@@ -177,10 +177,10 @@
 			files = (
 				575F538625D2827F008156A9 /* LaunchScreen.storyboard in Resources */,
 				575F538325D2827F008156A9 /* Assets.xcassets in Resources */,
-				57A50EE1264506C70088AFCA /* AppIconDarkRazer@2x.png in Resources */,
+				57A50EE1264506C70088AFCA /* AppIconDarkLaser@2x.png in Resources */,
 				57A91E65262D1E69007D737B /* tweaks.json in Resources */,
 				575F538125D2827E008156A9 /* Main.storyboard in Resources */,
-				57A50EE0264506C70088AFCA /* AppIconDarkRazer@3x.png in Resources */,
+				57A50EE0264506C70088AFCA /* AppIconDarkLaser@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

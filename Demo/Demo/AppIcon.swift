@@ -10,7 +10,7 @@ import TweaKit
 
 enum AppIcon: String, CaseIterable {
     case primary = "Default"
-    case darkRazer = "Dark Razer"
+    case darkLaser = "Dark Laser"
 }
 
 extension AppIcon: Tweakable {
@@ -18,8 +18,8 @@ extension AppIcon: Tweakable {
         switch self {
         case .primary:
             return UIImage(named: "icon_app_icon_preview_primary")!
-        case .darkRazer:
-            return UIImage(named: "icon_app_icon_preview_dark_razer")!
+        case .darkLaser:
+            return UIImage(named: "icon_app_icon_preview_dark_laser")!
         }
     }
     
@@ -41,7 +41,7 @@ extension AppIcon {
     private var iconName: String? {
         switch self {
         case .primary: return nil
-        case .darkRazer: return "AppIconDarkRazer"
+        case .darkLaser: return "AppIconDarkLaser"
         }
     }
     

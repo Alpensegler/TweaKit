@@ -24,7 +24,7 @@ extension TweakStoreCache {
         }
     }
     
-    func data(forkey key: String) -> Data? {
+    func data(forKey key: String) -> Data? {
         _content(forKey: key)?.convertToData()
     }
     

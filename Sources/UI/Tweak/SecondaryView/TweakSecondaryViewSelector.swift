@@ -76,7 +76,7 @@ private extension TweakSecondaryViewSelector {
     final class Cell: UITableViewCell {
         private lazy var displayTextLabel = _displayTextLabel()
         private lazy var tickImageView = _tickImageView()
-        private lazy var seperator = _separator()
+        private lazy var separator = _separator()
         private lazy var highlightBackground = _highlightBackground()
         
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -120,7 +120,7 @@ private extension TweakSecondaryViewSelector.Cell {
     func _setupUI() {
         backgroundColor = .clear
         selectionStyle = .none
-        contentView.addSubview(seperator)
+        contentView.addSubview(separator)
         contentView.addSubview(highlightBackground)
         contentView.addSubview(displayTextLabel)
         contentView.addSubview(tickImageView)
@@ -137,10 +137,10 @@ private extension TweakSecondaryViewSelector.Cell {
             tickImageView.leadingAnchor.constraint(greaterThanOrEqualTo: displayTextLabel.trailingAnchor, constant: 25),
             tickImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             tickImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.UI.SecondaryView.horizontalPadding),
-            seperator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.UI.SecondaryView.horizontalPadding),
-            seperator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.UI.SecondaryView.horizontalPadding),
-            seperator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            seperator.heightAnchor.constraint(equalToConstant: 1),
+            separator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.UI.SecondaryView.horizontalPadding),
+            separator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.UI.SecondaryView.horizontalPadding),
+            separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            separator.heightAnchor.constraint(equalToConstant: 1),
         ])
     }
     
@@ -152,11 +152,11 @@ private extension TweakSecondaryViewSelector.Cell {
         if animated {
             UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: { [unowned self] in
                 highlightBackground.alpha = flag ? 0.1 : 0
-                seperator.alpha = flag ? 0 : 1
+                separator.alpha = flag ? 0 : 1
             })
         } else {
             highlightBackground.alpha = flag ? 0.1 : 0
-            seperator.alpha = flag ? 0 : 1
+            separator.alpha = flag ? 0 : 1
         }
     }
 }
@@ -180,7 +180,7 @@ private extension TweakSecondaryViewSelector.Cell {
     func _separator() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false
-        v.backgroundColor = Constants.Color.seperator
+        v.backgroundColor = Constants.Color.separator
         return v
     }
     

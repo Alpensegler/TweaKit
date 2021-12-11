@@ -52,14 +52,14 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
         }
         
         didShowLoading = false
-        tweakResults = ["PLACEHODER"]
+        tweakResults = ["PLACEHOLDER"]
         search(with: "BC", debounce: false)
         XCTAssertTrue(didShowLoading)
         XCTAssertEqual(tweakResults, ["ABC", "BCD"])
         XCTAssertEqual(searchingKeyword, "BC")
         
         didShowLoading = false
-        tweakResults = ["PLACEHODER"]
+        tweakResults = ["PLACEHOLDER"]
         search(with: "XYZ", debounce: false)
         XCTAssertTrue(didShowLoading)
         XCTAssertTrue(tweakResults.isEmpty)

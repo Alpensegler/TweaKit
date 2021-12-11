@@ -34,7 +34,7 @@
 import Foundation
 import CoreGraphics
 
-enum RoundlLevel: Int {
+enum RoundLevel: Int {
     case integer
     case tenth
     case hundredth
@@ -46,7 +46,7 @@ protocol Roundable: BinaryFloatingPoint {
 }
 
 extension Roundable {
-    func rounded(to level: RoundlLevel) -> Self {
+    func rounded(to level: RoundLevel) -> Self {
         let precision = pow(10, -Double(level.rawValue))
         let base = (Double(self) / precision).rounded()
         return Self(Double(base) * precision)

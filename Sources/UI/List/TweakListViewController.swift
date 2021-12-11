@@ -15,7 +15,7 @@ final class TweakListViewController: UITableViewController {
     private lazy var debouncer = Debouncer(dueTime: 0.1)
     private(set) lazy var primaryViewRecycler = TweakPrimaryViewRecycler()
 
-    private var floatingSecion: Int?
+    private var floatingSection: Int?
     private var floatingHeader: TweakListSectionHeader?
     private var floatingSectionCover: UIView?
     private var floatingSectionSnapshot: CALayer?
@@ -138,7 +138,7 @@ extension TweakListViewController: TweakListSectionHeaderDelegate {
     }
     
     func sectionHeader(_ header: TweakListSectionHeader, didActivateFloatingForSection section: Int) {
-        floatingSecion = section
+        floatingSection = section
         floatingHeader = header
         context.floatingTransitioner?.animateTransition(from: self, to: TweakFloatingBall(context: context), tweaks: tweaks[section])
     }
@@ -150,7 +150,7 @@ extension TweakListViewController: TweakListViewCellDelegate {
     }
     
     func tweakListViewCellNeedsLayout(_ cell: TweakListViewCell) {
-        // tirgger cell height update
+        // trigger cell height update
         // 1. no need to update invisible cells
         // 2. debounce here since there maybe multiple cells need layout
         // 3. animation is disabled since shadow is updated without animation
@@ -174,7 +174,7 @@ extension TweakListViewController: TweakFloatingPrimaryParticipant {
     }
     
     func prepareTransition(to category: TweakFloatingParticipantCategory) {
-        guard category == . ball, let section = floatingSecion else { return }
+        guard category == . ball, let section = floatingSection else { return }
         if tableView.isDecelerating || tableView.isTracking || tableView.isDragging { return }
         _toggleIsFloating(to: true)
         _fakeFloatingSection(section)
@@ -188,7 +188,7 @@ extension TweakListViewController: TweakFloatingPrimaryParticipant {
     }
     
     func prepareTransition(from category: TweakFloatingParticipantCategory) {
-        guard let section = floatingSecion else { return }
+        guard let section = floatingSection else { return }
         switch category {
         case .ball:
             _fakeFloatingSection(section)
@@ -210,12 +210,12 @@ extension TweakListViewController: TweakFloatingPrimaryParticipant {
     
     func completeTransition(from category: TweakFloatingParticipantCategory) {
         _toggleIsFloating(to: false)
-        _endTransistion()
+        _endTransition()
         _endFloating()
     }
     
     func completeTransition(to category: TweakFloatingParticipantCategory) {
-        _endTransistion()
+        _endTransition()
     }
 }
 
@@ -280,7 +280,7 @@ private extension TweakListViewController {
         context.showingWindow?.markIsFloating(flag)
     }
     
-    func _endTransistion() {
+    func _endTransition() {
         floatingSectionCover?.removeFromSuperview()
         floatingSectionCover = nil
         floatingSectionSnapshot?.removeFromSuperlayer()
@@ -293,7 +293,7 @@ private extension TweakListViewController {
     
     func _endFloating() {
         floatingHeader = nil
-        floatingSecion = nil
+        floatingSection = nil
     }
     
     func _fakeFloatingSection(_ section: Int) {
@@ -418,18 +418,18 @@ private extension TweakListViewController {
             let scaleAnim = CABasicAnimation(keyPath: "transform.scale", toValue: scale, duration: duration)
             icon.add(scaleAnim, forKey: "icon-scale")
             let position = CGPoint(x: Constants.UI.Floating.ballSize.half, y: Constants.UI.Floating.ballSize.half)
-            let postionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), toValue: position, duration: duration)
-            icon.add(postionAnim, forKey: "icon-position")
+            let positionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), toValue: position, duration: duration)
+            icon.add(positionAnim, forKey: "icon-position")
         }
 
         if let background = floatingIconBackground {
-            let bacgroundScale = ceil(max(snapshot.frame.width / background.frame.halfWidth, snapshot.frame.height / background.frame.halfHeight))
-            let anim = CABasicAnimation(keyPath: "transform.scale", toValue: bacgroundScale, duration: duration)
-            background.add(anim, forKey: "background-sacle")
+            let backgroundScale = ceil(max(snapshot.frame.width / background.frame.halfWidth, snapshot.frame.height / background.frame.halfHeight))
+            let anim = CABasicAnimation(keyPath: "transform.scale", toValue: backgroundScale, duration: duration)
+            background.add(anim, forKey: "background-scale")
         }
         
-        let postionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), fromValue: snapshot.position, toValue: position, duration: duration)
-        snapshot.add(postionAnim, forKey: "snapshot-position")
+        let positionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), fromValue: snapshot.position, toValue: position, duration: duration)
+        snapshot.add(positionAnim, forKey: "snapshot-position")
         let ballSize = CGSize(width: Constants.UI.Floating.ballSize, height: Constants.UI.Floating.ballSize)
         let sizeAnim = CABasicAnimation(keyPath: "bounds.size", fromValue: snapshot.frame.size, toValue: ballSize, duration: duration)
         snapshot.add(sizeAnim, forKey: "snapshot-size")
@@ -446,18 +446,18 @@ private extension TweakListViewController {
             let scaleAnim = CABasicAnimation(keyPath: "transform.scale", fromValue: scale, toValue: 1, duration: duration)
             icon.add(scaleAnim, forKey: "icon-scale")
             let position = CGPoint(x: Constants.UI.Floating.ballSize.half, y: Constants.UI.Floating.ballSize.half)
-            let postionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), fromValue: position, toValue: icon.position, duration: duration)
-            icon.add(postionAnim, forKey: "icon-position")
+            let positionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), fromValue: position, toValue: icon.position, duration: duration)
+            icon.add(positionAnim, forKey: "icon-position")
         }
         
         if let background = floatingIconBackground {
-            let bacgroundScale = ceil(max(snapshot.frame.width / background.frame.halfWidth, snapshot.frame.height / background.frame.halfHeight))
-            let anim = CABasicAnimation(keyPath: "transform.scale", fromValue: bacgroundScale, toValue: 1, duration: duration)
-            background.add(anim, forKey: "background-sacle")
+            let backgroundScale = ceil(max(snapshot.frame.width / background.frame.halfWidth, snapshot.frame.height / background.frame.halfHeight))
+            let anim = CABasicAnimation(keyPath: "transform.scale", fromValue: backgroundScale, toValue: 1, duration: duration)
+            background.add(anim, forKey: "background-scale")
         }
         
-        let postionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), fromValue: position, toValue: snapshot.position, duration: duration)
-        snapshot.add(postionAnim, forKey: "snapshot-position")
+        let positionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), fromValue: position, toValue: snapshot.position, duration: duration)
+        snapshot.add(positionAnim, forKey: "snapshot-position")
         let ballSize = CGSize(width: Constants.UI.Floating.ballSize, height: Constants.UI.Floating.ballSize)
         let sizeAnim = CABasicAnimation(keyPath: "bounds.size", fromValue: ballSize, toValue: snapshot.frame.size, duration: duration)
         snapshot.add(sizeAnim, forKey: "snapshot-size")

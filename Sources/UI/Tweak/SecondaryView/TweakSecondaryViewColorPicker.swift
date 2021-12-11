@@ -230,7 +230,7 @@ private extension HeaderView {
         let tf = TextField(frame: .init(x: 0, y: 0, width: 170, height: 36))
         tf.prefix = "Hex #"
         tf.autocapitalizationType = .allCharacters
-        tf.inputingTextTransformer = { [unowned self] text in
+        tf.inputTextTransformer = { [unowned self] text in
             guard text.count <= 6 && text.uppercased().unicodeScalars.allSatisfy({ allowedCharacters.contains($0) }) else {
                 return nil
             }
@@ -247,7 +247,7 @@ private extension HeaderView {
     
     func _airline() -> UIView {
         let v = UIView()
-        v.backgroundColor = Constants.Color.seperator
+        v.backgroundColor = Constants.Color.separator
         v.isUserInteractionEnabled = false
         return v
     }
@@ -369,7 +369,7 @@ private extension Cell {
         switch colorComponent {
         case .r, .g, .b:
             textField.suffix = nil
-            textField.inputingTextTransformer = { text in
+            textField.inputTextTransformer = { text in
                 if text.isEmpty { return text }
                 guard let value = Int(text) else { return nil }
                 return 0 <= value && value <= 255 ? text : nil
@@ -380,7 +380,7 @@ private extension Cell {
             }
         case .a:
             textField.suffix = "%"
-            textField.inputingTextTransformer = { text in
+            textField.inputTextTransformer = { text in
                 if text.isEmpty { return text }
                 guard let value = Int(text) else { return nil }
                 return 0 <= value && value <= 100 ? text : nil
@@ -446,7 +446,7 @@ private final class Slider: HitOutsideView {
     private lazy var cursorFill = _cursorFill()
     private lazy var leftCorner = _corner(isLeft: true)
     private lazy var rightCorner = _corner(isLeft: false)
-    private lazy var graident = _gradient()
+    private lazy var gradient = _gradient()
     private lazy var backgroundImage = _backgroundImageView()
     
     private var value: Int = 0
@@ -473,7 +473,7 @@ extension Slider {
         _updateRangeWith(colorComponent: colorComponent, color: color)
         _updateCursorWith(colorComponent: colorComponent, color: color)
         _updateBackgroundImageWith(colorComponent: colorComponent, color: color)
-        disableImplicityAnimation {
+        disableImplicitAnimation {
             _updateCursorFillWith(colorComponent: colorComponent, color: color)
             _updateGradientWith(colorComponent: colorComponent, color: color)
         }
@@ -490,28 +490,28 @@ extension Slider {
     func _updateCursorWith(colorComponent: ColorComponent, color: Color) {
         let percent: CGFloat
         switch colorComponent {
-        case .r where self.value != color.rgba.r:
+        case .r where value != color.rgba.r:
             percent = CGFloat(color.rgba.r) / CGFloat(range.distance)
-            self.value = color.rgba.r
-        case .g where self.value != color.rgba.g:
+            value = color.rgba.r
+        case .g where value != color.rgba.g:
             percent = CGFloat(color.rgba.g) / CGFloat(range.distance)
-            self.value = color.rgba.g
-        case .b where self.value != color.rgba.b:
+            value = color.rgba.g
+        case .b where value != color.rgba.b:
             percent = CGFloat(color.rgba.b) / CGFloat(range.distance)
-            self.value = color.rgba.b
-        case .a where self.value != color.rgba.a:
+            value = color.rgba.b
+        case .a where value != color.rgba.a:
             percent = CGFloat(color.rgba.a) / CGFloat(range.distance)
-            self.value = color.rgba.a
+            value = color.rgba.a
         default:
             return
         }
         if frame.size == .zero {
             // dispatch to next run loop since slider haven't layouted in superview
             DispatchQueue.main.async { [unowned self] in
-                cursor.center.x = (graident.frame.minX + graident.frame.width * percent).clamped(from: graident.frame.minX, to: graident.frame.maxX)
+                cursor.center.x = (gradient.frame.minX + gradient.frame.width * percent).clamped(from: gradient.frame.minX, to: gradient.frame.maxX)
             }
         } else {
-            cursor.center.x = (graident.frame.minX + graident.frame.width * percent).clamped(from: graident.frame.minX, to: graident.frame.maxX)
+            cursor.center.x = (gradient.frame.minX + gradient.frame.width * percent).clamped(from: gradient.frame.minX, to: gradient.frame.maxX)
         }
     }
     
@@ -550,7 +550,7 @@ extension Slider {
         }
         leftCorner.backgroundColor = leftColor.cgColor
         rightCorner.backgroundColor = rightColor.cgColor
-        graident.colors = [leftCorner.backgroundColor!, rightCorner.backgroundColor!]
+        gradient.colors = [leftCorner.backgroundColor!, rightCorner.backgroundColor!]
     }
 }
 
@@ -559,7 +559,7 @@ private extension Slider {
         extendInset = .init(inset: -8)
         addSubview(backgroundImage)
         layer.addSublayer(leftCorner)
-        layer.addSublayer(graident)
+        layer.addSublayer(gradient)
         layer.addSublayer(rightCorner)
         addSubview(cursor)
         cursor.layer.addSublayer(cursorFill)
@@ -571,8 +571,8 @@ private extension Slider {
         
         backgroundImage.frame = bounds
         
-        disableImplicityAnimation {
-            graident.frame = bounds.insetBy(dx: frame.halfHeight, dy: 0)
+        disableImplicitAnimation {
+            gradient.frame = bounds.insetBy(dx: frame.halfHeight, dy: 0)
             leftCorner.frame = .init(x: 0, y: 0, width: frame.halfHeight, height: frame.height)
             rightCorner.frame = .init(x: frame.width - frame.halfHeight, y: 0, width: frame.halfHeight, height: frame.height)
         }
@@ -585,8 +585,8 @@ private extension Slider {
         case .changed:
             let translation = pan.translation(in: self)
             pan.setTranslation(.zero, in: self)
-            cursor.center.x = (cursor.center.x + translation.x).clamped(from: graident.frame.minX, to: graident.frame.maxX)
-            _setValue(((cursor.center.x - graident.frame.minX) / graident.frame.width).clamped(from: 0, to: 1))
+            cursor.center.x = (cursor.center.x + translation.x).clamped(from: gradient.frame.minX, to: gradient.frame.maxX)
+            _setValue(((cursor.center.x - gradient.frame.minX) / gradient.frame.width).clamped(from: 0, to: 1))
         case .ended:
             break
         default:

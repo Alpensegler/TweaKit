@@ -19,7 +19,7 @@ class TweakAndInfoTests: XCTestCase {
         $bool.testableReset()
     }
     
-    // MARK: - Transisent Info
+    // MARK: - Transient Info
     
     func testValueTransformer() {
         XCTAssertEqual(bool, false)

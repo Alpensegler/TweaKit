@@ -28,6 +28,6 @@ extension TweakTrader {
     }
     
     func export(tweaks: [AnyTradableTweak], to destination: TweakTradeDestination, completion: ((TweakError?) -> Void)? = nil) {
-        exporter.export(tweaks: tweaks, to: destination, compltion: completion)
+        exporter.export(tweaks: tweaks, to: destination, completion: completion)
     }
 }

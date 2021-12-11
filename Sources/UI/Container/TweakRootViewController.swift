@@ -36,7 +36,7 @@ extension TweakRootViewController {
 }
 
 extension TweakRootViewController: TweakFloatingAudience {
-    func willTransist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
+    func willTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
         switch (fromCategory, toCategory) {
         case (.searchList, .ball):
             _toggleInteractionToEnabled(false)
@@ -52,7 +52,7 @@ extension TweakRootViewController: TweakFloatingAudience {
         }
     }
     
-    func transist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
+    func transit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
         switch (fromCategory, toCategory) {
         case (.normalList, _):
             _toggleViewToShow(false, animated: true)
@@ -65,7 +65,7 @@ extension TweakRootViewController: TweakFloatingAudience {
         }
     }
     
-    func didTransist(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
+    func didTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
         switch toCategory {
         case .normalList:
             _toggleSegmentToShow(true)
@@ -153,7 +153,7 @@ private extension TweakRootViewController {
         let key = "floating-opacity"
         
         guard animated else {
-            disableImplicityAnimation {
+            disableImplicitAnimation {
                 navigationController?.view.layer.opacity = flag ? 1 : 0
                 navigationController?.view.layer.removeAnimation(forKey: key)
             }
@@ -176,7 +176,7 @@ private extension TweakRootViewController {
         let key = "floating-background-color"
         
         guard animated else {
-            disableImplicityAnimation {
+            disableImplicitAnimation {
                 context.showingWindow?.backgroundColor = flag ? Constants.UI.windowBackgroundColor : .clear
                 context.showingWindow?.layer.removeAnimation(forKey: key)
             }
@@ -278,7 +278,7 @@ private extension TweakRootViewController {
     }
     
     func _reset(tweaks: [AnyTweak], isAll: Bool, title: String?, sender: UIBarButtonItem) {
-        let action = UIAlertAction(title: "Confrim", style: .destructive) { [unowned self] _ in
+        let action = UIAlertAction(title: "Confirm", style: .destructive) { [unowned self] _ in
             if isAll {
                 context.store.removeAll()
             } else {

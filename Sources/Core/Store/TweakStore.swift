@@ -66,7 +66,7 @@ extension TweakStore {
         _unlock()
         
         if needNotify {
-            _notifiy(tokens: tokens, old: oldData, new: newData, manually: manually)
+            _notify(tokens: tokens, old: oldData, new: newData, manually: manually)
         }
     }
     
@@ -91,7 +91,7 @@ extension TweakStore {
         _unlock()
         
         if needNotify, oldData != nil {
-            _notifiy(tokens: tokens, old: oldData, new: nil, manually: manually)
+            _notify(tokens: tokens, old: oldData, new: nil, manually: manually)
         }
     }
     
@@ -99,10 +99,10 @@ extension TweakStore {
         _lock()
         
         let tokens = _getAllNotifyTokens()
-        var oldDatas: [String: Data] = [:]
+        var oldData: [String: Data] = [:]
         for key in tokens.keys {
-            guard let oldData = _rawData(forKey: key) else { continue }
-            oldDatas[key] = oldData
+            guard let oldRawData = _rawData(forKey: key) else { continue }
+            oldData[key] = oldRawData
         }
         
         guard _removeAllPersistentValues() else {
@@ -113,8 +113,8 @@ extension TweakStore {
         _removeAllCachedValues()
         _unlock()
         
-        for (key, data) in oldDatas {
-            _notifiy(tokens: tokens[key, default: []], old: data, new: nil, manually: false)
+        for (key, data) in oldData {
+            _notify(tokens: tokens[key, default: []], old: data, new: nil, manually: false)
         }
     }
     
@@ -138,7 +138,7 @@ extension TweakStore {
         
         _unlock()
         
-        _notifiy(tokens: tokens, old: oldData, new: data, manually: manually)
+        _notify(tokens: tokens, old: oldData, new: data, manually: manually)
     }
     
     func startNotifying(forKey key: String, handler: @escaping TweakStoreNotifier.ValueChangeHandler) -> NotifyToken {
@@ -198,7 +198,7 @@ private extension TweakStore {
     }
     
     func _cachedData(forKey key: String) -> Data? {
-        cache.data(forkey: key)
+        cache.data(forKey: key)
     }
 }
 
@@ -268,7 +268,7 @@ private extension TweakStore {
         notifier.getAllNotifyTokens()
     }
     
-    func _notifiy(tokens: Set<NotifyToken>, old: Data?, new: Data?, manually: Bool) {
-        notifier.notifiy(forTokens: tokens, old: old, new: new, manually: manually)
+    func _notify(tokens: Set<NotifyToken>, old: Data?, new: Data?, manually: Bool) {
+        notifier.notify(forTokens: tokens, old: old, new: new, manually: manually)
     }
 }

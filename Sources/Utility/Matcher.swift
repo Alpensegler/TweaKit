@@ -23,9 +23,9 @@
 import Foundation
 
 enum Matcher {
-    static func match(haystack: String, with needle: String, isFuzzy: Bool, isSmartCase: Bool, isCaseSensitive: Bool) -> Result {
+    static func match(haystack: String, with needle: String, isFuzzy: Bool, isSmartcase: Bool, isCaseSensitive: Bool) -> Result {
         guard _validate(haystack: haystack, needle: needle) else { return .notMatched }
-        let (haystack, needle) = _normalize(haystack: haystack, needle: needle, isFuzzy: isFuzzy, isSmartCase: isSmartCase, isCaseSensitive: isCaseSensitive)
+        let (haystack, needle) = _normalize(haystack: haystack, needle: needle, isFuzzy: isFuzzy, isSmartcase: isSmartcase, isCaseSensitive: isCaseSensitive)
         if isFuzzy {
             return _fuzzyMatch(haystack: haystack, needle: needle)
         } else {
@@ -41,11 +41,11 @@ private extension Matcher {
         !haystack.isEmpty && !needle.isEmpty
     }
     
-    static func _normalize(haystack: String, needle: String, isFuzzy: Bool, isSmartCase: Bool, isCaseSensitive: Bool) -> (haystack: String, needle: String) {
+    static func _normalize(haystack: String, needle: String, isFuzzy: Bool, isSmartcase: Bool, isCaseSensitive: Bool) -> (haystack: String, needle: String) {
         var haystack = haystack
         var needle = needle
         
-        if isCaseSensitive || (isSmartCase && needle.contains(where: { $0.isUppercase })) {
+        if isCaseSensitive || (isSmartcase && needle.contains(where: { $0.isUppercase })) {
             haystack = haystack.folding(options: [.widthInsensitive, .diacriticInsensitive], locale: locale)
             needle = needle.folding(options: [.widthInsensitive, .diacriticInsensitive], locale: locale)
         } else {
@@ -56,7 +56,7 @@ private extension Matcher {
     }
     
     static func _exactMatch(haystack: String, needle: String) -> Result {
-        haystack.contains(needle) ? .excatMatched : .notMatched
+        haystack.contains(needle) ? .exactMatched : .notMatched
     }
     
     static func _fuzzyMatch(haystack: String, needle: String) -> Result {
@@ -68,7 +68,7 @@ private extension Matcher {
         }
         
         if haystack == needle {
-            return .excatMatched
+            return .exactMatched
         }
         
         let matrix = ScoreMatrix(width: haystackCount, height: needleCount)
@@ -118,7 +118,7 @@ extension Matcher {
         let isMatched: Bool
         
         static let notMatched = Result(score: .min, isMatched: false)
-        static let excatMatched = Result(score: .max, isMatched: true)
+        static let exactMatched = Result(score: .max, isMatched: true)
     }
 }
 

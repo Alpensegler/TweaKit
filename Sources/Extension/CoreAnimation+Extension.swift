@@ -63,7 +63,7 @@ extension CABasicAnimation {
     }
 }
 
-func disableImplicityAnimation(_ job: () -> Void) {
+func disableImplicitAnimation(_ job: () -> Void) {
     CATransaction.begin()
     CATransaction.setDisableActions(true)
     job()

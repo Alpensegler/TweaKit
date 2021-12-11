@@ -12,7 +12,7 @@ import UIKit
 final class TweakSegmentedViewController: UIViewController {
     private lazy var titleCollectionView = _titleCollectionView()
     private lazy var contentCollectionView = _contentCollectionView()
-    private lazy var seperator = _seperator()
+    private lazy var separator = _separator()
     private lazy var indicator = _indicator()
     
     private unowned var context: TweakContext
@@ -185,7 +185,7 @@ private extension TweakSegmentedViewController {
     func _setupUI() {
         title = context.name
         view.backgroundColor = .clear // use the same bg color with navi vc
-        view.addSubview(seperator)
+        view.addSubview(separator)
         if needsTitle {
             view.addSubview(titleCollectionView)
             titleCollectionView.setIndicator(indicator)
@@ -206,7 +206,7 @@ private extension TweakSegmentedViewController {
         } else {
             contentCollectionView.frame = .init(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         }
-        seperator.frame = .init(x: 0, y: contentCollectionView.frame.minY - 1, width: view.frame.width, height: 1)
+        separator.frame = .init(x: 0, y: contentCollectionView.frame.minY - 1, width: view.frame.width, height: 1)
     }
 }
 
@@ -322,7 +322,7 @@ private extension TweakSegmentedViewController {
     func _keepContentUponRotation() {
         titleCollectionView.collectionViewLayout.invalidateLayout()
         contentCollectionView.collectionViewLayout.invalidateLayout()
-        // wait for titleCollectionView and contentCollectionView complete layouting
+        // wait for titleCollectionView and contentCollectionView complete layout
         DispatchQueue.main.async { [unowned self] in
             let indexPath = _indexPath(of: currentIndex)
             contentCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
@@ -564,9 +564,9 @@ private extension TweakSegmentedViewController {
         return cv
     }
     
-    func _seperator() -> UIView {
+    func _separator() -> UIView {
         let v = UIView()
-        v.backgroundColor = Constants.Color.seperator
+        v.backgroundColor = Constants.Color.separator
         return v
     }
     

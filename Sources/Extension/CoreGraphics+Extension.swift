@@ -28,7 +28,7 @@ extension CGRect {
 }
 
 extension CGPoint {
-    func inseted(by distance: CGFloat) -> CGRect {
+    func insetting(by distance: CGFloat) -> CGRect {
         .init(x: x - distance, y: y -  distance, width: distance * 2, height: distance * 2)
     }
 }

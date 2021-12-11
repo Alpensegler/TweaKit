@@ -18,8 +18,8 @@ final class TweakFloatingBall: UIView {
     private lazy var longPress = _longPress()
     
     private var snapAnimator: UIDynamicAnimator?
-    private var snapBehaivor: UISnapBehavior?
-    private var dynamicItemBehaivor: UIDynamicItemBehavior?
+    private var snapBehavior: UISnapBehavior?
+    private var dynamicItemBehavior: UIDynamicItemBehavior?
     
     deinit {
         _unregisterNotifications()
@@ -55,14 +55,14 @@ extension TweakFloatingBall: TweakFloatingSecondaryParticipant {
     var category: TweakFloatingParticipantCategory { .ball }
     
     func transit(to category: TweakFloatingParticipantCategory) {
-        _willTransistAway()
+        _willTransitAway()
     }
     
     func transit(from category: TweakFloatingParticipantCategory) {
     }
     
     func completeTransition(from category: TweakFloatingParticipantCategory) {
-        _didTransistIn()
+        _didTransitIn()
     }
     
     func reload(withTweaks tweaks: [AnyTweak]) {
@@ -95,7 +95,7 @@ extension TweakFloatingBall {
     }
     
     private static func _viablePositionFrame(in  window: TweakWindow) -> CGRect {
-        return UIApplication.tk_shared.isLandscape
+        UIApplication.tk_shared.isLandscape
             ? window.bounds
                 .insetBy(dx: Constants.UI.Floating.ballVerticalPadding, dy: Constants.UI.Floating.ballHorizontalPadding)
                 .insetBy(dx: Constants.UI.Floating.ballSize.half, dy: Constants.UI.Floating.ballSize.half)
@@ -162,11 +162,11 @@ private extension TweakFloatingBall {
         layer.position = context.showingWindow.map(Self.position(in:)) ?? .zero
     }
     
-    func _willTransistAway() {
+    func _willTransitAway() {
         removeFromSuperview()
     }
     
-    func _didTransistIn() {
+    func _didTransitIn() {
         context.showingWindow?.addSubview(self)
     }
 }
@@ -201,7 +201,7 @@ private extension TweakFloatingBall {
 
 private extension TweakFloatingBall {
     func _moveAsPan(_ translation: CGPoint, viablePositionFrame: CGRect) {
-        disableImplicityAnimation {
+        disableImplicitAnimation {
             layer.position = .init(
                 x: (layer.position.x + translation.x).clamped(from: viablePositionFrame.minX, to: viablePositionFrame.maxX),
                 y: (layer.position.y + translation.y).clamped(from: viablePositionFrame.minY, to: viablePositionFrame.maxY)
@@ -214,20 +214,20 @@ private extension TweakFloatingBall {
         let snapPoint: CGPoint = layer.position.x >= window.frame.halfWidth
             ? .init(x: viablePositionFrame.maxX, y: layer.position.y)
             : .init(x: viablePositionFrame.minX, y: layer.position.y)
-        snapBehaivor = UISnapBehavior(item: self, snapTo: snapPoint)
-        dynamicItemBehaivor = UIDynamicItemBehavior(items: [self])
-        dynamicItemBehaivor?.allowsRotation = false
+        snapBehavior = UISnapBehavior(item: self, snapTo: snapPoint)
+        dynamicItemBehavior = UIDynamicItemBehavior(items: [self])
+        dynamicItemBehavior?.allowsRotation = false
         snapAnimator = UIDynamicAnimator(referenceView: window)
-        snapAnimator?.addBehavior(snapBehaivor!)
-        snapAnimator?.addBehavior(dynamicItemBehaivor!)
+        snapAnimator?.addBehavior(snapBehavior!)
+        snapAnimator?.addBehavior(dynamicItemBehavior!)
         snapAnimator?.delegate = self
     }
     
     func _cancelSnap() {
         snapAnimator?.removeAllBehaviors()
         snapAnimator = nil
-        snapBehaivor = nil
-        dynamicItemBehaivor = nil
+        snapBehavior = nil
+        dynamicItemBehavior = nil
     }
     
     func _toPanel() {

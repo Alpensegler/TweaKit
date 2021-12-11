@@ -22,7 +22,7 @@ final class TweakExporter {
 }
 
 extension TweakExporter {
-    func export(tweaks: [AnyTradableTweak], to destination: TweakTradeDestination, compltion: ((TweakError?) -> Void)?) {
+    func export(tweaks: [AnyTradableTweak], to destination: TweakTradeDestination, completion: ((TweakError?) -> Void)?) {
         dispatchPrecondition(condition: .onQueue(.main))
         
         do {
@@ -30,13 +30,13 @@ extension TweakExporter {
             let cargo = try _assemble(container)
             destination.ship(cargo) { error in
                 if let error = error {
-                    compltion?(.trade(reason: .destinationFailure(inner: error)))
+                    completion?(.trade(reason: .destinationFailure(inner: error)))
                 } else {
-                    compltion?(nil)
+                    completion?(nil)
                 }
             }
         } catch {
-            compltion?(error as? TweakError)
+            completion?(error as? TweakError)
         }
     }
 }

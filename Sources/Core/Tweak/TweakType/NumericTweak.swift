@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-// avoid name confliction with Swift.Numeric
+// avoid name conflict with Swift.Numeric
 public typealias Numbered = TweakPrimaryViewStrideable
 
 public extension TweakType where Base == Tweak<Value>, Value: Numbered {

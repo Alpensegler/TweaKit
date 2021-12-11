@@ -35,7 +35,7 @@ extension TweakWindow {
 
 extension TweakWindow {
     func show(completion: @escaping () -> Void) {
-        NotificationCenter.default.post(name: .willShowTweakWindow, object: self.context)
+        NotificationCenter.default.post(name: .willShowTweakWindow, object: context)
         let animation = CABasicAnimation(keyPath: "transform.translation.y", fromValue: bounds.height, toValue: 0)
         CATransaction.begin()
         CATransaction.setCompletionBlock {
@@ -50,7 +50,7 @@ extension TweakWindow {
     }
     
     func dismiss(completion: @escaping () -> Void) {
-        NotificationCenter.default.post(name: .willDismissTweakWindow, object: self.context)
+        NotificationCenter.default.post(name: .willDismissTweakWindow, object: context)
         let animation = CABasicAnimation(keyPath: "transform.translation.y", fromValue: 0, toValue: bounds.height)
         CATransaction.begin()
         CATransaction.setCompletionBlock {

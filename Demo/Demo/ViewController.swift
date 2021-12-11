@@ -203,13 +203,13 @@ private extension ViewController {
         notificationTokens.removeAll()
     }
     
-    func _handleTweakDismiss(_ notifcation: Notification) {
+    func _handleTweakDismiss(_ notification: Notification) {
         sketchView.becomeFirstResponder()
     }
     
     func _handleEnterForeground(_ notification: Notification) {
         // constraints not installed in Interface Builder will be deactivated after app entering background
-        // so we need to reconfig theses constraints in code
+        // so we need to reconfigure theses constraints in code
         _updateTips()
     }
 }

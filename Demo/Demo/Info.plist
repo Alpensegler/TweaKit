@@ -10,11 +10,11 @@
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>AppIconDarkRazer</key>
+			<key>AppIconDarkLaser</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
 				<array>
-					<string>AppIconDarkRazer</string>
+					<string>AppIconDarkLaser</string>
 				</array>
 				<key>UIPrerenderedIcon</key>
 				<false/>
