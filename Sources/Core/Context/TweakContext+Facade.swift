@@ -9,12 +9,12 @@
 import Foundation
 
 public extension TweakContext {
-    func show(locateAt tweak: AnyTweak? = nil) {
-        showWindow(locateAt: tweak)
+    func show(locateAt tweak: AnyTweak? = nil, completion: ((Bool) -> Void)? = nil) {
+        showWindow(locateAt: tweak, completion: completion)
     }
     
-    func dismiss() {
-        dismissWindow()
+    func dismiss(completion: ((Bool) -> Void)? = nil) {
+        dismissWindow(completion: completion)
     }
 }
 

@@ -8,14 +8,22 @@
 import UIKit
 
 extension TweakContext {
-    func showWindow(locateAt tweak: AnyTweak?) {
+    func showWindow(locateAt tweak: AnyTweak?, completion: ((Bool) -> Void)? = nil) {
+        if TweakWindow.showingWindow != nil {
+            Logger.log("There is already a showing window")
+            completion?(false)
+            return
+        }
+        
         if lists.isEmpty {
             Logger.log("TweakContext: \(self.name) has no list.")
+            completion?(false)
             return
         }
         
         if let window = showingWindow, window.isFloating {
             Logger.log("TweakContext: \(self.name) is floating.")
+            completion?(false)
             return
         }
         
@@ -23,12 +31,20 @@ extension TweakContext {
         showingWindow = TweakWindow(context: self, locateAt: tweak)
         showingWindow?.show { [weak self] in
             self?.isShowing = true
+            completion?(true)
         }
     }
     
-    func dismissWindow() {
+    func dismissWindow(completion: ((Bool) -> Void)? = nil) {
+        if TweakWindow.showingWindow == nil {
+            Logger.log("There is no showing window")
+            completion?(false)
+            return
+        }
+        
         if let window = showingWindow, window.isFloating {
             Logger.log("TweakContext: \(self.name) is floating.")
+            completion?(false)
             return
         }
         
@@ -36,6 +52,7 @@ extension TweakContext {
             self?.floatingTransitioner = nil
             self?.showingWindow = nil
             self?.isShowing = false
+            completion?(true)
         }
     }
 }

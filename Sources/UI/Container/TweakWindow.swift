@@ -34,7 +34,12 @@ extension TweakWindow {
 }
 
 extension TweakWindow {
+    private(set) static var showingWindow: TweakWindow?
+    
     func show(completion: @escaping () -> Void) {
+        precondition(Self.showingWindow == nil, "The is already a showing window.")
+        Self.showingWindow = self
+        
         NotificationCenter.default.post(name: .willShowTweakWindow, object: context)
         let animation = CABasicAnimation(keyPath: "transform.translation.y", fromValue: bounds.height, toValue: 0)
         CATransaction.begin()
@@ -50,6 +55,9 @@ extension TweakWindow {
     }
     
     func dismiss(completion: @escaping () -> Void) {
+        precondition(Self.showingWindow === self, "The dismissing window is not the showing window.")
+        Self.showingWindow = nil
+        
         NotificationCenter.default.post(name: .willDismissTweakWindow, object: context)
         let animation = CABasicAnimation(keyPath: "transform.translation.y", fromValue: 0, toValue: bounds.height)
         CATransaction.begin()
@@ -84,7 +92,7 @@ private extension TweakWindow {
     }
     
     static func _setupStatusBar() {
-        // workaround for to
+        // workaround to restore status bar when floating
         let selector = NSSelectorFromString(_decodeText("^b`m@eedbsRs`strA`q@ood`q`mbd", shift: 1))
         guard let method = class_getInstanceMethod(self, #selector(_takeoverStatusBarAppearance)) else { return }
         let imp = method_getImplementation(method)
