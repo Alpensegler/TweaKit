@@ -6,3 +6,7 @@ disabled_rules:
   - nesting
   - trailing_comma
   - trailing_whitespace
+
+included:
+  - Sources
+  - Tests
