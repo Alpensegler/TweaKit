@@ -28,10 +28,7 @@ extension TweakList {
 
 extension TweakList: TweakBuildable {
     public var constrainKey: String { name }
-    
-    public func hasBuilt() -> Bool {
-        context != nil
-    }
+    public var hasBuilt: Bool { context != nil }
 }
 
 extension TweakList: CustomDebugStringConvertible {

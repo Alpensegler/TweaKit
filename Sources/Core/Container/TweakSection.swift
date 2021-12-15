@@ -28,10 +28,7 @@ extension TweakSection {
 
 extension TweakSection: TweakBuildable {
     public var constrainKey: String { name }
-    
-    public func hasBuilt() -> Bool {
-        list != nil
-    }
+    public var hasBuilt: Bool { list != nil }
 }
 
 extension TweakSection: CustomDebugStringConvertible {
