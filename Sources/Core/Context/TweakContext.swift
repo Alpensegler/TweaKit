@@ -50,7 +50,7 @@ public final class TweakContext {
         self.trader = TweakTrader(context: self)
     }
     
-    subscript<Value>(dynamicMember keyPath: KeyPath<Config, Value>) -> Value {
+    public subscript<Value>(dynamicMember keyPath: KeyPath<Config, Value>) -> Value {
         config[keyPath: keyPath]
     }
 }
