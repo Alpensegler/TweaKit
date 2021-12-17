@@ -146,7 +146,12 @@ extension TweakListViewController: TweakListSectionHeaderDelegate {
 
 extension TweakListViewController: TweakListViewCellDelegate {
     var cellHostViewController: UIViewController {
-        self
+        switch scene {
+        case .list, .search:
+            return parent ?? self
+        case .floating:
+            return context.showingWindow?.rootViewController ?? self
+        }
     }
     
     func tweakListViewCellNeedsLayout(_ cell: TweakListViewCell) {
