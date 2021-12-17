@@ -40,7 +40,7 @@ extension TweakPrimaryViewSwitcher: TweakPrimaryView {
         guard let isOn = tweak.currentValue as? Bool else { return false }
         self.tweak = tweak
         _reloadInteraction(withTweak: tweak)
-        _reloadSwitch(isOn: isOn)
+        _reloadSwitch(isOn: isOn, manually: manually)
         return false
     }
     
@@ -52,8 +52,8 @@ extension TweakPrimaryViewSwitcher: TweakPrimaryView {
         isEnabled = tweak.isUserInteractionEnabled
     }
     
-    private func _reloadSwitch(isOn: Bool) {
-        setOn(isOn, animated: true)
+    private func _reloadSwitch(isOn: Bool, manually: Bool) {
+        setOn(isOn, animated: manually)
     }
 }
 
@@ -77,7 +77,7 @@ private extension TweakPrimaryViewSwitcher {
 private extension TweakPrimaryViewSwitcher {
     func _tapView() -> UIView {
         let v = UIView()
-        // interact with a overlay view rather than switch directly to prevent redundant update
+        // interacting with a overlay view rather than interacting with the switcher directly to prevent redundant update
         v.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(_handleTap)))
         return v
     }
