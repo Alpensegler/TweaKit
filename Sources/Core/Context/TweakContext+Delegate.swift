@@ -21,6 +21,10 @@ public protocol TweakContextDelegate: AnyObject {
     func searchDebounceDueTime(for context: TweakContext) -> TimeInterval
     
     // UI
+    func willShowTweakWindow(for context: TweakContext)
+    func didShowTweakWindow(for context: TweakContext)
+    func willDismissTweakWindow(for context: TweakContext)
+    func didDismissTweakWindow(for context: TweakContext)
     func shouldRememberLastTweakList(for context: TweakContext) -> Bool
 }
 
@@ -38,6 +42,10 @@ public extension TweakContextDelegate {
 }
 
 public extension TweakContextDelegate {
+    func willShowTweakWindow(for context: TweakContext) { }
+    func didShowTweakWindow(for context: TweakContext) { }
+    func willDismissTweakWindow(for context: TweakContext) { }
+    func didDismissTweakWindow(for context: TweakContext) { }
     func shouldRememberLastTweakList(for context: TweakContext) -> Bool { true }
 }
 

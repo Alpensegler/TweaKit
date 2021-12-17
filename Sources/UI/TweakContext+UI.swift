@@ -27,11 +27,15 @@ extension TweakContext {
             return
         }
         
+        delegate?.willShowTweakWindow(for: self)
         floatingTransitioner = TweakFloatingTransitioner(context: self)
         showingWindow = TweakWindow(context: self, locateAt: tweak)
         showingWindow?.show { [weak self] in
             self?.isShowing = true
             completion?(true)
+            if let self = self {
+                self.delegate?.didShowTweakWindow(for: self)
+            }
         }
     }
     
@@ -48,11 +52,15 @@ extension TweakContext {
             return
         }
         
+        delegate?.willDismissTweakWindow(for: self)
         showingWindow?.dismiss { [weak self] in
             self?.floatingTransitioner = nil
             self?.showingWindow = nil
             self?.isShowing = false
             completion?(true)
+            if let self = self {
+                self.delegate?.didDismissTweakWindow(for: self)
+            }
         }
     }
 }
