@@ -53,10 +53,11 @@ extension TweakPrimaryViewContainer {
         }
     }
     
-    func recycle(by recycle: TweakPrimaryViewRecycler) {
+    func recycle(by recycler: TweakPrimaryViewRecycler) {
+        tweak = nil
         notifyToken = nil
         guard let view = primaryView else { return }
-        recycle.enqueue(view)
+        recycler.enqueue(view)
         primaryView = nil
     }
 }
@@ -81,13 +82,13 @@ private extension TweakPrimaryViewContainer {
     
     func _reload(tweak: AnyTweak, in newPrimaryView: TweakPrimaryView) -> Bool {
         let tweakID = tweak.id
-        notifyToken = tweak.context?.store.startNotifying(forKey: tweakID) { [weak self, weak newPrimaryView] _, _, manually in
+        notifyToken = tweak.context?.store.startNotifying(forKey: tweakID) { [weak self] _, _, manually in
             guard let tweak = self?.tweak, tweak.id == tweakID else { return }
-            if newPrimaryView?.reload(withTweak: tweak, manually: manually) == true {
+            if self?.primaryView?.reload(withTweak: tweak, manually: manually) == true {
                 self?._setNeedsLayout()
             }
         }
-        return newPrimaryView.reload(withTweak: tweak, manually: false)
+        return newPrimaryView.reload(withTweak: tweak, manually: false) || primaryView?.reuseID != newPrimaryView.reuseID
     }
     
     func _layout(_ newPrimaryView: TweakPrimaryView) {

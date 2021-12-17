@@ -114,7 +114,7 @@ private extension TweakListViewCell {
         topBackgroundBottomConstraint = topBackground.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         icon.setContentHuggingPriority(.required, for: .horizontal)
         icon.setContentCompressionResistancePriority(.required, for: .horizontal)
-        primaryViewContainer.setContentHuggingPriority(nameLabel.contentHuggingPriority(for: .horizontal) - 1, for: .horizontal)
+        primaryViewContainer.setContentHuggingPriority(nameLabel.contentHuggingPriority(for: .horizontal) + 1, for: .horizontal)
         primaryViewContainer.setContentCompressionResistancePriority(nameLabel.contentCompressionResistancePriority(for: .horizontal) + 1, for: .horizontal)
         NSLayoutConstraint.activate([
             topBackground.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -129,7 +129,7 @@ private extension TweakListViewCell {
             nameLabel.bottomAnchor.constraint(equalTo: topBackground.bottomAnchor, constant: -nameVerticalPadding),
             nameLabel.leadingAnchor.constraint(equalTo: topBackground.leadingAnchor, constant: Constants.UI.ListView.contentLeading + Constants.UI.ListView.iconSize + 8),
             nameLabel.widthAnchor.constraint(greaterThanOrEqualTo: topBackground.widthAnchor, multiplier: 0.2),
-            primaryViewContainer.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: contentPadding),
+            primaryViewContainer.leadingAnchor.constraint(greaterThanOrEqualTo: nameLabel.trailingAnchor, constant: contentPadding),
             primaryViewContainer.trailingAnchor.constraint(equalTo: topBackground.trailingAnchor, constant: -Constants.UI.ListView.contentLeading),
             primaryViewContainer.centerYAnchor.constraint(equalTo: topBackground.centerYAnchor),
             primaryViewContainer.heightAnchor.constraint(lessThanOrEqualToConstant: Constants.UI.ListView.iconSize),
