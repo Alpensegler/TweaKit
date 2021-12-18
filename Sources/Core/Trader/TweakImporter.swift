@@ -78,8 +78,8 @@ private extension TweakImporter {
                 continue
             }
             
-            if tradableTweak.didChangeManually && tradableTweak.isTrumpOverImport {
-                Logger.log("⏭ tweak with id: (\(id)) did change manually and is trumpOverImport over import")
+            if tradableTweak.didChangeManually && !tradableTweak.isImportedValueTrumpsManuallyChangedValue {
+                Logger.log("⏭ tweak with id: (\(id)) did change manually and is import value is not trump over manually changed value")
                 continue
             }
             

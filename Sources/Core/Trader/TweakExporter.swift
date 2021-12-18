@@ -9,8 +9,13 @@ import UIKit
 
 public protocol TweakTradeDestination {
     var name: String { get }
+    var needsNotifyCompletion: Bool { get }
     
     func ship(_ cargo: TweakTradeCargo, completion: @escaping (Error?) -> Void)
+}
+
+extension TweakTradeDestination {
+    public var needsNotifyCompletion: Bool { true }
 }
 
 final class TweakExporter {
@@ -75,6 +80,7 @@ private extension TweakExporter {
 
 public final class TweakTradeActivityDestination: TweakTradeDestination {
     public let name = "Activity View"
+    public let needsNotifyCompletion = false
     
     private let fileName: String
     private weak var viewController: UIViewController?
@@ -110,6 +116,7 @@ public final class TweakTradePasteboardDestination: TweakTradeDestination {
     
     public func ship(_ cargo: TweakTradeCargo, completion: @escaping (Error?) -> Void) {
         UIPasteboard.general.string = String(data: cargo, encoding: .utf8)!
+        completion(nil)
     }
 }
 

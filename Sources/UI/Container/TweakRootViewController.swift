@@ -220,8 +220,15 @@ private extension TweakRootViewController {
         }
         
         let actions: [UIAlertAction] = sources.map { source in
-            UIAlertAction(title: source.name, style: .default) { [unowned self] _ in
-                context.trader.import(from: source)
+            let sourceName = source.name
+            return UIAlertAction(title: sourceName, style: .default) { [unowned self] _ in
+                context.trader.import(from: source) { error in
+                    if let error = error {
+                        UIAlertController.alert(title: error.localizedDescription, fromVC: self)
+                    } else {
+                        UIAlertController.alert(title: "Did import \(sourceName)", fromVC: self)
+                    }
+                }
             }
         }
         UIAlertController.actionSheet(title: "Import Tweaks from...", actions: actions, barButtonItem: sender, fromVC: self)
@@ -250,12 +257,16 @@ private extension TweakRootViewController {
             UIAlertController.alert(title: "No Tweaks to Reset", fromVC: self)
         } else if tweakSets.count == 1 {
             let tweakSet = tweakSets[0]
-            _reset(tweaks: tweakSet.tweaks, isAll: tweakSet.isAll, title: "Reset \(tweakSet.name)?", sender: sender)
+            _reset(tweaks: tweakSet.tweaks, isAll: tweakSet.isAll, title: "Reset \(tweakSet.name)?", sender: sender) { [unowned self] in
+                UIAlertController.alert(title: "Did reset \(tweakSet.name)", fromVC: self)
+            }
         } else {
             let actions: [UIAlertAction] = tweakSets.compactMap { tweakSet in
                 if tweakSet.tweaks.isEmpty { return nil }
                 return UIAlertAction(title: tweakSet.name, style: .default) { [unowned self] _ in
-                    _reset(tweaks: tweakSet.tweaks, isAll: tweakSet.isAll, title: "Reset \(tweakSet.name)?", sender: sender)
+                    _reset(tweaks: tweakSet.tweaks, isAll: tweakSet.isAll, title: "Reset \(tweakSet.name)?", sender: sender) {
+                        UIAlertController.alert(title: "Did reset \(tweakSet.name)", fromVC: self)
+                    }
                 }
             }
             UIAlertController.actionSheet(title: "Choose Tweaks to Reset", actions: actions, barButtonItem: sender, fromVC: self)
@@ -270,14 +281,22 @@ private extension TweakRootViewController {
         }
         
         let actions: [UIAlertAction] = destinations.map { destination in
-            UIAlertAction(title: destination.name, style: .default) { [unowned self] _ in
-                context.trader.export(tweaks: tweaks, to: destination)
+            let needsNotify = destination.needsNotifyCompletion
+            let destinationName = destination.name
+            return UIAlertAction(title: destinationName, style: .default) { [unowned self] _ in
+                context.trader.export(tweaks: tweaks, to: destination) { error in
+                    if let error = error {
+                        UIAlertController.alert(title: error.localizedDescription, fromVC: self)
+                    } else if needsNotify {
+                        UIAlertController.alert(title: "Did export to \(destinationName)", fromVC: self)
+                    }
+                }
             }
         }
         UIAlertController.actionSheet(title: title, actions: actions, barButtonItem: sender, fromVC: self)
     }
     
-    func _reset(tweaks: [AnyTweak], isAll: Bool, title: String?, sender: UIBarButtonItem) {
+    func _reset(tweaks: [AnyTweak], isAll: Bool, title: String?, sender: UIBarButtonItem, completion: @escaping () -> Void) {
         let action = UIAlertAction(title: "Confirm", style: .destructive) { [unowned self] _ in
             if isAll {
                 context.store.removeAll()
@@ -289,6 +308,7 @@ private extension TweakRootViewController {
             tweaks.forEach {
                 $0.resetInfo()
             }
+            completion()
         }
         UIAlertController.alert(title: title, actions: [action], fromVC: self)
     }

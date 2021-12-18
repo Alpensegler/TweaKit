@@ -51,11 +51,11 @@ class TweakAndInfoTests: XCTestCase {
         XCTAssertEqual($bool.exportPresets, ["p1", "p2", "p3"])
     }
     
-    func testTrumpOverImport() {
-        XCTAssertEqual($bool.isTrumpOverImport, false)
+    func testImportedValueTrumpsManuallyChangedValue() {
+        XCTAssertEqual($bool.isImportedValueTrumpsManuallyChangedValue, false)
         
-        $bool.trumpOverImport()
-        XCTAssertEqual($bool.isTrumpOverImport, true)
+        $bool.setImportedValueTrumpsManuallyChangedValue()
+        XCTAssertEqual($bool.isImportedValueTrumpsManuallyChangedValue, true)
     }
     
     // MARK: - Persistent Info

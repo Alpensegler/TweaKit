@@ -47,13 +47,13 @@ extension AnyTradableTweak {
 
 extension AnyTradableTweak {
     @discardableResult
-    public func trumpOverImport() -> Self {
-        info[.trumpOverImport] = true
+    public func setImportedValueTrumpsManuallyChangedValue() -> Self {
+        info[.importedValueTrumpsManuallyChangedValue] = true
         return self
     }
     
-    var isTrumpOverImport: Bool {
-        info[.trumpOverImport, default: false]
+    var isImportedValueTrumpsManuallyChangedValue: Bool {
+        info[.importedValueTrumpsManuallyChangedValue, default: false]
     }
 }
 
@@ -68,7 +68,7 @@ extension TweakInfo.Key where InfoType == TweakInfo.KeyType.Transient {
     static let valueTransformer: TweakInfo.Key<InfoType> = "valueTransformer"
     static let isUserInteractionEnabled: TweakInfo.Key<InfoType> = "isUserInteractionEnabled"
     static let exportPresets: TweakInfo.Key<InfoType> = "exportPresets"
-    static let trumpOverImport: TweakInfo.Key<InfoType> = "trumpOverImport"
+    static let importedValueTrumpsManuallyChangedValue: TweakInfo.Key<InfoType> = "importedValueTrumpsManuallyChangedValue"
 }
 
 extension TweakInfo.Key where InfoType == TweakInfo.KeyType.Persistent {
@@ -76,7 +76,7 @@ extension TweakInfo.Key where InfoType == TweakInfo.KeyType.Persistent {
 }
 
 extension AnyTweak {
-    // NOTICE: Don't forget to check if any newly added infos should be reseted.
+    // NOTICE: Don't forget to check if any newly added infos should be reset.
     func resetInfo() {
         didChangeManually = false
     }
