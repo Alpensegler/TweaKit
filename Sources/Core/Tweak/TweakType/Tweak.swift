@@ -36,10 +36,14 @@ public class Tweak<Value: Storable>: AnyTweak, TweakType {
     }
     
     public final var wrappedValue: Value {
-        if let valueTransformer = valueTransformer {
-            return valueTransformer(rawValue)
-        } else {
+        if valueTransformers.isEmpty {
             return rawValue
+        } else {
+            var finalValue = rawValue
+            for transformer in valueTransformers {
+                finalValue = transformer(finalValue)
+            }
+            return finalValue
         }
     }
     public final var projectedValue: Tweak<Value> {

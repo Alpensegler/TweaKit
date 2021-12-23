@@ -11,24 +11,30 @@ import XCTest
 class TweakAndInfoTests: XCTestCase {
     @Tweak(name: "Bool", defaultValue: false)
     var bool: Bool
+    @Tweak(name: "String", defaultValue: "")
+    var string: String
     
     var context: TweakContext?
     
     override func setUp() {
         super.setUp()
         $bool.testableReset()
+        $string.testableReset()
     }
     
     // MARK: - Transient Info
     
-    func testValueTransformer() {
-        XCTAssertEqual(bool, false)
+    func testValueTransformers() {
+        XCTAssertEqual(string, "")
         
-        $bool.setValueTransformer { $0 ? false : true }
-        XCTAssertEqual(bool, true)
+        $string.addValueTransformer { $0.appending("1") }
+        XCTAssertEqual(string, "1")
         
-        $bool.setValueTransformer { $0 }
-        XCTAssertEqual(bool, false)
+        $string.addValueTransformer { $0.appending("2") }
+        XCTAssertEqual(string, "12")
+        
+        $string.addValueTransformer { $0.appending("3") }
+        XCTAssertEqual(string, "123")
     }
     
     func testUserInteractionEnabled() {

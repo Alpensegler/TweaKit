@@ -11,13 +11,13 @@ extension Tweak {
     public typealias ValueTransformer = (Value) -> Value
     
     @discardableResult
-    public func setValueTransformer(_ getter: @escaping ValueTransformer) -> Self {
-        info[.valueTransformer] = getter
+    public func addValueTransformer(_ transformer: @escaping ValueTransformer) -> Self {
+        info[.valueTransformers, default: []].append(transformer)
         return self
     }
     
-    var valueTransformer: ValueTransformer? {
-        info[.valueTransformer]
+    var valueTransformers: [ValueTransformer] {
+        info[.valueTransformers, default: []]
     }
 }
 
@@ -65,7 +65,7 @@ extension AnyTweak {
 }
 
 extension TweakInfo.Key where InfoType == TweakInfo.KeyType.Transient {
-    static let valueTransformer: TweakInfo.Key<InfoType> = "valueTransformer"
+    static let valueTransformers: TweakInfo.Key<InfoType> = "valueTransformers"
     static let isUserInteractionEnabled: TweakInfo.Key<InfoType> = "isUserInteractionEnabled"
     static let exportPresets: TweakInfo.Key<InfoType> = "exportPresets"
     static let importedValueTrumpsManuallyChangedValue: TweakInfo.Key<InfoType> = "importedValueTrumpsManuallyChangedValue"
