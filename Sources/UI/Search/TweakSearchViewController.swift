@@ -296,6 +296,7 @@ private extension TweakSearchViewController {
         f.clearButtonMode = .whileEditing
         f.returnKeyType = .search
         f.enablesReturnKeyAutomatically = true
+        f.autocapitalizationType = .none
         f.backgroundColor = Constants.Color.searchBackground
         f.font = .systemFont(ofSize: 17)
         f.textColor = Constants.Color.searchText
