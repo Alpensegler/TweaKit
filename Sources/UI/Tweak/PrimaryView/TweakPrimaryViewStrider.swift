@@ -140,6 +140,7 @@ private extension TweakPrimaryViewStrider {
     func _updateValue(_ value: Value) {
         guard let tweak = tweak, let strider = strider else { return }
         if self.value == value { return }
+        Haptic.occur(.impact())
         updateTweak(tweak, withValue: value.clamped(from: strider.min, to: strider.max), manually: true)
     }
     

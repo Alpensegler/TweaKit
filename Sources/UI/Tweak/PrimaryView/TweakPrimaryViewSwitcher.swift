@@ -8,8 +8,6 @@
 import UIKit
 
 final class TweakPrimaryViewSwitcher: UISwitch {
-    private lazy var tapView = _tapView()
-    
     private weak var tweak: AnyTweak?
     
     public override init(frame: CGRect) {
@@ -19,13 +17,6 @@ final class TweakPrimaryViewSwitcher: UISwitch {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension TweakPrimaryViewSwitcher {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        _layoutUI()
     }
 }
 
@@ -53,6 +44,7 @@ extension TweakPrimaryViewSwitcher: TweakPrimaryView {
     }
     
     private func _reloadSwitch(isOn: Bool, manually: Bool) {
+        if self.isOn == isOn { return }
         setOn(isOn, animated: manually)
     }
 }
@@ -61,24 +53,11 @@ private extension TweakPrimaryViewSwitcher {
     func _setupUI() {
         onTintColor = Constants.Color.actionBlue
         
-        addSubview(tapView)
+        addTarget(self, action: #selector(_handleValueChange), for: .valueChanged)
     }
     
-    func _layoutUI() {
-        tapView.frame = bounds
-    }
-    
-    @objc func _handleTap(_ gesture: UITapGestureRecognizer) {
-        guard gesture.state == .ended, let tweak = tweak else { return }
-        updateTweak(tweak, withValue: !isOn, manually: true)
-    }
-}
-
-private extension TweakPrimaryViewSwitcher {
-    func _tapView() -> UIView {
-        let v = UIView()
-        // interacting with a overlay view rather than interacting with the switcher directly to prevent redundant update
-        v.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(_handleTap)))
-        return v
+    @objc func _handleValueChange(_ sender: TweakPrimaryViewSwitcher) {
+        guard let tweak = tweak else { return }
+        updateTweak(tweak, withValue: isOn, manually: true)
     }
 }

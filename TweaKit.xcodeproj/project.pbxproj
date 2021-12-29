@@ -96,6 +96,7 @@
 		57D902D625FCB1500072400C /* TweakImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D902D525FCB1500072400C /* TweakImporter.swift */; };
 		57D902DE25FCB15E0072400C /* TweakExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D902DD25FCB15E0072400C /* TweakExporter.swift */; };
 		57D902E225FCB48B0072400C /* TweakError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D902E125FCB48B0072400C /* TweakError.swift */; };
+		57DDD3D2277C331A009583EC /* TweakHaptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDD3D1277C331A009583EC /* TweakHaptic.swift */; };
 		57EF7CC624CDADB500913A74 /* TweaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EF7CBC24CDADB500913A74 /* TweaKit.framework */; };
 		57F9FB4825F5B556004A1739 /* TweakSegmentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F9FB4725F5B556004A1739 /* TweakSegmentedViewController.swift */; };
 		57F9FB4E25F5B607004A1739 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F9FB4D25F5B607004A1739 /* UIColor+Extension.swift */; };
@@ -211,6 +212,7 @@
 		57D902D525FCB1500072400C /* TweakImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakImporter.swift; sourceTree = "<group>"; };
 		57D902DD25FCB15E0072400C /* TweakExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakExporter.swift; sourceTree = "<group>"; };
 		57D902E125FCB48B0072400C /* TweakError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakError.swift; sourceTree = "<group>"; };
+		57DDD3D1277C331A009583EC /* TweakHaptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakHaptic.swift; sourceTree = "<group>"; };
 		57EF7CBC24CDADB500913A74 /* TweaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TweaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EF7CC024CDADB500913A74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57EF7CC524CDADB500913A74 /* TweaKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweaKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -364,6 +366,7 @@
 				5759FF33262BD1C10035F4DB /* TweakActionInitiator.swift */,
 				57B02617263FD97E00B1B6D3 /* TweakListEmptyView.swift */,
 				573CC4132658EB42002E7681 /* TweakTextFields.swift */,
+				57DDD3D1277C331A009583EC /* TweakHaptic.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -788,6 +791,7 @@
 				574620DA268977B100BAD25C /* Lock.swift in Sources */,
 				576B86392646A29A00F75DD7 /* HitOutsideView.swift in Sources */,
 				571406DF2641423000236D7D /* TweakView.swift in Sources */,
+				57DDD3D2277C331A009583EC /* TweakHaptic.swift in Sources */,
 				577F916E25D4EAEF00BFC7D2 /* NumericTweak.swift in Sources */,
 				577F90E325D3EB7400BFC7D2 /* ResultBuilder.swift in Sources */,
 				57BF138425D1601900347322 /* Tweakable.swift in Sources */,
