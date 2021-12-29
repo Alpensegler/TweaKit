@@ -29,3 +29,19 @@ public extension TweakContext {
         store.removeAll()
     }
 }
+
+public extension TweakContext {
+    func search(with keyword: String) -> [[AnyTweak]] {
+        if keyword.isEmpty { return [] }
+        
+        let searcher = TweakSearcher(context: self)
+        var results: [[AnyTweak]] = []
+        searcher.bind { event in
+            guard case let .updateTweakResults(searchingResults, searchingKeyword) = event, keyword == searchingKeyword else { return }
+            results = searchingResults
+        }
+        // we don't do debounce here since this is a synchronous method
+        searcher.search(with: keyword, debounce: false)
+        return results
+    }
+}

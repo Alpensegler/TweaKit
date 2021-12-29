@@ -159,4 +159,18 @@ class TweakContextTests: XCTestCase {
         XCTAssertTrue(context.tweaks[0] === Tweaks.$normalInt1)
         XCTAssertTrue(context.tweaks[1] === Tweaks.$normalInt2)
     }
+    
+    func testSearch() {
+        let context = TweakContext {
+            TweakList("List") {
+                TweakSection("Section") {
+                    Tweaks.$normalInt1
+                    Tweaks.$normalInt2
+                }
+            }
+        }
+        
+        XCTAssertTrue(context.search(with: "NoTweaksMatch").flatMap { $0 }.isEmpty)
+        XCTAssertFalse(context.search(with: "Int").flatMap { $0 }.isEmpty)
+    }
 }

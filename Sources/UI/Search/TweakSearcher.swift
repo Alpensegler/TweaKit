@@ -63,7 +63,7 @@ extension TweakSearcher {
         
         let job = { [weak self] in
             guard let self = self else { return }
-            guard self.delegate?.currentKeyword == keyword else {
+            guard !debounce || self.delegate?.currentKeyword == keyword else {
                 // different keywords means the job is for a legacy search, simply ignore it
                 Logger.log("ignore legacy search with keyword: \(keyword), current keyword: \(String(describing: self.delegate?.currentKeyword))")
                 return
