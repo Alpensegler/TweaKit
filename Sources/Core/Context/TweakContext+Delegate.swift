@@ -35,7 +35,7 @@ public extension TweakContextDelegate {
 
 public extension TweakContextDelegate {
     func shouldFuzzySearch(for context: TweakContext) -> Bool { true }
-    func shouldSmartcaseSearch(for context: TweakContext) -> Bool { true }
+    func shouldSmartcaseSearch(for context: TweakContext) -> Bool { false }
     func shouldCaseSensitiveSearch(for context: TweakContext) -> Bool { false }
     func maxSearchHistoryCount(for context: TweakContext) -> Int { Constants.UI.Search.maxHistoryCount }
     func searchDebounceDueTime(for context: TweakContext) -> TimeInterval { Constants.UI.Search.debounceDueTime }
