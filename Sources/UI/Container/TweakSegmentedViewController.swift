@@ -273,7 +273,7 @@ private extension TweakSegmentedViewController {
     func _scroll(to tweak: AnyTweak, at index: Int) {
         guard contentCollectionView.cellVisibility(at: .init(item: index, section: 0)) == 1 else { return }
         let cell = contentCollectionView.visibleCells[0] as? TweakSegmentContentCell
-        cell?.listViewController.scrollTo(tweak: tweak, animated: false)
+        cell?.listViewController.scrollTo(tweak: tweak, at: .middle, animated: false)
     }
 }
 

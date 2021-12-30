@@ -60,10 +60,10 @@ extension TweakListViewController {
         _reload()
     }
     
-    func scrollTo(tweak: AnyTweak, animated: Bool) {
+    func scrollTo(tweak: AnyTweak, at position: UITableView.ScrollPosition, animated: Bool) {
         guard let section = tweaks.firstIndex(where: { $0.first?.section === tweak.section }) else { return }
         guard let row = tweaks[section].firstIndex(where: { $0 === tweak }) else { return }
-        tableView.scrollToRow(at: .init(row: row, section: section), at: .top, animated: animated)
+        tableView.scrollToRow(at: .init(row: row, section: section), at: position, animated: animated)
     }
     
     func iconFrame(in section: Int) -> CGRect {
