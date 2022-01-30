@@ -28,14 +28,14 @@ pod 'TweaKit'
 ### Carthage
 
 ```ogdl
-github 'sundayfun/TweaKit'
+github 'Cokile/TweaKit'
 ```
 
 ### Swift Package Manager
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/sundayfun/TweaKit.git", .branch("master"))
+    .package(url: "https://github.com/Cokile/TweaKit.git", .branch("master"))
 ]
 ```
 
