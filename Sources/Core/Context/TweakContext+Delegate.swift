@@ -67,7 +67,7 @@ extension TweakContext {
     }
     
     func shouldSmartcaseSearch() -> Bool {
-        delegate?.shouldSmartcaseSearch(for: self) ?? true
+        delegate?.shouldSmartcaseSearch(for: self) ?? false
     }
     
     func shouldCaseSensitiveSearch() -> Bool {
