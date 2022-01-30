@@ -129,7 +129,7 @@ private extension TweakRootViewController {
         if let tweak = initialTweak {
             segmentedVC = TweakSegmentedViewController(context: context, initialTweak: tweak)
         } else if context.delegate?.shouldRememberLastTweakList(for: context) == true {
-            segmentedVC = TweakSegmentedViewController(context: context, initialList: context.lastList)
+            segmentedVC = TweakSegmentedViewController(context: context, initialList: context.lastShowingList)
         } else {
             segmentedVC = TweakSegmentedViewController(context: context)
         }

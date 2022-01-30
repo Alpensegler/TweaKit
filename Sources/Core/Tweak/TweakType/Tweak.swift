@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// The base class of tweak.
+///
+/// Use `Tweak` as a property wrapper.
+///
+/// A `Tweak` object represents a tweak in the UI.
 @propertyWrapper
 public class Tweak<Value: Storable>: AnyTweak, TweakType {
     public let name: String
@@ -35,6 +40,9 @@ public class Tweak<Value: Storable>: AnyTweak, TweakType {
         fatalError("\(#function) should be implemented in subclass for \(id)")
     }
     
+    /// The final value of the tweak.
+    ///
+    /// - Note: The final value is the transformed (by value transformers of the tweak) value of current value.
     public final var wrappedValue: Value {
         if valueTransformers.isEmpty {
             return rawValue
@@ -46,6 +54,7 @@ public class Tweak<Value: Storable>: AnyTweak, TweakType {
             return finalValue
         }
     }
+    /// The tweak itself.
     public final var projectedValue: Tweak<Value> {
         self
     }
@@ -65,6 +74,11 @@ public class Tweak<Value: Storable>: AnyTweak, TweakType {
         stopObservingValueChange()
     }
     
+    /// Creates and initializes a tweak with the given name and default value.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the tweak.
+    ///   - default: The default value of the tweak.
     init(name: String, default: Value) {
         assert(!name.contains(Constants.idSeparator), "Tweak name: \(name) should not contain \(Constants.idSeparator)")
         

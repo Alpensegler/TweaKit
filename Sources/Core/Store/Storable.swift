@@ -7,8 +7,20 @@
 
 import UIKit
 
+/// A type that can be stored by `TweaKit`.
+///
+/// Since `TweaKit` stores object in the form of Data,
+/// so the responsibility of `Storable` is to perform the conversion between Self and Data.
 public protocol Storable {
+    /// Converts data to the concrete type object.
+    ///
+    /// - Parameters:
+    ///   - data: The data that the conversion performs from.
+    /// - Returns: The concrete type object.
     static func convert(from data: Data) -> Self?
+    /// Converts the receiver to `Data` object.
+    ///
+    /// - Returns: The `Data` object that the receiver converts to.
     func convertToData() -> Data
 }
 

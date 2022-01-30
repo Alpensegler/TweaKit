@@ -7,9 +7,17 @@
 
 import UIKit
 
+/// A type with values that support selection.
 public typealias Selectable = TweakSecondaryViewItemConvertible
 
 public extension TweakType where Base == Tweak<Value>, Value: Selectable {
+    /// Creates and initializes a tweak for ``Selectable`` type.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the tweak.
+    ///   - defaultValue: The default value of the tweak.
+    ///   - options: The selection options.
+    ///              The options must not be empty and must contain the default value.
     init(name: String, defaultValue: Value, options: [Value]) {
         let base = SelectableTweak(name: name, defaultValue: defaultValue, options: options)
         self.init(base: base)

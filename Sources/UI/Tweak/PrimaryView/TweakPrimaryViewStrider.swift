@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// A type with values that support addition and subtraction.
 public protocol TweakPrimaryViewStrideable: Storable, Comparable, Numeric {
     var needDecimalPoint: Bool { get }
     

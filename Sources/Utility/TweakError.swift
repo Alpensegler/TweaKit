@@ -7,7 +7,10 @@
 
 import Foundation
 
+/// `TweakError` is the error type returned by TweaKit.
+/// It encompasses a few different types of errors, each with their own associated reasons.
 public enum TweakError: LocalizedError {
+    /// Error for trade.
     case trade(reason: TradeReason)
     
     public var errorDescription: String? {
@@ -19,13 +22,21 @@ public enum TweakError: LocalizedError {
 }
 
 public extension TweakError {
+    /// Error reason for trade.
     enum TradeReason {
+        /// The traded tweak is not live in any context.
         case contextNotFound
+        /// The json data is corrupted, due to `inner`.
         case corruptedData(inner: Error)
+        /// The import source has unsupported version.
         case unsupportedVersion(expected: Int, current: Int)
+        /// Failed to receive json data from source.
         case sourceFailure(inner: Error)
+        /// Failed to send json data to source.
         case destinationFailure(inner: Error)
+        /// The trade value cannot be unmarshalled.
         case unmarshalFailure
+        /// The trade value is unmarshalled successfully but can't pass the validation.
         case unmarshaledValidationFailure
 
         var errorDescription: String {

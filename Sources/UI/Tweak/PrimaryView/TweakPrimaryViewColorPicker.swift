@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class TweakPrimaryViewColorPicker: UIView {
+final class TweakPrimaryViewColorPicker: UIView {
     private lazy var label = _label()
     private lazy var colorView = _colorView()
     private lazy var labelSize = _labelSize(with: _label())
@@ -22,7 +22,7 @@ public final class TweakPrimaryViewColorPicker: UIView {
     }
 }
  
-public extension TweakPrimaryViewColorPicker {
+extension TweakPrimaryViewColorPicker {
     override var intrinsicContentSize: CGSize {
         .init(
             width: labelSize.width + colorView.frame.width + padding,

@@ -7,7 +7,18 @@
 
 import UIKit
 
+/// A type whose value can be tweaked and traded.
+///
+/// It's a combination of ``Tweakable`` and ``Tradable``.
 public protocol TradedTweakable: Tweakable, Tradable {
+    /// Validates whether the value unmarshaled from ``TweakTradeValue`` is compatible with the tweak's default value.
+    ///
+    /// If this method is not implemented, then the return value is assumed to be true.
+    ///
+    /// - Parameters:
+    ///   - defaultValue: The tweak's default value.
+    /// - Returns: Ture if the value unmarshaled from ``TweakTradeValue`` is compatible with the tweak's default value;
+    ///            otherwise, false.
     func validate(with defaultValue: Self) -> Bool
 }
 

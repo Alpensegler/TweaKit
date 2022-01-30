@@ -316,7 +316,7 @@ private extension TweakSegmentedViewController {
     }
 
     func _rememberList() {
-        context.lastList = _list(at: currentIndex)
+        context.lastShowingList = _list(at: currentIndex)
     }
     
     func _keepContentUponRotation() {

@@ -7,12 +7,28 @@
 
 import Foundation
 
+/// ``TweakSection`` is the container of tweaks.
+///
+/// A section is a "card" in the list UI. Each section is constructed by several ``AnyTweak`` objects.
+///
+/// You don't use TweakSection directly most of the time, it is usually used to constructed the ``TweakList`` object.
 public final class TweakSection {
+    /// The name of the section.
+    ///
+    /// `name` is also the id of the section which means there are no two sections that have the same name in one list.
     public let name: String
-    let tweaks: [AnyTweak]
     
+    let tweaks: [AnyTweak]
+
     weak var list: TweakList?
     
+    /// Creates and initializes a tweak section with the given name and the tweaks.
+    ///
+    /// The tweaks of the sections are sorted by alphabetic order and tweaks with duplicated names are filtered.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the section.
+    ///   - sections: A builder that creates the tweaks of the section.
     public init(_ name: String, @AnyTweakBuilder _ tweaks: () -> [AnyTweak]) {
         assert(!name.contains(Constants.idSeparator), "TweakSection name should not have \(Constants.idSeparator)")
         

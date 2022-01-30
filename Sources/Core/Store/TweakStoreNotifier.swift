@@ -69,6 +69,9 @@ extension TweakStoreNotifier {
 
 // MARK: - NotifyToken
 
+/// A type acts as the observer of the change of a tweak value.
+///
+/// `TweaKit` strongly holds a token object until you cancel the observation.
 public final class NotifyToken {
     private weak var store: TweakStore?
     private let rawValue: String

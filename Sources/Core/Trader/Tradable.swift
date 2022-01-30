@@ -7,12 +7,25 @@
 
 import UIKit
 
+/// A type with value that can be converted from/to ``TweakTradeValue`` value.
+///
+/// Trade is the combination of import and export.
 public protocol Tradable {
+    /// Converts trade value to the concrete type object.
+    ///
+    /// Implementers should try their best to achieve the conversion.
+    ///
+    /// - Parameters:
+    ///   - data: The trade value that the conversion performs from.
+    /// - Returns: The concrete type object.
     static func unmarshal(from value: TweakTradeValue) -> Self?
+    /// Converts the receiver to ``TweakTradeValue`` object.
+    ///
+    /// - Returns: The `TweakTradeValue` object that the receiver converts to.
     func marshalToValue() -> TweakTradeValue
 }
 
-// since the deployment target is iOS 11, all the supported devices use 64-bit CPU
+// since the deployment target is iOS 13, all the supported devices use 64-bit CPU
 // which means (U)Int has same size with (U)Int64
 
 extension Tradable where Self: SignedInteger & FixedWidthInteger {

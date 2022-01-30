@@ -8,10 +8,22 @@
 import Foundation
 import CoreGraphics
 
-// avoid name conflict with Swift.Numeric
+/// A type with values that support addition and subtraction.
+///
+/// Use Numbered as the name to avoid name conflict with Swift.Numeric.
 public typealias Numbered = TweakPrimaryViewStrideable
 
 public extension TweakType where Base == Tweak<Value>, Value: Numbered {
+    /// Creates and initializes a tweak for ``Numbered`` type.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the tweak.
+    ///   - defaultValue: The default value of the tweak.
+    ///   - from: The maximum value of the tweaks.
+    ///           This value must be greater than the minimum value.
+    ///   - to: The minimum value of the tweak.
+    ///         This value must be less than the maximum value.
+    ///   - stride: The stride when changing value of the tweak.
     init(name: String, defaultValue: Value, from: Value, to: Value, stride: Value) {
         let base = NumberedTweak(name: name, defaultValue: defaultValue, from: from, to: to, stride: stride)
         self.init(base: base)

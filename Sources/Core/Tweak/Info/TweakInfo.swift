@@ -7,6 +7,7 @@
 
 import Foundation
 
+// A type with values that have extra info of a tweak.
 public final class TweakInfo {
     private var transients: [Key<KeyType.Transient>: Any] = [:]
     private var persistents: [Key<KeyType.Persistent>: Storable] = [:]
@@ -70,6 +71,7 @@ private extension TweakInfo {
 }
 
 extension TweakInfo {
+    // InfoType acts as a phantom
     final class Key<InfoType>: RawRepresentable, ExpressibleByStringLiteral, Hashable {
         let rawValue: String
         

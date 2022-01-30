@@ -7,7 +7,9 @@
 
 import UIKit
 
+/// A type with values that can be displayed in tweak secondary view.
 public protocol TweakSecondaryViewItemConvertible: Storable, Equatable {
+    /// The text to be displayed in tweak secondary view.
     var displayText: String { get }
 }
 

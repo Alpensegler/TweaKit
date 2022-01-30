@@ -25,6 +25,7 @@ struct TweakTradeBox: Codable {
     let value: TweakTradeValue
 }
 
+/// A type with values that represent the a json value.
 public enum TweakTradeValue: Codable, CustomStringConvertible {
     case bool(Bool)
     case int(Int)

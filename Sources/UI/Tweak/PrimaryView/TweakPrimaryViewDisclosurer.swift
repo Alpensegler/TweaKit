@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// A primary view that simply displays the tweak value and a disclosure arrow.
 public final class TweakPrimaryViewDisclosurer: UIView {
     private lazy var label = _label()
     private lazy var imageView = _imageView()
