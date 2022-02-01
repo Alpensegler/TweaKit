@@ -2,8 +2,14 @@
 <img src="Images/logo.png" alt="TweaKit" title="TweaKit" width="1200"/>
 </p>
 
+<p align="center">
+<a href="https://img.shields.io/badge/Swift-5.4_5.5-orange?style=flat"><img src="https://img.shields.io/badge/Swift-5.4_5.5-Orange?style=flat"></a>
+<a href="https://cocoapods.org/pods/TweaKit"><img src="https://img.shields.io/cocoapods/v/TweaKit.svg?style=flat"></a>
+<a href="https://github.com/Carthage/Carthage/"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
+<a href="https://swift.org/package-manager/"><img src="https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat"></a>
+</p>
 
-TweaKit, a.k.a. "Tweak It", is a pure-swift library for adjusting parameters and feature flagging.
+`TweaKit`, a.k.a. "Tweak It", is a pure-swift library for adjusting parameters and feature flagging.
 
 ## Features
 
@@ -35,14 +41,12 @@ github 'Cokile/TweaKit' ~> 1.0
 ### Swift Package Manager
 
 ```swift
-dependencies: [
-    .package(url: "https://github.com/Cokile/TweaKit.git", from: "1.0.0"),
-]
+.package(url: "https://github.com/Cokile/TweaKit.git", .upToNextMajor(from: "1.0.0"))
 ```
 
 ## Get Started
 
-### Declare Your Tweaks
+### Declare Tweaks
 
 ```swift
 import TweaKit
@@ -97,7 +101,7 @@ You can tweak the following types:
 
 Aside from changing value in place, you can also select value from given options.
 
-### Initialize YourTweak Context
+### Initialize Tweak Context
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -108,12 +112,26 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 You can initialize tweak context at any time, but you should make sure the context is initialized before using tweaks in it.
 
-### Use Your Tweaks
+### Use Tweaks
 
 ```swift
 myViewController.title = Tweaks.rootViewNavigationTitle
 mySketchView.lineWidth = Tweaks.sketchLineWidth
 ```
+
+### Show the Tweak UI
+
+```swift
+Tweaks.context.show()
+```
+
+<p align="center">
+<img src="Images/Screenshot.png" alt="Screenshot" title="Screenshot" width="200"/>
+<img src="Images/Screenshot2.png" alt="Screenshot2" title="Screenshot2" width="200"/>
+<img src="Images/Screenshot3.png" alt="Screenshot3" title="Screenshot3" width="200"/>
+<img src="Images/Screenshot4.png" alt="Screenshot4" title="Screenshot4" width="200"/>
+</p>
+
 
 That's all. Now you already know enough about `TweaKit`.
 
@@ -121,9 +139,9 @@ Feel free to play with the demo app or check [wiki](https://github.com/Cokile/Tw
 
 ## Credits
 
-- UI/UX is designed by [@愉悦地瓜](https://twitter.com/gggeeeeggge).
-- TweaKit is heavily inspired by [SwiftTweak](https://github.com/Khan/SwiftTweaks).
+- UI/UX is designed by [@gggeeeeggge](https://twitter.com/gggeeeeggge).
+- TweaKit is heavily inspired by [SwiftTweaks](https://github.com/Khan/SwiftTweaks).
 
 ## About The Logo
 
-The logo of TweaKit is a cute stoat, a mustelid that can tweak fur color during summer and winter.
+The logo of `TweaKit` is a cute stoat, a mustelid that can tweak fur color during summer and winter.
