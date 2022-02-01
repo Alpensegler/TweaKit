@@ -23,20 +23,20 @@ TweaKit, a.k.a. "Tweak It", is a pure-swift library for adjusting parameters and
 ### CocoaPods
 
 ```ruby
-pod 'TweaKit'
+pod 'TweaKit', '~> 1.0'
 ```
 
 ### Carthage
 
 ```ogdl
-github 'Cokile/TweaKit'
+github 'Cokile/TweaKit' ~> 1.0
 ```
 
 ### Swift Package Manager
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Cokile/TweaKit.git", .branch("master"))
+    .package(url: "https://github.com/Cokile/TweaKit.git", from: "1.0.0"),
 ]
 ```
 
