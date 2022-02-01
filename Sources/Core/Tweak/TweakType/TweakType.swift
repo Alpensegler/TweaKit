@@ -81,7 +81,7 @@ public protocol AnyTweak: AnyObject {
     ///
     /// A `Tweakable` type can opt-in a secondary view when its primary view has not enough room
     /// to display the UI for users to change the value.
-    /// For example, `UIColor` uses a secondary view  which uses some sliders for adjustment.
+    /// For example, `UIColor` uses a secondary view which uses some sliders for adjustment.
     ///
     /// For more information about secondary view please checkout ``TweakSecondaryView``.
     var hasSecondaryView: Bool { get }
@@ -89,7 +89,7 @@ public protocol AnyTweak: AnyObject {
     ///
     /// A `Tweakable` type can opt-in a secondary view when its primary view has not enough room
     /// to display the UI for users to change the value.
-    /// For example, `UIColor` uses a secondary view  which uses some sliders for adjustment.
+    /// For example, `UIColor` uses a secondary view which uses some sliders for adjustment.
     ///
     /// For more information about secondary view please checkout ``TweakSecondaryView``.
     var secondaryView: TweakSecondaryView? { get }

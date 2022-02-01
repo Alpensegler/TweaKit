@@ -11,9 +11,9 @@ import UIKit
 ///
 /// A tweak can opt-in a secondary view when its primary view has not enough room
 /// to display the UI for users to change the value.
-/// For example, `UIColor` uses a secondary view  which uses some sliders for adjustment.
+/// For example, `UIColor` uses a secondary view which uses some sliders for adjustment.
 ///
-/// `TweKit` shows a senondary view in a bottom panel sheet.
+/// `TweKit` shows a secondary view in a bottom panel sheet.
 public protocol TweakSecondaryView: UIViewController, TweakView {
     /// The estimated height of the view.
     ///

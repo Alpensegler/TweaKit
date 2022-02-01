@@ -7,9 +7,20 @@
 
 import Foundation
 
+/// A type that represents a import source.
 public protocol TweakTradeSource {
+    /// The name of the source.
+    ///
+    /// This will be displayed in the tweak UI.
     var name: String { get }
     
+    /// Receives tweak data.
+    ///
+    /// - Parameters:
+    ///   - completion: The handler block for you to execute after you have performed the operation.
+    ///     This block has no return value and takes the following parameter:
+    ///
+    ///     **result**: The operation result. The `Success` type is ``TweakTradeCargo`` and the `Failure` type is `Error`.
     func receive(completion: @escaping (Result<TweakTradeCargo, Error>) -> Void)
 }
 

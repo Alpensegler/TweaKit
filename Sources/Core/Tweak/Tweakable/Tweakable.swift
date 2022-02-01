@@ -35,7 +35,7 @@ public protocol Tweakable: Storable {
     ///
     /// A `Tweakable` type can opt-in a secondary view when its primary view has not enough room
     /// to display the UI for users to change the value.
-    /// For example, `UIColor` uses a secondary view  which uses some sliders for adjustment.
+    /// For example, `UIColor` uses a secondary view which uses some sliders for adjustment.
     ///
     /// If this method is not implemented, then the return value is assumed to be false.
     ///
@@ -49,7 +49,7 @@ public protocol Tweakable: Storable {
     ///
     /// A `Tweakable` type can opt-in a secondary view when its primary view has not enough room
     /// to display the UI for users to change the value.
-    /// For example, `UIColor` uses a secondary view  which uses some sliders for adjustment.
+    /// For example, `UIColor` uses a secondary view which uses some sliders for adjustment.
     ///
     /// If this method is not implemented, then the return value is assumed to be nil.
     ///

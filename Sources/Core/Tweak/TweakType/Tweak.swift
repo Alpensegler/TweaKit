@@ -103,6 +103,11 @@ public extension Tweak {
 }
 
 public extension Tweak {
+    /// Stops observing the value change of the tweak.
+    ///
+    /// - Parameters:
+    ///   - token: A token that acts as the obervation.
+    ///            Pass nil will stop all the obervations of the tweak.
     func stopObservingValueChange(token: NotifyToken? = nil) {
         if let token = token {
             context?.store.stopNotifying(ForToken: token)
@@ -111,6 +116,21 @@ public extension Tweak {
         }
     }
     
+    /// Starts observing the value change of the tweak.
+    ///
+    /// - Note: Hold the token strongly or the observation will stop.
+    ///
+    /// - Parameters:
+    ///   - handler: A block that TweaKit calls after value change.
+    ///     The block takes the following parameter:
+    ///
+    ///     **oldValue**: The old Value of the tweak.
+    ///
+    ///     **newValue**: The new Value of the tweak.
+    ///
+    ///     **manually**: True if the value change is manually triggered in the tweak UI.
+    ///
+    /// - Returns: A token that acts as the obervation.
     func startObservingValueChange(_ handler: @escaping (Value, Value, Bool) -> Void) -> NotifyToken {
         guard let context = context else {
             fatalError("Tweak \(name) is not in context yet")

@@ -9,7 +9,7 @@ import UIKit
 
 /// A view to show/change the value of a tweak.
 ///
-/// Primary means it is displayed alonngside with the tweak name in the list UI.
+/// Primary means it is displayed alongside with the tweak name in the list UI.
 ///
 /// Each tweak list will maintain a reuse poll of primary view,
 /// so a list with hundreds of tweaks will not initialize undreds of primary views.

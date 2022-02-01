@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A representation of tweaks to be traded.
 public typealias TweakTradeCargo = Data
 
 final class TweakTrader {

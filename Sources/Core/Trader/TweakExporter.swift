@@ -8,9 +8,21 @@
 import UIKit
 
 public protocol TweakTradeDestination {
+    /// The name of the destination.
+    ///
+    /// This will be displayed in the tweak UI.
     var name: String { get }
+    /// A Boolean value that determines whether show a notify UI when the operation is complete.
     var needsNotifyCompletion: Bool { get }
     
+    /// Ships tweak data.
+    ///
+    /// - Parameters:
+    ///   - cargo: The tweak data.
+    ///   - completion: The handler block for you to execute after you have performed the operation.
+    ///     This block has no return value and takes the following parameter:
+    ///
+    ///     **error**: The operation error, otherwise nil.
     func ship(_ cargo: TweakTradeCargo, completion: @escaping (Error?) -> Void)
 }
 
