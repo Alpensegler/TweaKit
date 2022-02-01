@@ -78,8 +78,8 @@ public class Tweak<Value: Storable>: AnyTweak, TweakType {
     ///
     /// - Parameters:
     ///   - name: The name of the tweak.
-    ///   - default: The default value of the tweak.
-    init(name: String, default: Value) {
+    ///   - `default`: The default value of the tweak.
+    init(name: String, `default`: Value) {
         assert(!name.contains(Constants.idSeparator), "Tweak name: \(name) should not contain \(Constants.idSeparator)")
         
         self.name = name
@@ -106,8 +106,8 @@ public extension Tweak {
     /// Stops observing the value change of the tweak.
     ///
     /// - Parameters:
-    ///   - token: A token that acts as the obervation.
-    ///            Pass nil will stop all the obervations of the tweak.
+    ///   - token: A token that acts as the observation.
+    ///            Pass nil will stop all the observations of the tweak.
     func stopObservingValueChange(token: NotifyToken? = nil) {
         if let token = token {
             context?.store.stopNotifying(ForToken: token)
@@ -130,7 +130,7 @@ public extension Tweak {
     ///
     ///     **manually**: True if the value change is manually triggered in the tweak UI.
     ///
-    /// - Returns: A token that acts as the obervation.
+    /// - Returns: A token that acts as the observation.
     func startObservingValueChange(_ handler: @escaping (Value, Value, Bool) -> Void) -> NotifyToken {
         guard let context = context else {
             fatalError("Tweak \(name) is not in context yet")

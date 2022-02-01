@@ -15,7 +15,7 @@ public extension TweakContext {
         /// The app group id of the adopting project.
         ///
         /// You can specify the app group id if you want to use TweaKit in both the host app and app extensions.
-        /// A non-empty value will instruct TweaKit to persist tweak value in the app group container rather than in the app sandboxed directory.
+        /// A non-empty value will instruct TweaKit to persist tweak value in the app group container rather than in the app sandbox directory.
         let appGroupID: String?
         
         /// Creates and initializes a tweak context config with the given name and app group id.

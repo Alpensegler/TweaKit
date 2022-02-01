@@ -12,7 +12,7 @@ import UIKit
 /// Primary means it is displayed alongside with the tweak name in the list UI.
 ///
 /// Each tweak list will maintain a reuse poll of primary view,
-/// so a list with hundreds of tweaks will not initialize undreds of primary views.
+/// so a list with hundreds of tweaks will not initialize hundreds of primary views.
 ///
 /// Every tweak must have a primary view.
 /// The primary view is used for tweaking the value.

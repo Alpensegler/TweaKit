@@ -9,7 +9,7 @@ import UIKit
 
 /// A type whose value can be tweaked.
 public protocol Tweakable: Storable {
-    /// The reuse id of the parimary view.
+    /// The reuse id of the primary view.
     ///
     /// This is like the reuseIdentifier of `UITableViewCell`.
     ///
@@ -17,7 +17,7 @@ public protocol Tweakable: Storable {
     /// The primary view is used for tweaking the value.
     /// For example, `Bool` uses a switcher as its primary view.
     ///
-    /// If this method is not implemented, then the return value is assumed to be the id of blank placehoder primary view.
+    /// If this method is not implemented, then the return value is assumed to be the id of blank placeholder primary view.
     ///
     /// For more information about primary view please checkout ``TweakPrimaryView``.
     static var primaryViewReuseID: String { get }
@@ -27,7 +27,7 @@ public protocol Tweakable: Storable {
     /// The primary view is used for tweaking the value.
     /// For example, `Bool` uses a switcher as its primary view.
     ///
-    /// If this method is not implemented, then the return value is assumed to be a blank placehoder primary view.
+    /// If this method is not implemented, then the return value is assumed to be a blank placeholder primary view.
     ///
     /// For more information about primary view please checkout ``TweakPrimaryView``.
     static var primaryView: TweakPrimaryView { get }

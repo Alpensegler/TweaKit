@@ -17,7 +17,7 @@ import Foundation
 ///
 /// So instead of writing code like:
 /// ```swift
-/// NumeircTweak("one tweak", defaultValue: 1, from: 1, to: 100, stride: 1)
+/// NumericTweak("one tweak", defaultValue: 1, from: 1, to: 100, stride: 1)
 /// SelectionTweak("another tweak" defaultValue: 1, options: [1, 2, 3])
 /// ```
 /// We can write code like:
@@ -111,7 +111,7 @@ extension AnyTweak {
     var context: TweakContext? { list?.context }
 }
 
-/// A type-erased tweak that can be tranded.
+/// A type-erased tweak that can be traded.
 public protocol AnyTradableTweak: AnyTweak {
     /// Converts the trade value to raw data.
     ///

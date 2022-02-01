@@ -323,8 +323,9 @@ private extension TweakFloatingPanel {
     }
     
     func _isListAtTop(tolerance: CGFloat = 0) -> Bool {
-        return tweakListViewController.tableView.contentOffset.y <= -topCover.frame.height + tolerance
-            && tweakListViewController.tableView.contentOffset.y >= -topCover.frame.height - tolerance
+        let offsetY = tweakListViewController.tableView.contentOffset.y
+        let coverHeight = topCover.frame.height
+        return -coverHeight - tolerance <= offsetY && offsetY <= -coverHeight + tolerance
     }
     
     func _stretchPan(with translation: CGPoint) {

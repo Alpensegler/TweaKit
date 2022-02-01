@@ -16,7 +16,7 @@ public protocol Tradable {
     /// Implementers should try their best to achieve the conversion.
     ///
     /// - Parameters:
-    ///   - data: The trade value that the conversion performs from.
+    ///   - value: The trade value that the conversion performs from.
     /// - Returns: The concrete type object.
     static func unmarshal(from value: TweakTradeValue) -> Self?
     /// Converts the receiver to ``TweakTradeValue`` object.

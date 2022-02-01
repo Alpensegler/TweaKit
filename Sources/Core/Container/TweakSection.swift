@@ -28,7 +28,7 @@ public final class TweakSection {
     ///
     /// - Parameters:
     ///   - name: The name of the section.
-    ///   - sections: A builder that creates the tweaks of the section.
+    ///   - tweaks: A builder that creates the tweaks of the section.
     public init(_ name: String, @AnyTweakBuilder _ tweaks: () -> [AnyTweak]) {
         assert(!name.contains(Constants.idSeparator), "TweakSection name should not have \(Constants.idSeparator)")
         
