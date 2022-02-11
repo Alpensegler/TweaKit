@@ -52,7 +52,7 @@ github 'Cokile/TweaKit' ~> 1.0
 import TweaKit
 
 enum Tweaks {
-  	@Tweak<CGFloat>(name: "Line Width", defaultValue: 1, from: 0.5, to: 2, stride: 0.05)
+    @Tweak<CGFloat>(name: "Line Width", defaultValue: 1, from: 0.5, to: 2, stride: 0.05)
     static var sketchLineWidth
     @Tweak(name: "Line Color", defaultValue: UIColor(red: 0.227, green: 0.529, blue: 0.992, alpha: 1))
     static var sketchLineColor
