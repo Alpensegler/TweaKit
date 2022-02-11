@@ -1,5 +1,5 @@
 <p align="center">
-<img src="Images/logo.png" alt="TweaKit" title="TweaKit" width="1200"/>
+<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/logo.png" alt="TweaKit" title="TweaKit" width="1200"/>
 </p>
 
 <p align="center">
@@ -126,16 +126,18 @@ Tweaks.context.show()
 ```
 
 <p align="center">
-<img src="Images/Screenshot.png" alt="Screenshot" title="Screenshot" width="200"/>
-<img src="Images/Screenshot2.png" alt="Screenshot2" title="Screenshot2" width="200"/>
-<img src="Images/Screenshot3.png" alt="Screenshot3" title="Screenshot3" width="200"/>
-<img src="Images/Screenshot4.png" alt="Screenshot4" title="Screenshot4" width="200"/>
+<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot.png" alt="Screenshot" title="Screenshot" width="200"/>
+<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot2.png" alt="Screenshot2" title="Screenshot2" width="200"/>
+<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot3.png" alt="Screenshot3" title="Screenshot3" width="200"/>
+<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot4.png" alt="Screenshot4" title="Screenshot4" width="200"/>
 </p>
 
 
 That's all. Now you already know enough about `TweaKit`.
 
-Feel free to play with the demo app or check [wiki](https://github.com/Cokile/TweaKit/wiki) for more advanced usage.
+
+
+Feel free to play with the demo app or check [wiki](https://github.com/Cokile/TweaKit/wiki) and [documentation](https://cokile.github.io/TweaKit) for more usage information.
 
 ## Credits
 

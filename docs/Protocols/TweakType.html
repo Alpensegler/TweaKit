@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TweakType Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/TweakType" class="dashAnchor"></a>
+
+    <a title="TweakType Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          TweaKit 1.0.1 Docs
+        </a>
+         (79% documented)
+      </p>
+    
+      <div class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/Cokile/TweaKit">
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">TweaKit Reference</a>
+      <img class="carat" src="../img/carat.png" alt=""/>
+      TweakType Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/NotifyToken.html">NotifyToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Tweak.html">Tweak</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TweakContext.html">TweakContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TweakContext/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes.html#/s:7TweaKit9TweakInfoC">TweakInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TweakList.html">TweakList</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TweakPrimaryViewDisclosurer.html">TweakPrimaryViewDisclosurer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TweakSection.html">TweakSection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TweakTradeActivityDestination.html">TweakTradeActivityDestination</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TweakTradeFileSource.html">TweakTradeFileSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/TweakTradePasteboardDestination.html">TweakTradePasteboardDestination</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/Logger.html">Logger</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TweakError.html">TweakError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TweakError/TradeReason.html">– TradeReason</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/TweakTradeValue.html">TweakTradeValue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Bool.html">Bool</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/CGFloat.html">CGFloat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Double.html">Double</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Float.html">Float</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int.html">Int</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int16.html">Int16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int32.html">Int32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int64.html">Int64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Int8.html">Int8</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Notification.html">Notification</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Notification/Name.html">– Name</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Numbered.html">Numbered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UIColor.html">UIColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt.html">UInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt16.html">UInt16</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt32.html">UInt32</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt64.html">UInt64</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UInt8.html">UInt8</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/AnyTradableTweak.html">AnyTradableTweak</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/AnyTweak.html">AnyTweak</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Storable.html">Storable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Tradable.html">Tradable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TradedTweakable.html">TradedTweakable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TweakBuildable.html">TweakBuildable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TweakContextDelegate.html">TweakContextDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TweakPrimaryView.html">TweakPrimaryView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TweakPrimaryViewStrideable.html">TweakPrimaryViewStrideable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TweakSecondaryView.html">TweakSecondaryView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TweakSecondaryViewItemConvertible.html">TweakSecondaryViewItemConvertible</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TweakTradeDestination.html">TweakTradeDestination</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TweakTradeSource.html">TweakTradeSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TweakType.html">TweakType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/TweakView.html">TweakView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Tweakable.html">Tweakable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/AnyTweakBuilder.html">AnyTweakBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TweakContainerBuilder.html">TweakContainerBuilder</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:7TweaKit8Numbereda">Numbered</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:7TweaKit10Selectablea">Selectable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:7TweaKit15TweakTradeCargoa">TweakTradeCargo</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>TweakType</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">TweakType</span></code></pre>
+
+                </div>
+              </div>
+            <p>A abstract type that represents a tweak.
+Every tweak type has its own unique logic. For example, numeric tweak need handle minimum/maximum value
+but selection tweak need to handle the selection options.</p>
+
+<p><code>TweaKit</code> uses different types for each tweaks under the hood.
+But we don&rsquo;t want to expose these types and to provide a unified API for users.</p>
+
+<p>So instead of writing code like:</p>
+<pre class="highlight swift"><code><span class="kt">NumericTweak</span><span class="p">(</span><span class="s">"one tweak"</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">stride</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+<span class="kt">SelectionTweak</span><span class="p">(</span><span class="s">"another tweak"</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</code></pre>
+
+<p>We can write code like:</p>
+<pre class="highlight swift"><code><span class="kt">Tweak</span><span class="p">(</span><span class="s">"one tweak"</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">stride</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+<span class="kt">Tweak</span><span class="p">(</span><span class="s">"another tweak"</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</code></pre>
+
+<p>We use <code>TweakType</code> to implement a class cluster that groups a number of private,
+concrete tweak subclasses under a public, abstract superclass <code><a href="../Classes/Tweak.html">Tweak</a></code>.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7TweaKit9TweakTypeP5ValueQa"></a>
+                    <a name="//apple_ref/swift/Alias/Value" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7TweaKit9TweakTypeP5ValueQa">Value</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The value type of the tweak.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Value</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7TweaKit9TweakTypeP4BaseQa"></a>
+                    <a name="//apple_ref/swift/Alias/Base" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7TweaKit9TweakTypeP4BaseQa">Base</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>the concrete tweak type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">Base</span> <span class="o">=</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7TweaKit9TweakTypeP4basex4BaseQz_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(base:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7TweaKit9TweakTypeP4basex4BaseQz_tcfc">init(base:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and initializes a tweak with the given concrete type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">base</span><span class="p">:</span> <span class="kt"><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP4BaseQa">Base</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>base</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The concrete tweak object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Base%60%20%3D%3D%20%60Tweak%3CValue%60%3E%2C%20%60Value%60%3A%20%60Numbered%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Base` == `Tweak&lt;Value`&gt;, `Value`: `Numbered`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Base%60%20%3D%3D%20%60Tweak%3CValue%60%3E%2C%20%60Value%60%3A%20%60Numbered%60"></a>
+                  <h3 class="section-name"><span>Available where <code><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP4BaseQa">Base</a></code> == <code>Tweak&lt;Value</code>&gt;, <code><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP5ValueQa">Value</a></code>: <code><a href="../Typealiases.html#/s:7TweaKit8Numbereda">Numbered</a></code></span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7TweaKit9TweakTypePA2A0C0Cy5ValueQzG4BaseRtzAA0C21PrimaryViewStrideableAGRQrlE4name07defaultE04from2to6stridexSS_A4Gtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(name:defaultValue:from:to:stride:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7TweaKit9TweakTypePA2A0C0Cy5ValueQzG4BaseRtzAA0C21PrimaryViewStrideableAGRQrlE4name07defaultE04from2to6stridexSS_A4Gtcfc">init(name:<wbr>defaultValue:<wbr>from:<wbr>to:<wbr>stride:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and initializes a tweak for <code><a href="../Typealiases.html#/s:7TweaKit8Numbereda">Numbered</a></code> type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kt"><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP5ValueQa">Value</a></span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="kt"><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP5ValueQa">Value</a></span><span class="p">,</span> <span class="nv">to</span><span class="p">:</span> <span class="kt"><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP5ValueQa">Value</a></span><span class="p">,</span> <span class="nv">stride</span><span class="p">:</span> <span class="kt"><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP5ValueQa">Value</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the tweak.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>defaultValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The default value of the tweak.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>from</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The maximum value of the tweaks.
+  This value must be greater than the minimum value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>to</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The minimum value of the tweak.
+This value must be less than the maximum value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>stride</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The stride when changing value of the tweak.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Base%60%20%3D%3D%20%60Tweak%3CValue%60%3E%2C%20%60Value%60%3A%20%60Selectable%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Base` == `Tweak&lt;Value`&gt;, `Value`: `Selectable`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Base%60%20%3D%3D%20%60Tweak%3CValue%60%3E%2C%20%60Value%60%3A%20%60Selectable%60"></a>
+                  <h3 class="section-name"><span>Available where <code><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP4BaseQa">Base</a></code> == <code>Tweak&lt;Value</code>&gt;, <code><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP5ValueQa">Value</a></code>: <code><a href="../Typealiases.html#/s:7TweaKit10Selectablea">Selectable</a></code></span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7TweaKit9TweakTypePA2A0C0Cy5ValueQzG4BaseRtzAA0C28SecondaryViewItemConvertibleAGRQrlE4name07defaultE07optionsxSS_AGSayAGGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(name:defaultValue:options:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7TweaKit9TweakTypePA2A0C0Cy5ValueQzG4BaseRtzAA0C28SecondaryViewItemConvertibleAGRQrlE4name07defaultE07optionsxSS_AGSayAGGtcfc">init(name:<wbr>defaultValue:<wbr>options:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and initializes a tweak for <code><a href="../Typealiases.html#/s:7TweaKit10Selectablea">Selectable</a></code> type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kt"><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP5ValueQa">Value</a></span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP5ValueQa">Value</a></span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the tweak.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>defaultValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The default value of the tweak.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The selection options.
+     The options must not be empty and must contain the default value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Base%60%20%3D%3D%20%60Tweak%3CValue%60%3E%2C%20%60Value%60%3A%20%60Tweakable%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Base` == `Tweak&lt;Value`&gt;, `Value`: `Tweakable`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Base%60%20%3D%3D%20%60Tweak%3CValue%60%3E%2C%20%60Value%60%3A%20%60Tweakable%60"></a>
+                  <h3 class="section-name"><span>Available where <code><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP4BaseQa">Base</a></code> == <code>Tweak&lt;Value</code>&gt;, <code><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP5ValueQa">Value</a></code>: <code><a href="../Protocols/Tweakable.html">Tweakable</a></code></span>
+</h3>
+                </div>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7TweaKit9TweakTypePA2A0C0Cy5ValueQzG4BaseRtzAA9TweakableAGRQrlE4name07defaultE0xSS_AGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(name:defaultValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7TweaKit9TweakTypePA2A0C0Cy5ValueQzG4BaseRtzAA9TweakableAGRQrlE4name07defaultE0xSS_AGtcfc">init(name:<wbr>defaultValue:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates and initializes a tweak with the given name and default value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kt"><a href="../Protocols/TweakType.html#/s:7TweaKit9TweakTypeP5ValueQa">Value</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The name of the tweak.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>defaultValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The default value of the tweak.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2022 <a class="link" href="https://github.com/Cokile/TweaKit" target="_blank" rel="external noopener">Cokile</a>. All rights reserved. (Last updated: 2022-02-11)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
+    </section>
+  </body>
+</html>
