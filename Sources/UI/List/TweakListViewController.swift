@@ -14,6 +14,8 @@ final class TweakListViewController: UITableViewController {
     private var emptyView: TweakListEmptyView?
     private lazy var debouncer = Debouncer(dueTime: 0.1)
     private(set) lazy var primaryViewRecycler = TweakPrimaryViewRecycler()
+    
+    private var locatedIndexPath: IndexPath?
 
     private var floatingSection: Int?
     private var floatingHeader: TweakListSectionHeader?
@@ -60,10 +62,18 @@ extension TweakListViewController {
         _reload()
     }
     
-    func scrollTo(tweak: AnyTweak, at position: UITableView.ScrollPosition, animated: Bool) {
+    func scrollTo(tweak: AnyTweak, at position: UITableView.ScrollPosition, animated: Bool, highlight: Bool) {
         guard let section = tweaks.firstIndex(where: { $0.first?.section === tweak.section }) else { return }
         guard let row = tweaks[section].firstIndex(where: { $0 === tweak }) else { return }
-        tableView.scrollToRow(at: .init(row: row, section: section), at: position, animated: animated)
+        let indexPath = IndexPath(row: row, section: section)
+        tableView.scrollToRow(at: indexPath, at: position, animated: animated)
+        if highlight {
+            if animated {
+                locatedIndexPath = indexPath
+            } else {
+                _highlightLocatedTweak(at: indexPath)
+            }
+        }
     }
     
     func iconFrame(in section: Int) -> CGRect {
@@ -117,6 +127,16 @@ extension TweakListViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as! TweakListViewCell
         cell.handleSelection(for: tweaks[indexPath.section][indexPath.row])
+    }
+}
+
+extension TweakListViewController {
+    public override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        super.scrollViewDidEndScrollingAnimation(scrollView)
+        if let indexPath = locatedIndexPath {
+            _highlightLocatedTweak(at: indexPath)
+            locatedIndexPath = nil
+        }
     }
 }
 
@@ -277,6 +297,11 @@ private extension TweakListViewController {
         case .floating:
             break
         }
+    }
+    
+    func _highlightLocatedTweak(at indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? TweakListViewCell else { return }
+        cell.handleBeingLocated()
     }
 }
 

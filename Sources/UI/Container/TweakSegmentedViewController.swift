@@ -60,7 +60,7 @@ extension TweakSegmentedViewController {
         super.viewDidLoad()
         _setupUI()
         _registerNotifications()
-        _initialLocating()
+        _initiateLocating()
     }
 
     override func viewDidLayoutSubviews() {
@@ -231,7 +231,7 @@ private extension TweakSegmentedViewController {
 }
 
 private extension TweakSegmentedViewController {
-    func _initialLocating() {
+    func _initiateLocating() {
         _beginInitialLocating()
         
         guard let list = initialTweak?.list ?? initialList else {
@@ -273,7 +273,7 @@ private extension TweakSegmentedViewController {
     func _scroll(to tweak: AnyTweak, at index: Int) {
         guard contentCollectionView.cellVisibility(at: .init(item: index, section: 0)) == 1 else { return }
         let cell = contentCollectionView.visibleCells[0] as? TweakSegmentContentCell
-        cell?.listViewController.scrollTo(tweak: tweak, at: .middle, animated: false)
+        cell?.listViewController.scrollTo(tweak: tweak, at: .middle, animated: false, highlight: true)
     }
 }
 

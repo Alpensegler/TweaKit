@@ -59,6 +59,10 @@ extension TweakListViewCell {
     func handleSelection(for tweak: AnyTweak) {
         _handleSelection(for: tweak)
     }
+    
+    func handleBeingLocated() {
+        _highlightForAWhile()
+    }
 }
 
 extension TweakListViewCell {
@@ -202,8 +206,6 @@ private extension TweakListViewCell {
     }
     
     func _setHighlight(_ flag: Bool, animated: Bool) {
-        guard tweak.isUserInteractionEnabled else { return }
-        
         if animated {
             UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: { [unowned self] in
                 highlightBackground.alpha = flag ? 0.1 : 0
@@ -212,11 +214,22 @@ private extension TweakListViewCell {
             highlightBackground.alpha = flag ? 0.1 : 0
         }
     }
+    
+    func _highlightForAWhile() {
+        UIView.animate(withDuration: 0.25, delay: 0, options: [.beginFromCurrentState, .curveEaseIn], animations: { [unowned self] in
+            highlightBackground.alpha = 0.1
+        }, completion: { [weak self] finished in
+            guard finished else { return }
+            UIView.animate(withDuration: 0.25, delay: 0.3, options: .curveEaseOut, animations: {
+                self?.highlightBackground.alpha = 0
+            })
+        })
+    }
 }
 
 private extension TweakListViewCell {
     @objc func _handleLongPress(_ gesture: UILongPressGestureRecognizer) {
-        guard gesture.state == .began else { return }
+        guard gesture.state == .began, tweak.isUserInteractionEnabled else { return }
         _setHighlight(false, animated: false)
         _showLongPressOptions()
     }
