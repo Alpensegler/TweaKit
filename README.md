@@ -126,10 +126,16 @@ Tweaks.context.show()
 ```
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot.png" alt="Screenshot" title="Screenshot" width="200"/>
+<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot1.png" alt="Screenshot1" title="Screenshot1" width="200"/>
 <img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot2.png" alt="Screenshot2" title="Screenshot2" width="200"/>
 <img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot3.png" alt="Screenshot3" title="Screenshot3" width="200"/>
 <img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot4.png" alt="Screenshot4" title="Screenshot4" width="200"/>
+</p>
+<p align="center">
+<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot5.png" alt="Screenshot5" title="Screenshot5" width="200"/>
+<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot6.png" alt="Screenshot6" title="Screenshot6" width="200"/>
+<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot7.png" alt="Screenshot7" title="Screenshot7" width="200"/>
+<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot8.png" alt="Screenshot8" title="Screenshot8" width="200"/>
 </p>
 
 
