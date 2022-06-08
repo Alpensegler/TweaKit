@@ -124,19 +124,6 @@ extension TweakFloatingPanel: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         true
     }
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        guard gestureRecognizer === pan else { return true }
-        guard _isListAtTop() else { return false }
-        switch heightLevel {
-        case .short:
-            return pan.velocity(in: view).y < 0
-        case .medium:
-            return true
-        case .tall:
-            return pan.velocity(in: view).y > 0
-        }
-    }
 }
 
 private extension TweakFloatingPanel {
@@ -177,7 +164,10 @@ private extension TweakFloatingPanel {
         
         topCover.frame = .init(x: 0, y: 0, width: view.frame.width, height: nameLabel.frame.maxY + 14)
         tweakListViewController.view.frame = .init(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        tweakListViewController.tableView.contentInset.top = topCover.frame.height
+        if tweakListViewController.tableView.contentOffset.y == .zero {
+            tweakListViewController.tableView.contentInset.top = topCover.frame.height
+            tweakListViewController.tableView.contentOffset.y = -topCover.frame.height
+        }
     }
     
     func _calibrateUI() {
@@ -309,10 +299,27 @@ private extension TweakFloatingPanel {
         switch gesture.state {
         case .changed:
             defer { _resetPan(gesture) }
-            guard _isListAtTop(tolerance: max(5, abs(gesture.velocity(in: view).y) / 30)) else { return }
-            _stretchPan(with: gesture.translation(in: gesture.view))
+            
+            let isDown = gesture.velocity(in: view).y.sign == .plus
+            if isDown && _doesListExceedTop() {
+                // if we are panning down and the list exceeds top now
+                // it means we are scrolling list back to top in the `tall` height level
+                // we will keep the panel at the current height level
+                break
+            }
+            
+            if _isListAtTop(tolerance: max(5, abs(gesture.velocity(in: view).y) / 50)) {
+                _stretchDuringPan(with: gesture.translation(in: gesture.view))
+            }
+            if !_isAtHeightLevel(.tall) {
+                _resetScrollInList()
+            }
         case .ended, .cancelled:
-            _snapToClosestHeightLevel(velocity: gesture.velocity(in: gesture.view).y)
+            let panVelocity = gesture.velocity(in: view).y
+            if let snapHeightLevel = _calculatePanSnapHeightLevel(with: panVelocity) {
+                _snapToHeightLevel(snapHeightLevel, panVelocity: panVelocity)
+                _resetScrollInList()
+            }
         default:
             break
         }
@@ -324,42 +331,66 @@ private extension TweakFloatingPanel {
     
     func _isListAtTop(tolerance: CGFloat = 0) -> Bool {
         let offsetY = tweakListViewController.tableView.contentOffset.y
-        let coverHeight = topCover.frame.height
-        return -coverHeight - tolerance <= offsetY && offsetY <= -coverHeight + tolerance
+        let topInset = tweakListViewController.tableView.contentInset.top
+        return -topInset - tolerance <= offsetY && offsetY <= -topInset + tolerance
     }
     
-    func _stretchPan(with translation: CGPoint) {
+    func _doesListExceedTop() -> Bool {
+        let offsetY = tweakListViewController.tableView.contentOffset.y
+        let topInset = tweakListViewController.tableView.contentInset.top
+        return offsetY > -topInset
+    }
+    
+    func _stretchDuringPan(with translation: CGPoint) {
         guard let window = context.showingWindow else { return }
         let targetY = (view.frame.minY + translation.y)
             .clamped(
                 from: _frame(in: window, heightLevel: .tall).minY,
                 to: _frame(in: window, heightLevel: .short).minY
             )
-        view.frame = .init(
+        let targetFrame = CGRect(
             x: view.frame.minX,
             y: targetY,
             width: view.frame.width,
             height: window.bounds.height - targetY
         )
+        if targetFrame == view.frame { return }
+        view.frame = targetFrame
     }
     
-    func _snapToClosestHeightLevel(velocity: CGFloat) {
-        guard let window = context.showingWindow else { return }
+    func _isAtHeightLevel(_ level: HeightLevel) -> Bool {
+        guard let window = context.showingWindow else { return false }
+        return view.frame == _frame(in: window, heightLevel: .tall)
+    }
+    
+    func _resetScrollInList() {
+        let topInset = tweakListViewController.tableView.contentInset.top
+        tweakListViewController.tableView.setContentOffset(.init(x: 0, y: -topInset), animated: false)
+    }
+    
+    func _calculatePanSnapHeightLevel(with velocity: CGFloat) -> HeightLevel? {
+        guard let window = context.showingWindow else { return nil }
         let targetLevel = _panTargetLevel(in: window, velocity: velocity)
         let targetFrame = _frame(in: window, heightLevel: targetLevel)
+        return targetFrame == view.frame ? nil : targetLevel
+    }
+    
+    func _snapToHeightLevel(_ targetLevel: HeightLevel, panVelocity: CGFloat) {
+        guard let window = context.showingWindow else { return }
         defer { heightLevel = targetLevel }
         
+        let targetFrame = _frame(in: window, heightLevel: targetLevel)
         let animations = { [unowned self] in view.frame = targetFrame }
         if heightLevel.distance(from: targetLevel) > 1 {
-            let damping = 1 - (abs(velocity) / 4000).clamped(from: 0.2, to: 0.25)
-            let initialVelocity = (abs(velocity) / 6000).clamped(from: 0, to: 0.6)
+            let damping = 1 - (abs(panVelocity) / 4000).clamped(from: 0.2, to: 0.25)
+            let initialVelocity = (abs(panVelocity) / 6000).clamped(from: 0, to: 0.6)
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initialVelocity, animations: animations)
         } else if heightLevel.distance(from: targetLevel) == 1 {
-            let damping = 1 - (abs(velocity) / 400).clamped(from: 0.2, to: 0.25)
-            let initialVelocity = (abs(velocity) / 600).clamped(from: 0, to: 0.6)
+            let damping = 1 - (abs(panVelocity) / 400).clamped(from: 0.2, to: 0.25)
+            let initialVelocity = (abs(panVelocity) / 600).clamped(from: 0, to: 0.6)
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initialVelocity, animations: animations)
         } else {
-            let duration = 0.3 - TimeInterval(abs(targetFrame.minY - view.frame.minY) / abs(velocity)).clamped(from: 0, to: 0.1)
+            let duration = 0.3 - TimeInterval(abs(targetFrame.minY - view.frame.minY) / abs(panVelocity)).clamped(from: 0, to: 0.1)
             UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseIn, .beginFromCurrentState], animations: animations)
         }
     }
