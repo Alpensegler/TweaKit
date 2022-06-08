@@ -349,23 +349,18 @@ private extension TweakFloatingPanel {
         let targetFrame = _frame(in: window, heightLevel: targetLevel)
         defer { heightLevel = targetLevel }
         
+        let animations = { [unowned self] in view.frame = targetFrame }
         if heightLevel.distance(from: targetLevel) > 1 {
-            let damping = 1 - (abs(velocity) / 4000).clamped(from: 0.2, to: 0.35)
-            let initialVelocity = (abs(velocity) / 5000).clamped(from: 0, to: 0.6)
-            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initialVelocity, animations: { [unowned self] in
-                view.frame = targetFrame
-            })
+            let damping = 1 - (abs(velocity) / 4000).clamped(from: 0.2, to: 0.25)
+            let initialVelocity = (abs(velocity) / 6000).clamped(from: 0, to: 0.6)
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initialVelocity, animations: animations)
         } else if heightLevel.distance(from: targetLevel) == 1 {
-            let damping = 1 - (abs(velocity) / 400).clamped(from: 0.2, to: 0.35)
-            let initialVelocity = (abs(velocity) / 500).clamped(from: 0, to: 0.6)
-            UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initialVelocity, animations: { [unowned self] in
-                view.frame = targetFrame
-            })
+            let damping = 1 - (abs(velocity) / 400).clamped(from: 0.2, to: 0.25)
+            let initialVelocity = (abs(velocity) / 600).clamped(from: 0, to: 0.6)
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: initialVelocity, animations: animations)
         } else {
-            let duration = 0.25 - TimeInterval(abs(targetFrame.minY - view.frame.minY) / abs(velocity)).clamped(from: 0, to: 0.1)
-            UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseIn, .beginFromCurrentState], animations: { [unowned self] in
-                view.frame = targetFrame
-            })
+            let duration = 0.3 - TimeInterval(abs(targetFrame.minY - view.frame.minY) / abs(velocity)).clamped(from: 0, to: 0.1)
+            UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseIn, .beginFromCurrentState], animations: animations)
         }
     }
     
@@ -492,8 +487,8 @@ private extension TweakFloatingPanel {
         var percentage: CGFloat {
             switch self {
             case .tall: return 0.85
-            case .medium: return 0.6
-            case .short: return 0.3
+            case .medium: return 0.5
+            case .short: return 0.15
             }
         }
 
