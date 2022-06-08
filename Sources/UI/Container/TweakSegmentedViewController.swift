@@ -261,8 +261,8 @@ private extension TweakSegmentedViewController {
             }
             if let tweak = initialTweak {
                 DispatchQueue.main.async {
-                    _scroll(to: tweak, at: index)
-                    _endInitialLocating(animated: true)
+                    self._scroll(to: tweak, at: index)
+                    self._endInitialLocating(animated: true)
                 }
             } else {
                 _endInitialLocating(animated: true)
@@ -330,7 +330,7 @@ private extension TweakSegmentedViewController {
                 titleCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
                 // wait for titleCollectionView complete scrolling
                 DispatchQueue.main.async {
-                    indicator.frame = _indicatorFrame(of: currentIndex)
+                    self.indicator.frame = self._indicatorFrame(of: self.currentIndex)
                 }
             }
         }
