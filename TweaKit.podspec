@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'TweaKit'
-  spec.version = '1.0.1'
+  spec.version = '1.0.2'
   spec.license = 'MIT'
   spec.summary = ' TweaKit, a.k.a. "Tweak It", is a pure-swift library for adjusting parameters and feature flagging.'
   spec.homepage = 'https://github.com/Cokile/TweaKit'
