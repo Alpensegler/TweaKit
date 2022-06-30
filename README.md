@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/logo.png" alt="TweaKit" title="TweaKit" width="1200"/>
+<img src="https://raw.githubusercontent.com/Alpensegler/TweaKit/master/Images/logo.png" alt="TweaKit" title="TweaKit" width="1200"/>
 </p>
 
 <p align="center">
@@ -35,13 +35,13 @@ pod 'TweaKit', '~> 1.0'
 ### Carthage
 
 ```ogdl
-github 'Cokile/TweaKit' ~> 1.0
+github 'Alpensegler/TweaKit' ~> 1.0
 ```
 
 ### Swift Package Manager
 
 ```swift
-.package(url: "https://github.com/Cokile/TweaKit.git", .upToNextMajor(from: "1.0.0"))
+.package(url: "https://github.com/Alpensegler/TweaKit.git", .upToNextMajor(from: "1.0.0"))
 ```
 
 ## Get Started
@@ -126,16 +126,16 @@ Tweaks.context.show()
 ```
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot1.png" alt="Screenshot1" title="Screenshot1" width="200"/>
-<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot2.png" alt="Screenshot2" title="Screenshot2" width="200"/>
-<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot3.png" alt="Screenshot3" title="Screenshot3" width="200"/>
-<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot4.png" alt="Screenshot4" title="Screenshot4" width="200"/>
+<img src="https://raw.githubusercontent.com/Alpensegler/TweaKit/master/Images/Screenshot1.png" alt="Screenshot1" title="Screenshot1" width="200"/>
+<img src="https://raw.githubusercontent.com/Alpensegler/TweaKit/master/Images/Screenshot2.png" alt="Screenshot2" title="Screenshot2" width="200"/>
+<img src="https://raw.githubusercontent.com/Alpensegler/TweaKit/master/Images/Screenshot3.png" alt="Screenshot3" title="Screenshot3" width="200"/>
+<img src="https://raw.githubusercontent.com/Alpensegler/TweaKit/master/Images/Screenshot4.png" alt="Screenshot4" title="Screenshot4" width="200"/>
 </p>
 <p align="center">
-<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot5.png" alt="Screenshot5" title="Screenshot5" width="200"/>
-<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot6.png" alt="Screenshot6" title="Screenshot6" width="200"/>
-<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot7.png" alt="Screenshot7" title="Screenshot7" width="200"/>
-<img src="https://raw.githubusercontent.com/Cokile/TweaKit/master/Images/Screenshot8.png" alt="Screenshot8" title="Screenshot8" width="200"/>
+<img src="https://raw.githubusercontent.com/Alpensegler/TweaKit/master/Images/Screenshot5.png" alt="Screenshot5" title="Screenshot5" width="200"/>
+<img src="https://raw.githubusercontent.com/Alpensegler/TweaKit/master/Images/Screenshot6.png" alt="Screenshot6" title="Screenshot6" width="200"/>
+<img src="https://raw.githubusercontent.com/Alpensegler/TweaKit/master/Images/Screenshot7.png" alt="Screenshot7" title="Screenshot7" width="200"/>
+<img src="https://raw.githubusercontent.com/Alpensegler/TweaKit/master/Images/Screenshot8.png" alt="Screenshot8" title="Screenshot8" width="200"/>
 </p>
 
 
@@ -143,7 +143,7 @@ That's all. Now you already know enough about `TweaKit`.
 
 
 
-Feel free to play with the demo app or check [wiki](https://github.com/Cokile/TweaKit/wiki) and [documentation](https://cokile.github.io/TweaKit) for more usage information.
+Feel free to play with the demo app or check [wiki](https://github.com/Alpensegler/TweaKit/wiki) and [documentation](https://Alpensegler.github.io/TweaKit) for more usage information.
 
 ## Credits
 

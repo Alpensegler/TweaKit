@@ -3,9 +3,9 @@ Pod::Spec.new do |spec|
   spec.version = '1.0.2'
   spec.license = 'MIT'
   spec.summary = ' TweaKit, a.k.a. "Tweak It", is a pure-swift library for adjusting parameters and feature flagging.'
-  spec.homepage = 'https://github.com/Cokile/TweaKit'
+  spec.homepage = 'https://github.com/Alpensegler/TweaKit'
   spec.author = { 'Cokile': 'kelvintgx@gmail.com' }
-  spec.source = { git: 'https://github.com/Cokile/TweaKit.git', tag: spec.version.to_s }
+  spec.source = { git: 'https://github.com/Alpensegler/TweaKit.git', tag: spec.version.to_s }
 
   spec.ios.deployment_target = '13.0'
   spec.swift_versions = ['5.4']

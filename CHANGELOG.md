@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - First public release.
 
-[Unreleased]: https://github.com/Cokile/TweaKit/compare/1.0.2...HEAD
-[1.0.2]: https://github.com/Cokile/TweaKit/compare/1.0.1...1.0.2
-[1.0.1]: https://github.com/Cokile/TweaKit/compare/1.0.0...1.0.1
-[1.0.0]: https://github.com/Cokile/TweaKit/releases/tag/1.0.0
+[Unreleased]: https://github.com/Alpensegler/TweaKit/compare/1.0.2...HEAD
+[1.0.2]: https://github.com/Alpensegler/TweaKit/compare/1.0.1...1.0.2
+[1.0.1]: https://github.com/Alpensegler/TweaKit/compare/1.0.0...1.0.1
+[1.0.0]: https://github.com/Alpensegler/TweaKit/releases/tag/1.0.0
