@@ -1,635 +1,635 @@
 {
   "warnings": [
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Container/TweakList.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Container/TweakList.swift",
       "line": 46,
       "symbol": "TweakList.constrainKey",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Container/TweakList.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Container/TweakList.swift",
       "line": 47,
       "symbol": "TweakList.hasBuilt",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Container/TweakSection.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Container/TweakSection.swift",
       "line": 46,
       "symbol": "TweakSection.constrainKey",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Container/TweakSection.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Container/TweakSection.swift",
       "line": 47,
       "symbol": "TweakSection.hasBuilt",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Context/TweakContext.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Context/TweakContext.swift",
       "line": 77,
       "symbol": "TweakContext.subscript(dynamicMember:)",
       "symbol_kind": "source.lang.swift.decl.function.subscript",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Store/TweakStoreNotifier.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Store/TweakStoreNotifier.swift",
       "line": 93,
       "symbol": "NotifyToken.invalidate()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/Tradable.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/Tradable.swift",
       "line": 200,
       "symbol": "Array.validate(with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakExporter.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakExporter.swift",
       "line": 10,
       "symbol": "TweakTradeDestination",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakExporter.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakExporter.swift",
       "line": 29,
       "symbol": "TweakTradeDestination",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakExporter.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakExporter.swift",
       "line": 93,
       "symbol": "TweakTradeActivityDestination",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakExporter.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakExporter.swift",
       "line": 126,
       "symbol": "TweakTradePasteboardDestination",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakImporter.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakImporter.swift",
       "line": 115,
       "symbol": "TweakTradeFileSource",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakImporter.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakImporter.swift",
       "line": 119,
       "symbol": "TweakTradeFileSource.init(name:filePath:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
       "line": 30,
       "symbol": "TweakTradeValue.bool(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
       "line": 31,
       "symbol": "TweakTradeValue.int(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
       "line": 32,
       "symbol": "TweakTradeValue.uInt(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
       "line": 33,
       "symbol": "TweakTradeValue.double(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
       "line": 34,
       "symbol": "TweakTradeValue.string(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Trader/TweakTradeContainer.swift",
       "line": 35,
       "symbol": "TweakTradeValue.array(_:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/Info/TweakInfo.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/Info/TweakInfo.swift",
       "line": 11,
       "symbol": "TweakInfo",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 73,
       "symbol": "Numbered.needDecimalPoint",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 76,
       "symbol": "Numbered.needSign(between:and:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 80,
       "symbol": "Numbered.substracting(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 83,
       "symbol": "Numbered.adding(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 88,
       "symbol": "Int8.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 91,
       "symbol": "Int8.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 96,
       "symbol": "Int16.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 99,
       "symbol": "Int16.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 104,
       "symbol": "Int32.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 107,
       "symbol": "Int32.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 112,
       "symbol": "Int64.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 115,
       "symbol": "Int64.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 120,
       "symbol": "Int.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 123,
       "symbol": "Int.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 129,
       "symbol": "Numbered.needDecimalPoint",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 132,
       "symbol": "Numbered.needSign(between:and:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 135,
       "symbol": "Numbered.substracting(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 138,
       "symbol": "Numbered.adding(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 143,
       "symbol": "UInt8.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 146,
       "symbol": "UInt8.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 151,
       "symbol": "UInt16.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 154,
       "symbol": "UInt16.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 159,
       "symbol": "UInt32.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 162,
       "symbol": "UInt32.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 167,
       "symbol": "UInt64.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 170,
       "symbol": "UInt64.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 175,
       "symbol": "UInt.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 178,
       "symbol": "UInt.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 184,
       "symbol": "Numbered.needDecimalPoint",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 187,
       "symbol": "Numbered.needSign(between:and:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 192,
       "symbol": "Float.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 196,
       "symbol": "Float.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 199,
       "symbol": "Float.substracting(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 202,
       "symbol": "Float.adding(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 207,
       "symbol": "Double.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 211,
       "symbol": "Double.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 214,
       "symbol": "Double.substracting(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 217,
       "symbol": "Double.adding(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 222,
       "symbol": "CGFloat.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 226,
       "symbol": "CGFloat.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 229,
       "symbol": "CGFloat.substracting(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Core/Tweak/TweakType/NumericTweak.swift",
       "line": 232,
       "symbol": "CGFloat.adding(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/List/TweakListViewController.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/List/TweakListViewController.swift",
       "line": 134,
       "symbol": "TweakListViewController.scrollViewDidEndScrollingAnimation(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewColorPicker.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewColorPicker.swift",
       "line": 40,
       "symbol": "TweakPrimaryViewColorPicker.reuseID",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewDisclosurer.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewDisclosurer.swift",
       "line": 22,
       "symbol": "TweakPrimaryViewDisclosurer.init(frame:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewDisclosurer.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewDisclosurer.swift",
       "line": 42,
       "symbol": "TweakPrimaryViewDisclosurer.layoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewDisclosurer.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewDisclosurer.swift",
       "line": 49,
       "symbol": "TweakPrimaryViewDisclosurer.reuseID",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
       "line": 12,
       "symbol": "TweakPrimaryViewStrideable.needDecimalPoint",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
       "line": 14,
       "symbol": "TweakPrimaryViewStrideable.needSign(between:and:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
       "line": 15,
       "symbol": "TweakPrimaryViewStrideable.substracting(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
       "line": 16,
       "symbol": "TweakPrimaryViewStrideable.adding(by:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
       "line": 18,
       "symbol": "TweakPrimaryViewStrideable.toText()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewStrider.swift",
       "line": 19,
       "symbol": "TweakPrimaryViewStrideable.fromText(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewSwitcher.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/PrimaryView/TweakPrimaryViewSwitcher.swift",
       "line": 24,
       "symbol": "TweakPrimaryViewSwitcher.reuseID",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/UI/Tweak/SecondaryView/TweakSecondaryView.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/UI/Tweak/SecondaryView/TweakSecondaryView.swift",
       "line": 40,
       "symbol": "TweakSecondaryView.horizontalPadding",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 10,
       "symbol": "TweakBuildable",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 11,
       "symbol": "TweakBuildable.constrainKey",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 12,
       "symbol": "TweakBuildable.hasBuilt",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 16,
       "symbol": "TweakContainerBuilder",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 17,
       "symbol": "TweakContainerBuilder.Expression",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 18,
       "symbol": "TweakContainerBuilder.Component",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 20,
       "symbol": "TweakContainerBuilder.buildExpression(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 24,
       "symbol": "TweakContainerBuilder.buildBlock(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 28,
       "symbol": "TweakContainerBuilder.buildArray(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 42,
       "symbol": "AnyTweakBuilder",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 43,
       "symbol": "AnyTweakBuilder.Expression",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 44,
       "symbol": "AnyTweakBuilder.Component",
       "symbol_kind": "source.lang.swift.decl.typealias",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 46,
       "symbol": "AnyTweakBuilder.buildExpression(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 50,
       "symbol": "AnyTweakBuilder.buildBlock(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/cokile/Developer/iOS/TweaKit/Sources/Utility/ResultBuilder.swift",
+      "file": "/Users/cokileceoi/Developer/Alpensegler/TweaKit/Sources/Utility/ResultBuilder.swift",
       "line": 54,
       "symbol": "AnyTweakBuilder.buildArray(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/cokile/Developer/iOS/TweaKit"
+  "source_directory": "/Users/cokileceoi/Developer/Alpensegler/TweaKit"
 }
