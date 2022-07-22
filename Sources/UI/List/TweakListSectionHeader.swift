@@ -1,5 +1,5 @@
 //
-//  TweakListViewHeader.swift
+//  TweakListSectionHeader.swift
 //  TweaKit
 //
 //  Created by cokile

@@ -40,7 +40,7 @@
 		574D8E92262288600091A65B /* TweakListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574D8E91262288600091A65B /* TweakListViewController.swift */; };
 		575084532623001500620301 /* TweakListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575084522623001500620301 /* TweakListViewCell.swift */; };
 		575084572623005D00620301 /* ListView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575084562623005D00620301 /* ListView+Extension.swift */; };
-		5750845D2623EC1B00620301 /* TweakListViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750845C2623EC1B00620301 /* TweakListViewHeader.swift */; };
+		5750845D2623EC1B00620301 /* TweakListSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5750845C2623EC1B00620301 /* TweakListSectionHeader.swift */; };
 		57580CCB264F7DE9009AFBA8 /* TweakPrimaryViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57580CCA264F7DE9009AFBA8 /* TweakPrimaryViewContainer.swift */; };
 		57580CCF264FCBA5009AFBA8 /* TweakPrimaryViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57580CCE264FCBA5009AFBA8 /* TweakPrimaryViewPlaceholder.swift */; };
 		57580CD3264FCFCC009AFBA8 /* TweakPrimaryViewDisclosurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57580CD2264FCFCC009AFBA8 /* TweakPrimaryViewDisclosurer.swift */; };
@@ -156,7 +156,7 @@
 		574D8E91262288600091A65B /* TweakListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListViewController.swift; sourceTree = "<group>"; };
 		575084522623001500620301 /* TweakListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListViewCell.swift; sourceTree = "<group>"; };
 		575084562623005D00620301 /* ListView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListView+Extension.swift"; sourceTree = "<group>"; };
-		5750845C2623EC1B00620301 /* TweakListViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListViewHeader.swift; sourceTree = "<group>"; };
+		5750845C2623EC1B00620301 /* TweakListSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakListSectionHeader.swift; sourceTree = "<group>"; };
 		57580CCA264F7DE9009AFBA8 /* TweakPrimaryViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewContainer.swift; sourceTree = "<group>"; };
 		57580CCE264FCBA5009AFBA8 /* TweakPrimaryViewPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewPlaceholder.swift; sourceTree = "<group>"; };
 		57580CD2264FCFCC009AFBA8 /* TweakPrimaryViewDisclosurer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweakPrimaryViewDisclosurer.swift; sourceTree = "<group>"; };
@@ -354,7 +354,7 @@
 			children = (
 				574D8E91262288600091A65B /* TweakListViewController.swift */,
 				5794E907266BB456000F833A /* TweakListViewScene.swift */,
-				5750845C2623EC1B00620301 /* TweakListViewHeader.swift */,
+				5750845C2623EC1B00620301 /* TweakListSectionHeader.swift */,
 				575084522623001500620301 /* TweakListViewCell.swift */,
 			);
 			path = List;
@@ -810,7 +810,7 @@
 				5715B3D326AD5EA200695779 /* TweakStoreCache.swift in Sources */,
 				57BF139225D1705300347322 /* TweakContext.swift in Sources */,
 				57BF138825D166E000347322 /* TweakSection.swift in Sources */,
-				5750845D2623EC1B00620301 /* TweakListViewHeader.swift in Sources */,
+				5750845D2623EC1B00620301 /* TweakListSectionHeader.swift in Sources */,
 				570CFAE026745A2E00E67D6B /* TweakFloatingParticipant.swift in Sources */,
 				57B41E5725DCE6DB00FA15D5 /* Tweak.swift in Sources */,
 				575F547025D28F1D008156A9 /* Array+Extension.swift in Sources */,
