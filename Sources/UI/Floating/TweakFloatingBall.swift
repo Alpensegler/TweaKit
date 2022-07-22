@@ -17,6 +17,8 @@ final class TweakFloatingBall: UIView {
     private lazy var tap = _tap()
     private lazy var longPress = _longPress()
 
+    private var isRotating = false
+
     private var snapAnimator: UIDynamicAnimator?
     private var snapBehavior: UISnapBehavior?
     private var dynamicItemBehavior: UIDynamicItemBehavior?
@@ -74,24 +76,21 @@ extension TweakFloatingBall: TweakFloatingSecondaryParticipant {
 extension TweakFloatingBall: UIDynamicAnimatorDelegate {
     func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
         guard let window = context.showingWindow else { return }
+        if isRotating { return } // no need to save position when rotating
         Self._savePosition(layer.position, in: window)
     }
 }
 
 extension TweakFloatingBall {
-    // normalized position
-    private static var lastPosition: CGPoint?
+    // normalized position, starting from bottom right edge
+    private static var lastPosition = CGPoint(x: 1, y: 1)
 
     static func position(in window: TweakWindow) -> CGPoint {
         let viablePositionFrame = _viablePositionFrame(in: window)
-        if let position = lastPosition {
-            return .init(
-                x: ceil(viablePositionFrame.minX + viablePositionFrame.width * position.x),
-                y: ceil(viablePositionFrame.minY + viablePositionFrame.height * position.y)
-            )
-        } else {
-            return .init(x: viablePositionFrame.maxX, y: viablePositionFrame.maxY)
-        }
+        return .init(
+            x: ceil(viablePositionFrame.minX + viablePositionFrame.width * lastPosition.x),
+            y: ceil(viablePositionFrame.minY + viablePositionFrame.height * lastPosition.y)
+        )
     }
 
     private static func _viablePositionFrame(in  window: TweakWindow) -> CGRect {
@@ -145,7 +144,12 @@ private extension TweakFloatingBall {
     }
 
     @objc func _onDidChangeOrientation(_ notification: Notification) {
-        _reposition()
+        _toggleIsRotating(to: true)
+        // wait rotation to complete
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?._reposition()
+            self?._toggleIsRotating(to: false)
+        }
     }
 }
 
@@ -242,6 +246,12 @@ private extension TweakFloatingBall {
 }
 
 private extension TweakFloatingBall {
+    func _toggleIsRotating(to flag: Bool) {
+        isRotating = flag
+    }
+}
+
+private extension TweakFloatingBall {
     func _dashLayer() -> CAShapeLayer {
         let l = CAShapeLayer()
         l.fillColor = UIColor.clear.cgColor
@@ -280,7 +290,7 @@ extension Constants.UI {
     enum Floating {
         static let ballSize: CGFloat = 70
         static let ballIconSize: CGFloat = 50
-        static let ballHorizontalPadding: CGFloat = 15
+        static let ballHorizontalPadding: CGFloat = 25
         static let ballVerticalPadding: CGFloat = 40
         static let ballAnimationDuration: TimeInterval = 0.35
         static let panelAnimationDuration: TimeInterval = 0.35
