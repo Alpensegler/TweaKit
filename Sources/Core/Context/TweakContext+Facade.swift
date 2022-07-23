@@ -29,7 +29,7 @@ public extension TweakContext {
     func show(locateAt tweak: AnyTweak? = nil, completion: ((Bool) -> Void)? = nil) {
         showWindow(locateAt: tweak, completion: completion)
     }
-    
+
     /// Dismisses the current showing tweak window of the context.
     ///
     /// 1. This method will do nothing if there is no showing window.
@@ -88,7 +88,7 @@ public extension TweakContext {
     /// - Returns: Tweaks that match the given keyord. Tweaks from the same section are grouped together.
     func search(with keyword: String) -> [[AnyTweak]] {
         if keyword.isEmpty { return [] }
-        
+
         let searcher = TweakSearcher(context: self)
         var results: [[AnyTweak]] = []
         searcher.bind { event in

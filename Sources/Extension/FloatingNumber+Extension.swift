@@ -31,8 +31,8 @@
  SOFTWARE.
  */
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 enum RoundLevel: Int {
     case integer

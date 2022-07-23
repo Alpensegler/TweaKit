@@ -5,8 +5,8 @@
 //  Created by cokile
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 /// A type with values that support addition and subtraction.
 ///
@@ -34,7 +34,7 @@ final class NumberedTweak<Value: Numbered>: Tweak<Value> {
     let from: Value
     let to: Value
     let stride: Value
-    
+
     override var primaryViewReuseID: String {
         TweakPrimaryViewStrider<Value>.reuseID
     }
@@ -47,21 +47,21 @@ final class NumberedTweak<Value: Numbered>: Tweak<Value> {
     override var secondaryView: TweakSecondaryView? {
         nil
     }
-    
+
     override var rawValue: Value {
         super.rawValue.clamped(from: from, to: to)
     }
-    
+
     init(name: String, defaultValue: Value, from: Value, to: Value, stride: Value) {
         assert(from < to, "Stride from: \(from) to: \(to) is invalid")
         assert(stride > 0, "Stride must larger than 0, while current stride is \(stride)")
-        
+
         self.from = from
         self.to = to
         self.stride = stride
         super.init(name: name, default: defaultValue)
     }
-    
+
     override func validate(unmarshaled: Value) -> Bool where Value: TradedTweakable {
         from <= unmarshaled && unmarshaled <= to
     }
@@ -76,7 +76,7 @@ public extension Numbered where Self: SignedInteger {
     func needSign(between min: Self, and max: Self) -> Bool {
         min < 0
     }
-    
+
     func substracting(by amount: Self) -> Self {
         self - amount
     }
@@ -243,7 +243,7 @@ private extension Constants {
         ft.maximumFractionDigits = 0
         return ft
     }()
-    
+
     static let floatFormatter: NumberFormatter = {
         let ft = NumberFormatter()
         ft.locale = Locale(identifier: "en_US_POSIX")

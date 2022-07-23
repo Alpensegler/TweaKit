@@ -49,7 +49,7 @@ extension Tradable where Self: SignedInteger & FixedWidthInteger {
             return nil
         }
     }
-    
+
     public func marshalToValue() -> TweakTradeValue {
         .int(Int(self))
     }
@@ -81,7 +81,7 @@ extension Tradable where Self: UnsignedInteger & FixedWidthInteger {
             return nil
         }
     }
-    
+
     public func marshalToValue() -> TweakTradeValue {
         .uInt(UInt(self))
     }
@@ -111,7 +111,7 @@ extension Tradable where Self: BinaryFloatingPoint & LosslessStringConvertible {
             return nil
         }
     }
-    
+
     public func marshalToValue() -> TweakTradeValue {
         .double(Double(self))
     }
@@ -134,7 +134,7 @@ extension CGFloat: Tradable {
             return nil
         }
     }
-    
+
     public func marshalToValue() -> TweakTradeValue {
         .double(Double(self))
     }
@@ -159,7 +159,7 @@ extension Bool: Tradable {
             return nil
         }
     }
-    
+
     public func marshalToValue() -> TweakTradeValue {
         .bool(self)
     }
@@ -170,7 +170,7 @@ extension String: Tradable {
         guard case .string(let v) = value else { return nil }
         return v
     }
-    
+
     public func marshalToValue() -> TweakTradeValue {
         .string(self)
     }
@@ -180,7 +180,7 @@ extension UIColor: Tradable {
     public static func unmarshal(from value: TweakTradeValue) -> Self? {
         String.unmarshal(from: value).flatMap { UIColor(hexString: $0) as? Self }
     }
-    
+
     public func marshalToValue() -> TweakTradeValue {
         .string(toRGBHexString(includeAlpha: true, includePrefix: true))
     }
@@ -192,11 +192,11 @@ extension Array: Tradable where Element: Tradable & Equatable {
         let array = v.compactMap { Element.unmarshal(from: $0) }
         return array.count == v.count ? array : nil
     }
-    
+
     public func marshalToValue() -> TweakTradeValue {
         .array(map { $0.marshalToValue() })
     }
-    
+
     public func validate(with defaultValue: [Element]) -> Bool {
         guard !isEmpty, count == defaultValue.count else { return false }
         return allSatisfy(defaultValue.contains)

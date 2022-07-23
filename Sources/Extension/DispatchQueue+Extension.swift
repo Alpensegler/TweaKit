@@ -5,11 +5,11 @@
 //  Created by cokile
 //
 
-import Foundation
-
-// The `isMain` is from
-// [RxSwift](https://github.com/ReactiveX/RxSwift/blob/1a1fa37b0d08e0f99ffa41f98f340e8bc60c35c4/Platform/DispatchQueue%2BExtensions.swift)
+// swiftlint:disable line_length
 /*
+ The `isMain` is from
+ [RxSwift](https://github.com/ReactiveX/RxSwift/blob/1a1fa37b0d08e0f99ffa41f98f340e8bc60c35c4/Platform/DispatchQueue%2BExtensions.swift)
+
  **The MIT License**
  **Copyright © 2015 Krunoslav Zaher, Shai Mishali**
  **All rights reserved.**
@@ -20,11 +20,15 @@ import Foundation
 
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+// swiftlint:enable line_length
+
+import Foundation
+
 extension DispatchQueue {
     static var isMain: Bool {
         getSpecific(key: token) != nil
     }
-    
+
     private static var token: DispatchSpecificKey<Void> = {
         let key = DispatchSpecificKey<Void>()
         main.setSpecific(key: key, value: ())

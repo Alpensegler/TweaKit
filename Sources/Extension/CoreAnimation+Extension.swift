@@ -14,11 +14,11 @@ extension CALayer {
         cornerCurve = continuous ? .continuous :.circular
         masksToBounds = clipsContent
     }
-    
+
     func removeCorner() {
         cornerRadius = 0
     }
-    
+
     func addShadow(color: UIColor, opacity: Float = 1, x: CGFloat = 0, y: CGFloat = 0, radius: CGFloat = 1, path: UIBezierPath? = nil) {
         shadowColor = color.cgColor
         shadowOpacity = opacity.clamped(from: 0, to: 1)
@@ -26,7 +26,7 @@ extension CALayer {
         shadowRadius = radius
         shadowPath = path?.cgPath
     }
-    
+
     func removeShadow() {
         shadowPath = nil
         shadowColor = nil

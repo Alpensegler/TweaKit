@@ -5,12 +5,12 @@
 //  Created by cokile
 //
 
-import XCTest
 @testable import TweaKit
+import XCTest
 
 class TweakTraderTests: XCTestCase {
     var context: TweakContext!
-    
+
     @Tweak(name: "Array", defaultValue: [1, 2, 3])
     var array: [Int]
     @Tweak(name: "Bool 1", defaultValue: true)
@@ -23,17 +23,17 @@ class TweakTraderTests: XCTestCase {
     var int: Int
     @Tweak(name: "Double", defaultValue: 1, from: 1, to: 10, stride: 0.5)
     var double: Double
-    
+
     override func setUp() {
         super.setUp()
-        
+
         $array.testableReset()
         $bool1.testableReset()
         $bool2.testableReset()
         $string.testableReset()
         $int.testableReset()
         $double.testableReset()
-        
+
         context = TweakContext {
             TweakList("Test List") {
                 TweakSection("Test Section") {
@@ -49,7 +49,7 @@ class TweakTraderTests: XCTestCase {
         }
         context?.store.removeAll()
     }
-    
+
     func testNormalImport() {
         XCTAssertEqual(array, [1, 2, 3])
         XCTAssertEqual(bool1, true)
@@ -57,7 +57,7 @@ class TweakTraderTests: XCTestCase {
         XCTAssertEqual(string, "1")
         XCTAssertEqual(int, 1)
         XCTAssertEqual(double, 1)
-        
+
         let source = TweakTradeTestSource(json: importString)
         XCTAssertNoThrow(context.trader.import(from: source))
         XCTAssertEqual(array, [2, 3, 1])
@@ -66,7 +66,7 @@ class TweakTraderTests: XCTestCase {
         XCTAssertEqual(string, "2")
         XCTAssertEqual(int, 2)
         XCTAssertEqual(double, 2)
-        
+
         let destination = TweakTradeTestDestination()
         let exp = XCTestExpectation(description: "normal import")
         XCTAssertNil(destination.string)
@@ -77,18 +77,18 @@ class TweakTraderTests: XCTestCase {
         }
         wait(for: [exp], timeout: 1)
     }
-    
+
     func testImportedValueTrumpsManuallyChangedValue() {
         XCTAssertEqual(bool1, true)
         $bool1.didChangeManually = true
         XCTAssertEqual(bool2, true)
         $bool2.didChangeManually = true
-        
+
         let source = TweakTradeTestSource(json: importString)
         XCTAssertNoThrow(context.trader.import(from: source))
         XCTAssertEqual(bool1, false)
         XCTAssertEqual(bool2, true)
-        
+
         let destination = TweakTradeTestDestination()
         let exp = XCTestExpectation(description: "import trumped")
         XCTAssertNil(destination.string)
@@ -99,7 +99,7 @@ class TweakTraderTests: XCTestCase {
         }
         wait(for: [exp], timeout: 0.5)
     }
-    
+
     func testImportCorruptedSource() {
         let exp = XCTestExpectation(description: "import corrupted source")
         let source = TweakTradeTestSource(json: importString.replacingOccurrences(of: "supported_version", with: "version"))
@@ -117,10 +117,10 @@ class TweakTraderTests: XCTestCase {
             }
             exp.fulfill()
         }
-        
+
         wait(for: [exp], timeout: 0.5)
     }
-    
+
     func testImportUnsupportedVersion() {
         let exp = XCTestExpectation(description: "import unsupported version")
         let source = TweakTradeTestSource(json: importString.replacingOccurrences(of: #""supported_version" : 1"#, with: #""supported_version" : 2"#))
@@ -141,7 +141,7 @@ class TweakTraderTests: XCTestCase {
         }
         wait(for: [exp], timeout: 0.5)
     }
-    
+
     func testNormalExport() {
         let exp = XCTestExpectation(description: "normal export")
         let destination = TweakTradeTestDestination()
@@ -201,7 +201,7 @@ private extension TweakTraderTests {
         }
         """
     }
-    
+
     var exportString: String {
         """
         {
@@ -252,11 +252,11 @@ private extension TweakTraderTests {
 private final class TweakTradeTestSource: TweakTradeSource {
     let name = "String"
     let json: String
-    
+
     init(json: String) {
         self.json = json
     }
-    
+
     func receive(completion: @escaping (Result<TweakTradeCargo, Error>) -> Void) {
         completion(.success(json.data(using: .utf8)!))
     }

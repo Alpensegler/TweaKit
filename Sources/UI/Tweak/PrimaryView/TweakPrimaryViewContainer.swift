@@ -20,16 +20,16 @@ final class TweakPrimaryViewContainer: HitOutsideView {
     }
 
     private weak var delegate: TweakPrimaryViewContainerDelegate?
-    
+
     deinit {
         notifyToken?.invalidate()
     }
-    
+
     init(delegate: TweakPrimaryViewContainerDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -52,7 +52,7 @@ extension TweakPrimaryViewContainer {
             _setNeedsLayout()
         }
     }
-    
+
     func recycle(by recycler: TweakPrimaryViewRecycler) {
         tweak = nil
         notifyToken = nil
@@ -70,7 +70,7 @@ private extension TweakPrimaryViewContainer {
             return recycler.dequeue(withReuseID: tweak.primaryViewReuseID) ?? tweak.primaryView
         }
     }
-    
+
     func _switch(to newPrimaryView: TweakPrimaryView, recycler: TweakPrimaryViewRecycler) {
         if newPrimaryView === primaryView { return }
         if let view = primaryView {
@@ -79,7 +79,7 @@ private extension TweakPrimaryViewContainer {
         extendInset = newPrimaryView.extendInset
         addSubview(newPrimaryView)
     }
-    
+
     func _reload(tweak: AnyTweak, in newPrimaryView: TweakPrimaryView) -> Bool {
         let tweakID = tweak.id
         notifyToken = tweak.context?.store.startNotifying(forKey: tweakID) { [weak self] _, _, manually in
@@ -90,7 +90,7 @@ private extension TweakPrimaryViewContainer {
         }
         return newPrimaryView.reload(withTweak: tweak, manually: false) || primaryView?.reuseID != newPrimaryView.reuseID
     }
-    
+
     func _layout(_ newPrimaryView: TweakPrimaryView) {
         if newPrimaryView !== primaryView {
             newPrimaryView.translatesAutoresizingMaskIntoConstraints = false
@@ -104,7 +104,7 @@ private extension TweakPrimaryViewContainer {
             NSLayoutConstraint.activate(primaryViewConstraints)
         }
     }
-    
+
     func _setNeedsLayout() {
         invalidateIntrinsicContentSize()
         delegate?.primaryViewContainerNeedsLayout(self)

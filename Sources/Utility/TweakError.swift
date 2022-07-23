@@ -12,7 +12,7 @@ import Foundation
 public enum TweakError: LocalizedError {
     /// Error for trade.
     case trade(reason: TradeReason)
-    
+
     public var errorDescription: String? {
         switch self {
         case .trade(let reason):

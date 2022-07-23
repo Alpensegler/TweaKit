@@ -17,7 +17,7 @@ public class Tweak<Value: Storable>: AnyTweak, TweakType {
     public let name: String
     let defaultValue: Value
     private var didRegister = false
-    
+
     public weak var section: TweakSection? {
         willSet {
             assert(section == nil, "Tweak \(name) already in section \(section!.name)")
@@ -39,7 +39,7 @@ public class Tweak<Value: Storable>: AnyTweak, TweakType {
     public var secondaryView: TweakSecondaryView? {
         fatalError("\(#function) should be implemented in subclass for \(id)")
     }
-    
+
     /// The final value of the tweak.
     ///
     /// - Note: The final value is the transformed (by value transformers of the tweak) value of current value.
@@ -69,11 +69,11 @@ public class Tweak<Value: Storable>: AnyTweak, TweakType {
     var rawValue: Value {
         storedValue ?? defaultValue
     }
-    
+
     deinit {
         stopObservingValueChange()
     }
-    
+
     /// Creates and initializes a tweak with the given name and default value.
     ///
     /// - Parameters:
@@ -81,13 +81,13 @@ public class Tweak<Value: Storable>: AnyTweak, TweakType {
     ///   - `default`: The default value of the tweak.
     init(name: String, `default`: Value) {
         assert(!name.contains(Constants.idSeparator), "Tweak name: \(name) should not contain \(Constants.idSeparator)")
-        
+
         self.name = name
         self.defaultValue = `default`
         self.info = TweakInfo()
         self.info.tweak = self
     }
-    
+
     func validate(unmarshaled: Value) -> Bool where Value: TradedTweakable {
         true
     }
@@ -97,7 +97,7 @@ public extension Tweak {
     func register(in context: TweakContext) {
         if didRegister { return }
         didRegister = true
-        
+
         info.persist(in: context)
     }
 }
@@ -115,7 +115,7 @@ public extension Tweak {
             context?.store.stopNotifying(forKey: id)
         }
     }
-    
+
     /// Starts observing the value change of the tweak.
     ///
     /// - Note: Hold the token strongly or the observation will stop.
@@ -155,7 +155,7 @@ extension Tweak: AnyTradableTweak where Value: TradedTweakable {
             return .failure(.trade(reason: .unmarshaledValidationFailure))
         }
     }
-    
+
     public func tradeValue() -> TweakTradeValue {
         wrappedValue.marshalToValue()
     }

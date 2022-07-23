@@ -10,11 +10,11 @@ import UIKit
 /// A type with values that support addition and subtraction.
 public protocol TweakPrimaryViewStrideable: Storable, Comparable, Numeric {
     var needDecimalPoint: Bool { get }
-    
+
     func needSign(between min: Self, and max: Self) -> Bool
     func substracting(by amount: Self) -> Self
     func adding(by amount: Self) -> Self
-    
+
     func toText() -> String?
     static func fromText(_ text: String) -> Self?
 }
@@ -23,44 +23,44 @@ final class TweakPrimaryViewStrider<Value: TweakPrimaryViewStrideable>: HitOutsi
     private weak var tweak: AnyTweak?
     private var value: Value?
     private var strider: Strider?
-    
+
     private lazy var substractButton = _subtractButton()
     private lazy var addButton = _addButton()
     private lazy var textField = _textField()
     private lazy var textFieldBackground = _textFieldBackground()
-    
+
     override var intrinsicContentSize: CGSize {
         .init(width: 114, height: 26)
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         _setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         _layoutUI()
     }
-    
+
     @objc func _subtract(_ sender: UIButton) {
         guard let value = value, let stride = strider?.stride else { return }
         _updateValue(value.substracting(by: stride))
     }
-    
+
     @objc func _add(_ sender: UIButton) {
         guard let value = value, let stride = strider?.stride else { return }
         _updateValue(value.adding(by: stride))
     }
-    
+
     @objc func _prependSign(_ sender: UIBarButtonItem) {
         _prependSign()
     }
-    
+
     @objc func _endEditing(_ sender: UIBarButtonItem) {
         _endEditing()
     }
@@ -70,11 +70,11 @@ extension TweakPrimaryViewStrider: TweakPrimaryView {
     static var reuseID: String {
         "tweak-strider-\(Value.self)"
     }
-    
+
     var reuseID: String {
         Self.reuseID
     }
-    
+
     func reload(withTweak tweak: AnyTweak, manually: Bool) -> Bool {
         guard let tweak = tweak as? NumberedTweak<Value> else { return false }
         guard let value = tweak.currentValue as? Value, value != self.value else { return false }
@@ -87,13 +87,13 @@ extension TweakPrimaryViewStrider: TweakPrimaryView {
         _reloadAddButtonWith(tweak: tweak, value: value, strider: strider)
         return false
     }
-    
+
     func reset() {
         tweak = nil
         value = nil
         strider = nil
     }
-    
+
     private func _reloadTextWith(tweak: AnyTweak, value: Value, strider: Strider, manually: Bool) {
         let isEnabled = tweak.isUserInteractionEnabled
         textField.isUserInteractionEnabled = isEnabled
@@ -106,13 +106,13 @@ extension TweakPrimaryViewStrider: TweakPrimaryView {
             textField.addItems(_inputItems(for: value))
         }
     }
-    
+
     private func _reloadSubstractButtonWith(tweak: AnyTweak, value: Value, strider: Strider) {
         let isEnabled = tweak.isUserInteractionEnabled && value != strider.min
         substractButton.isEnabled = isEnabled
         substractButton.alpha = isEnabled ? 1 : Constants.UI.PrimaryView.disableAlpha
     }
-    
+
     private func _reloadAddButtonWith(tweak: AnyTweak, value: Value, strider: Strider) {
         let isEnabled = tweak.isUserInteractionEnabled && value != strider.max
         addButton.isEnabled = isEnabled
@@ -128,7 +128,7 @@ private extension TweakPrimaryViewStrider {
         addSubview(textFieldBackground)
         addSubview(textField)
     }
-    
+
     func _layoutUI() {
         substractButton.frame.origin = .init(x: 0, y: (frame.height - substractButton.frame.height).half)
         textField.frame.origin = .init(x: substractButton.frame.maxX + 11, y: (frame.height - textField.frame.height).half)
@@ -144,7 +144,7 @@ private extension TweakPrimaryViewStrider {
         Haptic.occur(.impact())
         updateTweak(tweak, withValue: value.clamped(from: strider.min, to: strider.max), manually: true)
     }
-    
+
     func _inputItems(for value: Value) -> [UIBarButtonItem] {
         var items: [UIBarButtonItem] = .init(capacity: 3)
         if let strider = strider, value.needSign(between: strider.min, and: strider.max) {
@@ -154,7 +154,7 @@ private extension TweakPrimaryViewStrider {
         items.append(UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(_endEditing(_:))))
         return items
     }
-    
+
     func _prependSign() {
         if textField.actualText.hasPrefix("-") { return }
         let selectedRange = textField.selectedTextRange
@@ -165,7 +165,7 @@ private extension TweakPrimaryViewStrider {
         else { return }
         textField.selectedTextRange = textField.textRange(from: start, to: end)
     }
-    
+
     func _endEditing() {
         textField.resignFirstResponder()
     }
@@ -187,7 +187,7 @@ private extension TweakPrimaryViewStrider {
         tf.canCommitText = { [unowned self] text in
             guard let value = Value.fromText(text), let strider = strider else { return false }
             return strider.min <= value && value <= strider.max
-            
+
         }
         tf.commitText = { [unowned self] text in
             guard let value = Value.fromText(text) else { return }
@@ -195,7 +195,7 @@ private extension TweakPrimaryViewStrider {
         }
         return tf
     }
-    
+
     func _textFieldBackground() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false
@@ -203,7 +203,7 @@ private extension TweakPrimaryViewStrider {
         v.layer.addCorner(radius: 4)
         return v
     }
-    
+
     func _subtractButton() -> UIButton {
         let button = HitOutsideButton(type: .system)
         button.frame.size = .init(width: 14, height: 14)
@@ -213,7 +213,7 @@ private extension TweakPrimaryViewStrider {
         button.addTarget(self, action: #selector(_subtract), for: .touchUpInside)
         return button
     }
-    
+
     func _addButton() -> UIButton {
         let button = HitOutsideButton(type: .system)
         button.frame.size = .init(width: 14, height: 14)
@@ -239,7 +239,7 @@ private final class TextField: TweakValidatedTextField {
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         bounds.insetBy(dx: -6, dy: 0)
     }
-    
+
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         bounds.insetBy(dx: -6, dy: 0)
     }

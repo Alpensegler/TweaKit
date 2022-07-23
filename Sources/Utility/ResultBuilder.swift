@@ -16,19 +16,19 @@ public protocol TweakBuildable {
 public struct TweakContainerBuilder<Element: TweakBuildable> {
     public typealias Expression = Element
     public typealias Component = [Element]
-    
+
     public static func buildExpression(_ expression: Expression) -> Component {
         _build(component: [expression])
     }
-    
+
     public static func buildBlock(_ components: Component...) -> Component {
         _build(component: components.flatMap { $0 })
     }
-    
+
     public static func buildArray(_ components: [Component]) -> Component {
         _build(component: components.flatMap { $0 })
     }
-    
+
     private static func _build(component: Component) -> Component {
         component
             .uniqued { $0.constrainKey == $1.constrainKey }
@@ -42,19 +42,19 @@ public struct TweakContainerBuilder<Element: TweakBuildable> {
 public struct AnyTweakBuilder {
     public typealias Expression = AnyTweak
     public typealias Component = [AnyTweak]
-    
+
     public static func buildExpression(_ expression: Expression) -> Component {
         _build(component: [expression])
     }
-    
+
     public static func buildBlock(_ components: Component...) -> Component {
         _build(component: components.flatMap { $0 })
     }
-    
+
     public static func buildArray(_ components: [Component]) -> Component {
         _build(component: components.flatMap { $0 })
     }
-    
+
     private static func _build(component: Component) -> Component {
         component
             .uniqued { $0.name == $1.name }

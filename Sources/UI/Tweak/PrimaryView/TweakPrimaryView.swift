@@ -46,7 +46,7 @@ public protocol TweakPrimaryView: UIView, TweakView {
 
 public extension TweakPrimaryView {
     var extendInset: UIEdgeInsets { .zero }
-    
+
     func reset() { }
 }
 

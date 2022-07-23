@@ -12,7 +12,7 @@ final class TweakPrimaryViewPlaceholder: UILabel {
         super.init(frame: frame)
         _setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -20,20 +20,20 @@ final class TweakPrimaryViewPlaceholder: UILabel {
 
 extension TweakPrimaryViewPlaceholder: TweakPrimaryView {
     static let reuseID = "tweak-placeholder"
-    
+
     var reuseID: String {
         Self.reuseID
     }
-    
+
     func reload(withTweak tweak: AnyTweak, manually: Bool) -> Bool {
         _reloadInteraction(withTweak: tweak)
         return _reloadText(withTweak: tweak)
     }
-    
+
     private func _reloadInteraction(withTweak tweak: AnyTweak) {
         alpha = tweak.isUserInteractionEnabled ? 1 : Constants.UI.PrimaryView.disableAlpha
     }
-    
+
     private func _reloadText(withTweak tweak: AnyTweak) -> Bool {
         let oldText = text
         text = String(describing: tweak.currentValue)

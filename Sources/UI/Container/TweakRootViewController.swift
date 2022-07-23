@@ -11,17 +11,17 @@ final class TweakRootViewController: UIViewController {
     private unowned var context: TweakContext
     private var segmentedVC: TweakSegmentedViewController!
     private unowned var initialTweak: AnyTweak?
-    
+
     deinit {
         stopListeningFloating(in: context)
     }
-    
+
     init(context: TweakContext, locateAt tweak: AnyTweak?) {
         self.context = context
         self.initialTweak = tweak
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -51,7 +51,7 @@ extension TweakRootViewController: TweakFloatingAudience {
             break
         }
     }
-    
+
     func transit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
         switch (fromCategory, toCategory) {
         case (.normalList, _):
@@ -64,7 +64,7 @@ extension TweakRootViewController: TweakFloatingAudience {
             break
         }
     }
-    
+
     func didTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
         switch toCategory {
         case .normalList:
@@ -94,15 +94,15 @@ private extension TweakRootViewController {
         _setupNavigation()
         _setupSegment()
     }
-    
+
     func _setupView() {
         view.backgroundColor = Constants.Color.backgroundPrimary
         navigationController?.view.backgroundColor = Constants.Color.backgroundPrimary
     }
-    
+
     func _setupNavigation() {
         title = context.name
-        
+
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 18, weight: .medium)]
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = Constants.Color.backgroundPrimary
@@ -124,7 +124,7 @@ private extension TweakRootViewController {
         navigationItem.leftBarButtonItem = dismiss
         navigationItem.rightBarButtonItems = [searchItem, moreItem]
     }
-    
+
     func _setupSegment() {
         if let tweak = initialTweak {
             segmentedVC = TweakSegmentedViewController(context: context, initialTweak: tweak)
@@ -144,14 +144,14 @@ private extension TweakRootViewController {
     func _toggleSegmentToShow(_ flag: Bool) {
         segmentedVC.view.alpha = flag ? 1 : 0
     }
-    
+
     func _toggleInteractionToEnabled(_ flag: Bool) {
         navigationController?.view.isUserInteractionEnabled = flag
     }
-    
+
     func _toggleViewToShow(_ flag: Bool, animated: Bool, completion: (() -> Void)? = nil) {
         let key = "floating-opacity"
-        
+
         guard animated else {
             disableImplicitAnimation {
                 navigationController?.view.layer.opacity = flag ? 1 : 0
@@ -159,7 +159,7 @@ private extension TweakRootViewController {
             }
             return
         }
-        
+
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
         let anim = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
@@ -171,10 +171,10 @@ private extension TweakRootViewController {
         navigationController?.view.layer.add(anim, forKey: key)
         CATransaction.commit()
     }
-    
+
     func _toggleWindowBackgroundToShow(_ flag: Bool, animated: Bool) {
         let key = "floating-background-color"
-        
+
         guard animated else {
             disableImplicitAnimation {
                 context.showingWindow?.backgroundColor = flag ? Constants.UI.windowBackgroundColor : .clear
@@ -182,7 +182,7 @@ private extension TweakRootViewController {
             }
             return
         }
-        
+
         let anim = CABasicAnimation(keyPath: #keyPath(CALayer.backgroundColor))
         anim.fromValue = flag ? UIColor.clear.cgColor : Constants.UI.windowBackgroundColor.cgColor
         anim.toValue = flag ? Constants.UI.windowBackgroundColor.cgColor : UIColor.clear.cgColor
@@ -197,12 +197,12 @@ private extension TweakRootViewController {
     @objc func _dismiss(_ sender: UIBarButtonItem) {
         context.dismiss()
     }
-    
+
     @objc func _searchTweaks(_ sender: UIBarButtonItem) {
         let searchVC = TweakSearchViewController(context: context)
         present(searchVC, animated: true)
     }
-    
+
     @objc func _tradeTweaks(_ sender: UIBarButtonItem) {
         let actions: [UIAlertAction] = [
             UIAlertAction(title: "Import Tweaks", style: .default) { [unowned self] _ in _importTweaks(sender) },
@@ -211,14 +211,14 @@ private extension TweakRootViewController {
         ]
         UIAlertController.actionSheet(actions: actions, barButtonItem: sender, fromVC: self)
     }
-    
+
     func _importTweaks(_ sender: UIBarButtonItem) {
         let sources = context.getImportSources()
         if sources.isEmpty {
             UIAlertController.alert(title: "No Source to Import", fromVC: self)
             return
         }
-        
+
         let actions: [UIAlertAction] = sources.map { source in
             let sourceName = source.name
             return UIAlertAction(title: sourceName, style: .default) { [unowned self] _ in
@@ -233,7 +233,7 @@ private extension TweakRootViewController {
         }
         UIAlertController.actionSheet(title: "Import Tweaks from...", actions: actions, barButtonItem: sender, fromVC: self)
     }
-    
+
     func _exportTweaks(_ sender: UIBarButtonItem) {
         let tweakSets = context.getExportTweakSets(currentIndex: segmentedVC.currentIndex)
         if tweakSets.isEmpty {
@@ -250,7 +250,7 @@ private extension TweakRootViewController {
             UIAlertController.actionSheet(title: "Choose Tweaks to Export", actions: actions, barButtonItem: sender, fromVC: self)
         }
     }
-    
+
     func _resetTweaks(_ sender: UIBarButtonItem) {
         let tweakSets = context.getResetTweakSets(currentIndex: segmentedVC.currentIndex)
         if tweakSets.isEmpty {
@@ -272,14 +272,14 @@ private extension TweakRootViewController {
             UIAlertController.actionSheet(title: "Choose Tweaks to Reset", actions: actions, barButtonItem: sender, fromVC: self)
         }
     }
-    
+
     func _export(tweaks: [AnyTradableTweak], title: String?, sender: UIBarButtonItem) {
         let destinations = context.getExportDestinations(fromVC: self)
         if destinations.isEmpty {
             UIAlertController.alert(title: "No Destinations to Export", fromVC: self)
             return
         }
-        
+
         let actions: [UIAlertAction] = destinations.map { destination in
             let needsNotify = destination.needsNotifyCompletion
             let destinationName = destination.name
@@ -295,7 +295,7 @@ private extension TweakRootViewController {
         }
         UIAlertController.actionSheet(title: title, actions: actions, barButtonItem: sender, fromVC: self)
     }
-    
+
     func _reset(tweaks: [AnyTweak], isAll: Bool, title: String?, sender: UIBarButtonItem, completion: @escaping () -> Void) {
         let action = UIAlertAction(title: "Confirm", style: .destructive) { [unowned self] _ in
             if isAll {

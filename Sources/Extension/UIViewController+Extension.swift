@@ -39,7 +39,7 @@ extension UIAlertController {
         sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         fromVC?.present(sheet, animated: true)
     }
-    
+
     static func actionSheet(title: String? = nil, actions: [UIAlertAction], view: UIView, fromVC: UIViewController?) {
         // if there is a layout constraints error log in console, just ignore it. It's an iOS bug with action sheet style alert controller.
         // FYI: https://stackoverflow.com/a/55653274/4155933
@@ -50,7 +50,7 @@ extension UIAlertController {
         sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         fromVC?.present(sheet, animated: true)
     }
-    
+
     static func alert(title: String?, actions: [UIAlertAction] = [], fromVC: UIViewController?) {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         if actions.isEmpty {

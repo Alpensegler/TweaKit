@@ -10,7 +10,7 @@ import Foundation
 struct TweakTradeContainer: Codable {
     let version: Int
     let boxes: [TweakTradeBox]
-    
+
     // output is sorted by CodingKeys
     enum CodingKeys: String, CodingKey {
         case version = "supported_version"
@@ -33,7 +33,7 @@ public enum TweakTradeValue: Codable, CustomStringConvertible {
     case double(Double)
     case string(String)
     case array([TweakTradeValue])
-    
+
     public var description: String {
         switch self {
         case .bool(let value):
@@ -50,7 +50,7 @@ public enum TweakTradeValue: Codable, CustomStringConvertible {
             return value.description
         }
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(Bool.self) {
@@ -69,7 +69,7 @@ public enum TweakTradeValue: Codable, CustomStringConvertible {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "value cannot be decoded")
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {

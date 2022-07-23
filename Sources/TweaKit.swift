@@ -17,7 +17,7 @@ public enum Logger {
     public static var log: (String) -> Void = { message in
         print(message)
     }
-    
+
     /// log message.
     ///
     /// - Parameters:
@@ -35,17 +35,17 @@ public extension Notification.Name {
     ///
     /// The `object` of the notification is the `TweakContext` object. There is no `userInfo` dictionary.
     static let willShowTweakWindow = Notification.Name("TweaKit.willShowTweakWindow")
-    
+
     /// A notification that posts shortly after the tweak window show.
     ///
     /// The `object` of the notification is the `TweakContext` object. There is no `userInfo` dictionary.
     static let didShowTweakWindow = Notification.Name("TweaKit.didShowTweakWindow")
-    
+
     /// A notification that posts shortly before the tweak window dismiss.
     ///
     /// The `object` of the notification is the `TweakContext` object. There is no `userInfo` dictionary.
     static let willDismissTweakWindow = Notification.Name("TweaKit.willDismissTweakWindow")
-    
+
     /// A notification that posts shortly after the tweak window dismiss.
     ///
     /// The `object` of the notification is the `TweakContext` object. There is no `userInfo` dictionary.

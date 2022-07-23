@@ -10,11 +10,11 @@ import UIKit
 final class TweakSecondaryViewColorPicker: UITableViewController {
     private weak var currentTweak: AnyTweak?
     private var currentColor: Color?
-    
+
     init() {
         super.init(style: .grouped)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -31,11 +31,11 @@ extension TweakSecondaryViewColorPicker {
     override func numberOfSections(in tableView: UITableView) -> Int {
         ColorComponent.allCases.count
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cell: Cell.self, for: indexPath)
         cell.configWith(colorComponent: ColorComponent.allCases[indexPath.section], colorUpdater: self)
@@ -44,25 +44,25 @@ extension TweakSecondaryViewColorPicker {
         }
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         Constants.UI.SecondaryView.rowHeight
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         Constants.UI.SecondaryView.sectionHeaderHeight
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         Constants.UI.SecondaryView.sectionFooterHeight
     }
-    
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeue(headerFooter: SectionHeaderView.self)
         header.config(with: ColorComponent.allCases[section])
         return header
     }
-    
+
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         tableView.dequeue(headerFooter: SectionFooterView.self)
     }
@@ -77,7 +77,7 @@ extension TweakSecondaryViewColorPicker: TweakSecondaryView {
             + CGFloat(ColorComponent.allCases.count) * componentHeight
             + Constants.UI.SecondaryView.footerHeight
     }
-    
+
     func reload(withTweak tweak: AnyTweak, manually: Bool) {
         view.isUserInteractionEnabled = false
         defer { view.isUserInteractionEnabled = true }
@@ -100,7 +100,7 @@ extension TweakSecondaryViewColorPicker: ColorUpdater {
         }
         return views.compactMap { $0 as? ColorRenderer }
     }
-    
+
     fileprivate func updateColor(with update: ColorUpdate) {
         let newUIColor: UIColor?
         switch update {
@@ -112,12 +112,12 @@ extension TweakSecondaryViewColorPicker: ColorUpdater {
         guard let uiColor = newUIColor, let tweak = currentTweak else { return }
         updateTweak(tweak, withValue: uiColor, manually: true)
     }
-    
+
     private func _makeNewUIColor(with hex: String) -> UIColor? {
         if hex == currentColor?.hex { return nil }
         return UIColor(hexString: hex)
     }
-    
+
     private func _makeNewUIColor(with colorComponent: ColorComponent, value: Int) -> UIColor? {
         guard let rgba = currentColor?.rgba else { return nil }
         switch colorComponent {
@@ -133,7 +133,7 @@ extension TweakSecondaryViewColorPicker: ColorUpdater {
             return nil
         }
     }
-    
+
     private func _color(from uiColor: UIColor) -> Color {
         (uiColor, uiColor.rgba.ui, uiColor.toRGBHexString(includePrefix: false))
     }
@@ -162,19 +162,19 @@ private final class HeaderView: UIView {
     private lazy var previewView = _previewView()
     private lazy var textField = _textField()
     private lazy var airline = _airline()
-    
+
     private unowned let updater: ColorUpdater
-    
+
     init(frame: CGRect, updater: ColorUpdater) {
         self.updater = updater
         super.init(frame: frame)
         _setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         _layoutUI()
@@ -194,7 +194,7 @@ private extension HeaderView {
         addSubview(textField)
         addSubview(airline)
     }
-    
+
     func _layoutUI() {
         textField.frame.origin = .init(
             x: frame.width - Constants.UI.SecondaryView.horizontalPadding - textField.frame.width,
@@ -219,13 +219,13 @@ private extension HeaderView {
     func _allowedCharacters() -> CharacterSet {
         .init(charactersIn: "0123456789ABCDEF")
     }
-    
+
     func _previewView() -> PreviewView {
         let v = PreviewView()
         v.isUserInteractionEnabled = false
         return v
     }
-    
+
     func _textField() -> TextField {
         let tf = TextField(frame: .init(x: 0, y: 0, width: 170, height: 36))
         tf.prefix = "Hex #"
@@ -244,7 +244,7 @@ private extension HeaderView {
         }
         return tf
     }
-    
+
     func _airline() -> UIView {
         let v = UIView()
         v.backgroundColor = Constants.Color.separator
@@ -257,16 +257,16 @@ private extension HeaderView {
 
 private final class SectionHeaderView: UITableViewHeaderFooterView {
     private lazy var label = _label()
-    
+
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         _setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         _layoutUI()
@@ -283,7 +283,7 @@ private extension SectionHeaderView {
     func _setupUI() {
         addSubview(label)
     }
-    
+
     func _layoutUI() {
         label.frame = bounds.insetBy(dx: Constants.UI.SecondaryView.horizontalPadding, dy: 0)
     }
@@ -305,19 +305,19 @@ private final class SectionFooterView: UITableViewHeaderFooterView { }
 private final class Cell: UITableViewCell {
     private lazy var slider = _slider()
     private lazy var textField = _textField()
-    
+
     private var colorComponent: ColorComponent?
     private weak var colorUpdater: ColorUpdater?
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         _setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         _layoutUI()
@@ -345,7 +345,7 @@ private extension Cell {
     func _renderSliderWith(colorComponent: ColorComponent, color: Color) {
         slider.updateWith(colorComponent: colorComponent, color: color)
     }
-    
+
     func _renderTextFieldWith(colorComponent: ColorComponent, color: Color) {
         switch colorComponent {
         case .r:
@@ -358,13 +358,13 @@ private extension Cell {
             textField.text = color.rgba.a.description
         }
     }
-    
+
     func _configSlider(with colorComponent: ColorComponent) {
         slider.onValueChange = { [unowned self] value in
             colorUpdater?.updateColor(with: .component(colorComponent, value))
         }
     }
-    
+
     func _configTextField(with colorComponent: ColorComponent) {
         switch colorComponent {
         case .r, .g, .b:
@@ -403,7 +403,7 @@ private extension Cell {
         contentView.addSubview(slider)
         contentView.addSubview(textField)
     }
-    
+
     func _layoutUI() {
         textField.frame.origin = .init(
             x: contentView.frame.width - Constants.UI.SecondaryView.horizontalPadding - textField.frame.width,
@@ -428,7 +428,7 @@ private extension Cell {
         let s = Slider()
         return s
     }
-    
+
     func _textField() -> TextField {
         let tf = TextField(frame: .init(x: 0, y: 0, width: 75, height: 36))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -448,20 +448,20 @@ private final class Slider: HitOutsideView {
     private lazy var rightCorner = _corner(isLeft: false)
     private lazy var gradient = _gradient()
     private lazy var backgroundImage = _backgroundImageView()
-    
+
     private var value: Int = 0
     private var range: ClosedRange<Int>!
     var onValueChange: ((Int) -> Void)?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         _setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         _layoutUI()
@@ -478,7 +478,7 @@ extension Slider {
             _updateGradientWith(colorComponent: colorComponent, color: color)
         }
     }
-    
+
     func _updateRangeWith(colorComponent: ColorComponent, color: Color) {
         if colorComponent == .a {
             range = 0...100
@@ -486,7 +486,7 @@ extension Slider {
             range = 0...255
         }
     }
-    
+
     func _updateCursorWith(colorComponent: ColorComponent, color: Color) {
         let percent: CGFloat
         switch colorComponent {
@@ -514,7 +514,7 @@ extension Slider {
             cursor.center.x = (gradient.frame.minX + gradient.frame.width * percent).clamped(from: gradient.frame.minX, to: gradient.frame.maxX)
         }
     }
-    
+
     func _updateBackgroundImageWith(colorComponent: ColorComponent, color: Color) {
         if colorComponent == .a {
             if backgroundImage.image == nil {
@@ -526,11 +526,11 @@ extension Slider {
             }
         }
     }
-    
+
     func _updateCursorFillWith(colorComponent: ColorComponent, color: Color) {
         cursorFill.backgroundColor = color.uiColor.cgColor
     }
-    
+
     func _updateGradientWith(colorComponent: ColorComponent, color: Color) {
         let leftColor: UIColor
         let rightColor: UIColor
@@ -565,12 +565,12 @@ private extension Slider {
         cursor.layer.addSublayer(cursorFill)
         cursor.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(_handlePan)))
     }
-    
+
     func _layoutUI() {
         layer.addCorner(radius: frame.halfHeight, clipsContent: true)
-        
+
         backgroundImage.frame = bounds
-        
+
         disableImplicitAnimation {
             gradient.frame = bounds.insetBy(dx: frame.halfHeight, dy: 0)
             leftCorner.frame = .init(x: 0, y: 0, width: frame.halfHeight, height: frame.height)
@@ -593,7 +593,7 @@ private extension Slider {
             break
         }
     }
-    
+
     func _setValue(_ percent: CGFloat) {
         guard let range = range else { return }
         let value = Int((CGFloat(range.lowerBound) + CGFloat(range.distance) * percent).rounded(to: .integer))
@@ -613,7 +613,7 @@ private extension Slider {
         v.layer.addShadow(color: UIColor.black.withAlphaComponent(0.2), radius: 2)
         return v
     }
-    
+
     func _cursorFill() -> CALayer {
         let l = CALayer()
         l.frame = cursor.bounds.insetBy(dx: 3, dy: 3)
@@ -621,19 +621,19 @@ private extension Slider {
         l.addShadow(color: UIColor.black.withAlphaComponent(0.2), radius: 1.5)
         return l
     }
-    
+
     func _corner(isLeft: Bool) -> CALayer {
         let l = CALayer()
         return l
     }
-    
+
     func _gradient() -> CAGradientLayer {
         let l = CAGradientLayer()
         l.startPoint = .init(x: 0, y: 0.5)
         l.endPoint = .init(x: 1, y: 0.5)
         return l
     }
-    
+
     func _backgroundImageView() -> UIImageView {
         let v = UIImageView()
         return v
@@ -645,16 +645,16 @@ private extension Slider {
 private final class PreviewView: UIView {
     private lazy var left = _left()
     private lazy var right = _right()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         _setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         _layoutUI()
@@ -673,7 +673,7 @@ private extension PreviewView {
         addSubview(left)
         addSubview(right)
     }
-    
+
     func _layoutUI() {
         left.frame = .init(x: 0, y: 0, width: ceil(frame.halfWidth), height: frame.height)
         right.frame = .init(x: left.frame.maxX, y: 0, width: left.frame.width, height: frame.height)
@@ -687,7 +687,7 @@ private extension PreviewView {
         v.layer.addCorner(radius: 4, mask: .left)
         return v
     }
-    
+
     func _right() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false
@@ -705,12 +705,12 @@ private final class TextField: TweakValidatedTextField {
     var suffix: String? {
         didSet { _setDecoration(suffix, viewPath: \.rightView, modePath: \.rightViewMode) }
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         _setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -725,7 +725,7 @@ private extension TextField {
         backgroundColor = UIColor(light: .white, dark: .black)
         layer.addCorner(radius: 8, clipsContent: true)
     }
-    
+
     func _setDecoration(_ decoration: String?, viewPath: ReferenceWritableKeyPath<UITextField, UIView?>, modePath: ReferenceWritableKeyPath<UITextField, ViewMode>) {
         self[keyPath: viewPath]?.subviews.forEach { $0.removeFromSuperview() }
         if let decoration = decoration {

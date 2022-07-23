@@ -13,7 +13,7 @@ public protocol TweakTradeSource {
     ///
     /// This will be displayed in the tweak UI.
     var name: String { get }
-    
+
     /// Receives tweak data.
     ///
     /// - Parameters:
@@ -26,7 +26,7 @@ public protocol TweakTradeSource {
 
 final class TweakImporter {
     private weak var trader: TweakTrader?
-    
+
     init(trader: TweakTrader) {
         self.trader = trader
     }
@@ -35,7 +35,7 @@ final class TweakImporter {
 extension TweakImporter {
     func `import`(from source: TweakTradeSource, completion: ((TweakError?) -> Void)?) {
         dispatchPrecondition(condition: .onQueue(.main))
-        
+
         source.receive { [unowned self] result in
             switch result {
             case .success(let cargo):
@@ -63,37 +63,37 @@ private extension TweakImporter {
             throw TweakError.trade(reason: .corruptedData(inner: error))
         }
     }
-    
+
     func _inspect(container: TweakTradeContainer) throws -> TweakTradeContainer {
         if container.version > Constants.Trade.supportedVersion {
             throw TweakError.trade(reason: .unsupportedVersion(expected: Constants.Trade.supportedVersion, current: container.version))
         }
         return container
     }
-    
+
     func _store(container: TweakTradeContainer) throws {
         guard let context = trader?.context else {
             throw TweakError.trade(reason: .contextNotFound)
         }
-        
+
         for box in container.boxes {
             let id = [box.list, box.section, box.tweak].joined(separator: Constants.idSeparator)
-            
+
             guard let tweak = context.tweaks.first(where: { $0.id == id }) else {
                 Logger.log("👊 tweak with id: (\(id)) is not in context \(context.name)")
                 continue
             }
-            
+
             guard let tradableTweak = tweak as? AnyTradableTweak else {
                 Logger.log("❕ tweak with id: (\(id)) is not tradable")
                 continue
             }
-            
+
             if tradableTweak.didChangeManually && !tradableTweak.isImportedValueTrumpsManuallyChangedValue {
                 Logger.log("⏭ tweak with id: (\(id)) did change manually and is import value is not trump over manually changed value")
                 continue
             }
-            
+
             let result = tradableTweak.rawData(from: box.value)
             switch result {
             case .success(let data):
@@ -115,12 +115,12 @@ private extension TweakImporter {
 public final class TweakTradeFileSource: TweakTradeSource {
     public let name: String
     private let filePath: String
-    
+
     public init(name: String, filePath: String) {
         self.name = name
         self.filePath = filePath
     }
-    
+
     public func receive(completion: @escaping (Result<TweakTradeCargo, Error>) -> Void) {
         do {
             let cargo = try TweakTradeCargo(contentsOf: URL(fileURLWithPath: filePath), options: .mappedRead)

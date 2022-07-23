@@ -17,7 +17,7 @@ public extension TweakContext {
         /// You can specify the app group id if you want to use TweaKit in both the host app and app extensions.
         /// A non-empty value will instruct TweaKit to persist tweak value in the app group container rather than in the app sandbox directory.
         let appGroupID: String?
-        
+
         /// Creates and initializes a tweak context config with the given name and app group id.
         ///
         /// - Parameters:
@@ -42,19 +42,19 @@ public extension TweakContext {
 public final class TweakContext {
     private let config: Config
     private(set) weak var delegate: TweakContextDelegate?
-    
+
     let store: TweakStore
-    
+
     private(set) var trader: TweakTrader!
-    
+
     let lists: [TweakList]
     var lastShowingList: TweakList?
-    
+
     /// A flag indicates whether the context is showing the tweak window.
     public internal(set) var isShowing = false
     var showingWindow: TweakWindow?
     var floatingTransitioner: TweakFloatingTransitioner?
-    
+
     /// Creates and initializes a tweak context with the given config, delegate and the tweak lists.
     ///
     /// - Parameters:
@@ -65,15 +65,15 @@ public final class TweakContext {
         self.config = config
         self.delegate = delegate
         self.store = TweakStore(name: config.name.appending("_Store"), appGroupID: config.appGroupID)
-        
+
         self.lists = lists()
         self.lists.forEach { $0.context = self }
-        
+
         self.tweaks.forEach { $0.register(in: self) }
-        
+
         self.trader = TweakTrader(context: self)
     }
-    
+
     public subscript<Value>(dynamicMember keyPath: KeyPath<Config, Value>) -> Value {
         config[keyPath: keyPath]
     }

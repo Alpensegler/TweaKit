@@ -24,7 +24,7 @@ extension TweakStoreNotifier {
         notifyHandlers[token] = handler
         return token
     }
-    
+
     func stopNotifying(ForToken token: NotifyToken) {
         if let key = notifyKeys.removeValue(forKey: token) {
             notifyTokens[key]?.remove(token)
@@ -34,7 +34,7 @@ extension TweakStoreNotifier {
         }
         notifyHandlers.removeValue(forKey: token)
     }
-    
+
     func stopNotifying(forKey key: String) {
         guard let tokens = notifyTokens.removeValue(forKey: key) else { return }
         tokens.forEach {
@@ -43,18 +43,18 @@ extension TweakStoreNotifier {
             notifyHandlers.removeValue(forKey: $0)
         }
     }
-    
+
     func getNotifyTokens(forKey key: String) -> Set<NotifyToken> {
         notifyTokens[key] ?? []
     }
-    
+
     func getAllNotifyTokens() -> [String: Set<NotifyToken>] {
         notifyTokens
     }
-    
+
     func notify(forTokens tokens: Set<NotifyToken>, old: Data?, new: Data?, manually: Bool) {
         if tokens.isEmpty { return }
-        
+
         let handlers = tokens.compactMap { notifyHandlers[$0] }
         let work = {
             handlers.forEach { $0(old, new, manually) }
@@ -76,13 +76,13 @@ public final class NotifyToken {
     private weak var store: TweakStore?
     private let rawValue: String
     private var isUsable = true
-    
+
     deinit {
         if isUsable {
             invalidate()
         }
     }
-    
+
     init(store: TweakStore, rawValue: String = UUID().uuidString) {
         self.store = store
         self.rawValue = rawValue
@@ -105,7 +105,7 @@ extension NotifyToken: Hashable {
     public static func == (lhs: NotifyToken, rhs: NotifyToken) -> Bool {
         lhs.rawValue == rhs.rawValue
     }
-   
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(rawValue)
     }

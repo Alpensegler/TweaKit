@@ -14,23 +14,23 @@ final class TweakSearchViewController: UIViewController {
     private lazy var loadingIndicator = _loadingIndicator()
     private lazy var resultViewController = _resultViewController()
     private lazy var historyViewController = _historyViewController()
-    
+
     private unowned let context: TweakContext
     private var searcher: TweakSearcher
     private var lastText: String?
-    
+
     deinit {
         _deactivateSearch()
         _unregisterNotifications()
     }
-    
+
     init(context: TweakContext) {
         self.context = context
         self.searcher = .init(context: context)
         super.init(nibName: nil, bundle: nil)
         self.searcher.delegate = self
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -44,12 +44,12 @@ extension TweakSearchViewController {
         _setupUI()
         _layoutUI()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startListeningFloating(in: context)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         stopListeningFloating(in: context)
@@ -72,7 +72,7 @@ extension TweakSearchViewController: TweakSearchHistoryViewControllerDelegate {
     func searchHistoryViewController(_ viewController: TweakSearchHistoryViewController, didSelectHistory history: String) {
         _searchHistory(history)
     }
-    
+
     func searchHistoryViewController(_ viewController: TweakSearchHistoryViewController, didDeleteHistory history: String) {
         _removeHistory(history)
     }
@@ -84,7 +84,7 @@ extension TweakSearchViewController: TweakFloatingAudience {
         _endTyping()
         _toggleDimmingViewToShow(false)
     }
-    
+
     func transit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
         if fromCategory == .searchList {
             _toggleContainerToShow(false, animated: true)
@@ -92,7 +92,7 @@ extension TweakSearchViewController: TweakFloatingAudience {
             _toggleContainerToShow(true, animated: true)
         }
     }
-    
+
     func didTransit(fromCategory: TweakFloatingParticipantCategory, toCategory: TweakFloatingParticipantCategory) {
         if fromCategory == .searchList {
             _toggleContainerToShow(false, animated: false)
@@ -128,10 +128,10 @@ private extension TweakSearchViewController {
                 self.historyViewController.setHistories(histories, scrollToTop: true)
             }
         }
-        
+
         searcher.bootstrap(async: view.window == nil)
     }
-    
+
     func _setupUI() {
         view.backgroundColor = Constants.Color.backgroundPrimary
         addChildViewController(resultViewController)
@@ -140,10 +140,10 @@ private extension TweakSearchViewController {
         view.addSubview(cancelButton)
         view.addSubview(hairline)
         view.addSubview(loadingIndicator)
-        
+
         textField.becomeFirstResponder()
     }
-    
+
     func _layoutUI() {
         view.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -177,11 +177,11 @@ private extension TweakSearchViewController {
     func _registerNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(_onWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
     }
-    
+
     func _unregisterNotifications() {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     @objc func _onWillTerminate(_ notification: Notification) {
         _deactivateSearch()
     }
@@ -204,7 +204,7 @@ private extension TweakSearchViewController {
             return nil
         }
     }
-    
+
     var containerView: UIView {
         if traitCollection.userInterfaceIdiom == .phone {
             return presentationController?.containerView ?? view
@@ -212,19 +212,19 @@ private extension TweakSearchViewController {
             return view
         }
     }
-    
+
     func _endTyping() {
         guard textField.isFirstResponder else { return }
         textField.resignFirstResponder()
     }
-    
+
     func _toggleDimmingViewToShow(_ flag: Bool) {
         dimmingView?.isHidden = !flag
     }
-    
+
     func _toggleContainerToShow(_ flag: Bool, animated: Bool) {
         let key = "floating-opacity"
-        
+
         guard animated else {
             disableImplicitAnimation {
                 containerView.layer.opacity = flag ? 1 : 0
@@ -232,7 +232,7 @@ private extension TweakSearchViewController {
             }
             return
         }
-        
+
         let anim = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
         anim.fromValue = flag ? 0 : 1
         anim.toValue = flag ? 1 : 0
@@ -247,16 +247,16 @@ private extension TweakSearchViewController {
     func _search(with keyword: String) {
         searcher.search(with: keyword, debounce: true)
     }
-    
+
     func _searchHistory(_ history: String) {
         textField.text = history
         searcher.search(with: history, debounce: false)
     }
-    
+
     func _removeHistory(_ history: String) {
         searcher.removeHistory(history)
     }
-    
+
     func _deactivateSearch() {
         searcher.deactivate()
     }
@@ -266,13 +266,13 @@ private extension TweakSearchViewController {
     @objc func _cancelButtonTapped(_ sender: UIButton) {
         dismiss(animated: true)
     }
-    
+
     @objc func _textFieldTextChanged(_ sender: UITextField) {
         lastText = sender.text
         guard sender.markedTextRange == nil else { return }
         _search(with: sender.text ?? "")
     }
-    
+
     @objc func _textFieldDidExit(_ sender: UITextField) {
         guard lastText != sender.text else { return }
         // text is auto corrected
@@ -311,7 +311,7 @@ private extension TweakSearchViewController {
         f.delegate = self
         return f
     }
-    
+
     func _cancelButton() -> UIButton {
         let b = UIButton(type: .system)
         b.addTarget(self, action: #selector(_cancelButtonTapped), for: .touchUpInside)
@@ -320,24 +320,24 @@ private extension TweakSearchViewController {
         b.titleLabel?.font = .systemFont(ofSize: 18)
         return b
     }
-    
+
     func _hairline() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false
         v.backgroundColor = Constants.Color.separator
         return v
     }
-    
+
     func _loadingIndicator() -> UIActivityIndicatorView {
         let v = UIActivityIndicatorView(style: .medium)
         return v
     }
-    
+
     func _resultViewController() -> TweakListViewController {
         let v = TweakListViewController(scene: .search(keyword: ""))
         return v
     }
-    
+
     func _historyViewController() -> TweakSearchHistoryViewController {
         let v = TweakSearchHistoryViewController(delegate: self)
         v.tableView.backgroundColor = view.backgroundColor

@@ -55,7 +55,7 @@ public protocol Tweakable: Storable {
     ///
     /// For more information about secondary view please checkout ``TweakSecondaryView``.
     static var secondaryView: TweakSecondaryView? { get }
-    
+
     /// Validates the receiver can be the default value of the tweak.
     ///
     /// Not every value is a valid default value for a tweak. For example, It's meaningless to tweak a empty array.
@@ -79,7 +79,7 @@ public extension Tweakable {
     static var secondaryView: TweakSecondaryView? {
         nil
     }
-    
+
     func validateAsDefaultValue() -> Bool { true }
 }
 
@@ -131,7 +131,7 @@ extension Array: Tweakable where Element: TweakSecondaryViewItemConvertible {
     public static var secondaryView: TweakSecondaryView? {
         TweakSecondaryViewReorderer<Element>()
     }
-    
+
     public func validateAsDefaultValue() -> Bool {
         !isEmpty
     }

@@ -21,7 +21,7 @@ extension UIApplication {
             return false
         }
     }
-    
+
     var statusBarHeight: CGFloat {
         if let manager = windows.first(where: \.isKeyWindow)?.windowScene?.statusBarManager {
             return manager.statusBarFrame.height

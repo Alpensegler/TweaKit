@@ -21,7 +21,7 @@ protocol TweakExportInitiator: TweakActionInitiator {
 extension TweakExportInitiator {
     func initiateExport() {
         DispatchQueue.ensureInMain()
-        
+
         let tweaks = exportableTweaks
         if tweaks.isEmpty {
             UIAlertController.alert(title: "No Exportable Tweaks to Export", fromVC: fromVC)
@@ -31,7 +31,7 @@ extension TweakExportInitiator {
             UIAlertController.alert(title: "No Destinations to Export", fromVC: fromVC)
             return
         }
-        
+
         let actions = destinations.map { destination in
             UIAlertAction(title: destination.name, style: .default) { [unowned self] _ in
                 context?.trader.export(tweaks: tweaks, to: destination)
@@ -54,7 +54,7 @@ extension TweakResetInitiator {
 extension TweakResetInitiator {
     func initiateReset() {
         DispatchQueue.ensureInMain()
-        
+
         if needsConfirm {
             let action = UIAlertAction(title: "Confirm", style: .destructive) { [unowned self] _ in
                 _resetTweaks()
@@ -64,14 +64,14 @@ extension TweakResetInitiator {
             _resetTweaks()
         }
     }
-    
+
     func _resetTweaks() {
         let tweaks = resetableTweaks
         if tweaks.isEmpty {
             UIAlertController.alert(title: "No Tweaks to Reset", fromVC: fromVC)
             return
         }
-        
+
         for tweak in tweaks {
             tweak.resetStoredValue()
             tweak.resetInfo()

@@ -13,16 +13,16 @@ protocol TweakSearcherDelegate: AnyObject {
 
 final class TweakSearcher {
     weak var delegate: TweakSearcherDelegate?
-    
+
     private let retriever: Retriever
     private let recorder: Recorder
     private let debouncer: Debouncer
     private var eventHandler: ((Event) -> Void)?
-    
+
     deinit {
         _cancelSearch()
     }
-    
+
     init(context: TweakContext) {
         retriever = .init(context: context)
         recorder = .init(context: context)
@@ -34,33 +34,33 @@ extension TweakSearcher {
     func bootstrap(async: Bool) {
         let histories = _getCurrentHistories()
         if histories.isEmpty { return }
-        
+
         let work = { [weak self] in
             self?._activateEvent(.showLoading)
             self?._activateEvent(.updateHistories(histories))
             self?._activateEvent(.showHistory)
         }
-        
+
         if async {
             DispatchQueue.main.async(execute: work)
         } else {
             work()
         }
     }
-    
+
     func deactivate() {
         _cancelSearch()
         _persistHistories()
     }
-    
+
     func search(with keyword: String, debounce: Bool) {
         _cancelSearch()
-        
+
         if keyword.isEmpty || keyword.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             _activateEvent(.showHistory)
             return
         }
-        
+
         let job = { [weak self] in
             guard let self = self else { return }
             guard !debounce || self.delegate?.currentKeyword == keyword else {
@@ -79,15 +79,15 @@ extension TweakSearcher {
             job()
         }
     }
-    
+
     func removeHistory(_ history: String) {
         _activateEvent(.updateHistories(_removingHistory(history)))
     }
-    
+
     func cancel() {
         _cancelSearch()
     }
-    
+
     func reset(unbind: Bool) {
         if unbind {
             _removeEventHandler()
@@ -102,11 +102,11 @@ extension TweakSearcher {
         case showLoading
         case showHistory
         case showResult
-        
+
         case updateHistories([String])
         case updateTweakResults([[AnyTweak]], String)
     }
-    
+
     func bind(eventHandler: @escaping (Event) -> Void) {
         self.eventHandler = eventHandler
     }
@@ -116,39 +116,39 @@ private extension TweakSearcher {
     func _search(with keyword: String) -> [[AnyTweak]] {
         retriever.retrieveTweaks(with: keyword)
     }
-    
+
     func _debounceSearch(job: @escaping () -> Void) {
         debouncer.call(job: job)
     }
-    
+
     func _cancelSearch() {
         debouncer.cancel()
     }
-    
+
     func _upsertingHistory(_ history: String) -> [String] {
         recorder.upserting(history)
     }
-    
+
     func _removingHistory(_ history: String) -> [String] {
         recorder.removing(history)
     }
-    
+
     func _getCurrentHistories() -> [String] {
         recorder.getCurrentHistories()
     }
-    
+
     func _removeAllHistories() {
         recorder.removeAllHistories()
     }
-    
+
     func _persistHistories() {
         recorder.persistHistories()
     }
-    
+
     func _activateEvent(_ event: Event) {
         eventHandler?(event)
     }
-    
+
     func _removeEventHandler() {
         eventHandler = nil
     }
@@ -159,7 +159,7 @@ private extension TweakSearcher {
 private extension TweakSearcher {
     final class Retriever {
         private unowned let context: TweakContext
-        
+
         init(context: TweakContext) {
             self.context = context
         }
@@ -171,17 +171,17 @@ extension TweakSearcher.Retriever {
         let isFuzzy = context.shouldFuzzySearch()
         let isSmartcase = context.shouldSmartcaseSearch()
         let isCaseSensitive = context.shouldCaseSensitiveSearch()
-        
+
         var sections: [String: Section] = [:]
-        
+
         for tweak in context.tweaks {
             guard let sectionName = tweak.section?.name else { continue }
-            
+
             // ignore list name since it has way less weight in search
             let sectionMatch = Matcher.match(haystack: sectionName, with: keyword, isFuzzy: isFuzzy, isSmartcase: isSmartcase, isCaseSensitive: isCaseSensitive)
             let tweakMatch = Matcher.match(haystack: tweak.name, with: keyword, isFuzzy: isFuzzy, isSmartcase: isSmartcase, isCaseSensitive: isCaseSensitive)
             guard sectionMatch.isMatched || tweakMatch.isMatched else { continue }
-            
+
             let score = max(sectionMatch.score, tweakMatch.score)
             if let section = sections[sectionName] {
                 section.add(tweak, score: score)
@@ -189,7 +189,7 @@ extension TweakSearcher.Retriever {
                 sections[sectionName] = .init(score: score, tweak: tweak)
             }
         }
-        
+
         return sections.keys
             .sorted()
             .compactMap { sections[$0] }
@@ -202,12 +202,12 @@ private extension TweakSearcher.Retriever {
     final class Section {
         private(set) var score: Matcher.Score
         private(set) var tweaks: [AnyTweak]
-        
+
         init(score: Matcher.Score, tweak: AnyTweak) {
             self.score = score
             self.tweaks = [tweak]
         }
-        
+
         func add(_ tweak: AnyTweak, score: Matcher.Score) {
             if score > self.score {
                 self.score = score
@@ -224,7 +224,7 @@ private extension TweakSearcher {
         private let contextName: String
         private let maxCount: Int
         private var records: [String: [Record]] = [:]
-        
+
         init(context: TweakContext) {
             self.contextName = context.name
             self.maxCount = context.delegate?.maxSearchHistoryCount(for: context) ?? Constants.UI.Search.maxHistoryCount
@@ -238,24 +238,24 @@ extension TweakSearcher.Recorder {
         _upsert(history)
         return _getHistories()
     }
-    
+
     func removing(_ history: String) -> [String] {
         _remove(history)
         return _getHistories()
     }
-    
+
     func getCurrentHistories() -> [String] {
         _getHistories()
     }
-    
+
     func removeAllHistories() {
         _removeAllHistories()
     }
-    
+
     func persistHistories() {
         _persistentHistories()
     }
-    
+
     private func _upsert(_ history: String) {
         if history.isEmpty { return }
         if let records = records[contextName], let index = records.firstIndex(where: { $0.keyword == history }) {
@@ -264,23 +264,23 @@ extension TweakSearcher.Recorder {
             records[contextName, default: []].append(.init(keyword: history))
         }
     }
-    
+
     private func _remove(_ history: String) {
         if history.isEmpty { return }
         records[contextName, default: []].removeAll { $0.keyword == history }
     }
-    
+
     private func _getHistories() -> [String] {
         records[contextName, default: []]
             .sorted { $0.updatedAt > $1.updatedAt }
             .prefix(maxCount)
             .map(\.keyword)
     }
-    
+
     private func _removeAllHistories() {
         records.removeValue(forKey: contextName)
     }
-    
+
     private func _retrieveHistories() {
         guard let data = UserDefaults.standard.data(forKey: Constants.Keys.searchHistories) else { return }
         do {
@@ -289,13 +289,13 @@ extension TweakSearcher.Recorder {
             Logger.log("failed to retrieve histories: \(error.localizedDescription)")
         }
     }
-    
+
     private func _persistentHistories() {
         if records.isEmpty {
             UserDefaults.standard.removeObject(forKey: Constants.Keys.searchHistories)
             return
         }
-        
+
         do {
             let data = try JSONEncoder().encode(records.mapValues { Array($0.prefix(maxCount)) })
             UserDefaults.standard.setValue(data, forKey: Constants.Keys.searchHistories)
@@ -309,7 +309,7 @@ private extension TweakSearcher.Recorder {
     final class Record: Codable {
         let keyword: String
         var updatedAt: Date
-        
+
         init(keyword: String) {
             self.keyword = keyword
             updatedAt = .init()

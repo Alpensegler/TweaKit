@@ -14,14 +14,14 @@ protocol TweakSearchHistoryViewControllerDelegate: AnyObject {
 
 final class TweakSearchHistoryViewController: UITableViewController {
     private var histories: [String] = []
-    
+
     private weak var delegate: TweakSearchHistoryViewControllerDelegate?
-    
+
     init(delegate: TweakSearchHistoryViewControllerDelegate) {
         self.delegate = delegate
         super.init(style: .plain)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -52,7 +52,7 @@ extension TweakSearchHistoryViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         histories.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cell: TweakSearchHistoryCell.self, for: indexPath)
         let history = histories[indexPath.row]
@@ -108,7 +108,7 @@ private extension TweakSearchHistoryViewController {
         }
         tableView.endUpdates()
     }
-    
+
     func _reloadAll(with newHistories: [String]) {
         histories = newHistories
         tableView.reloadData()
@@ -119,7 +119,7 @@ private extension TweakSearchHistoryViewController {
 
 private final class TweakSearchHistoryCell: UITableViewCell {
     private var onDeleteButtonTap: (() -> Void)?
-    
+
     private lazy var label = _label()
     private lazy var button = _button()
     private lazy var hairline = _hairline()
@@ -130,7 +130,7 @@ private final class TweakSearchHistoryCell: UITableViewCell {
         _setupUI()
         _layoutUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -141,12 +141,12 @@ extension TweakSearchHistoryCell {
         super.layoutSubviews()
         _calibrateUI()
     }
-    
+
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
         _setHighlight(highlighted, animated: animated)
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         _setHighlight(selected, animated: animated)
@@ -169,7 +169,7 @@ private extension TweakSearchHistoryCell {
         contentView.addSubview(hairline)
         contentView.addSubview(highlightBackground)
     }
-    
+
     func _layoutUI() {
         contentView.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -187,7 +187,7 @@ private extension TweakSearchHistoryCell {
             hairline.heightAnchor.constraint(equalToConstant: 1),
         ])
     }
-    
+
     func _calibrateUI() {
         highlightBackground.frame = contentView.bounds
     }
@@ -197,7 +197,7 @@ private extension TweakSearchHistoryCell {
     @objc func _handleDeleteButtonTap(_ sender: UIButton) {
         onDeleteButtonTap?()
     }
-    
+
     func _setHighlight(_ flag: Bool, animated: Bool) {
         if animated {
             UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: { [unowned self] in
@@ -218,7 +218,7 @@ private extension TweakSearchHistoryCell {
         l.font = .systemFont(ofSize: 18)
         return l
     }
-    
+
     func _button() -> UIButton {
         let b = HitOutsideButton(type: .system)
         b.setImage(Constants.Assets.cross, for: .normal)
@@ -227,7 +227,7 @@ private extension TweakSearchHistoryCell {
         b.tintColor = Constants.Color.labelSecondary
         return b
     }
-    
+
     func _highlightBackground() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false
@@ -235,7 +235,7 @@ private extension TweakSearchHistoryCell {
         v.alpha = 0
         return v
     }
-    
+
     func _hairline() -> UIView {
         let v = UIView()
         v.backgroundColor = Constants.Color.separator

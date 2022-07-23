@@ -14,42 +14,42 @@ final class TweakSegmentedViewController: UIViewController {
     private lazy var contentCollectionView = _contentCollectionView()
     private lazy var separator = _separator()
     private lazy var indicator = _indicator()
-    
+
     private unowned var context: TweakContext
     private unowned var initialTweak: AnyTweak?
     private unowned var initialList: TweakList?
-    
+
     private(set) var currentIndex = 0
     private var duringTransition = false
     private var duringAutoScrolling = false
     private var previousOffsetX: CGFloat = 0
     private var previousScrollState: ContentScrollState?
     private var titleWidthCache: [String: CGFloat]
-    
+
     deinit {
         _unregisterNotifications()
     }
-    
+
     init(context: TweakContext) {
         self.context = context
         self.titleWidthCache = .init(minimumCapacity: context.lists.count)
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     init(context: TweakContext, initialTweak: AnyTweak?) {
         self.context = context
         self.initialTweak = initialTweak
         self.titleWidthCache = .init(minimumCapacity: context.lists.count)
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     init(context: TweakContext, initialList: TweakList?) {
         self.context = context
         self.initialList = initialList
         self.titleWidthCache = .init(minimumCapacity: context.lists.count)
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -67,13 +67,13 @@ extension TweakSegmentedViewController {
         super.viewDidLayoutSubviews()
         _layoutUI()
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         _beginTransition()
         _keepContentUponRotation()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if previousTraitCollection?.userInterfaceStyle == traitCollection.userInterfaceStyle {
@@ -86,11 +86,11 @@ extension TweakSegmentedViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
         case contentCollectionView:
@@ -107,7 +107,7 @@ extension TweakSegmentedViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         context.lists.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case contentCollectionView:
@@ -129,7 +129,7 @@ extension TweakSegmentedViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         collectionView === titleCollectionView
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let oldIndex = currentIndex
         if indexPath.item == currentIndex { return }
@@ -138,7 +138,7 @@ extension TweakSegmentedViewController: UICollectionViewDelegate {
         _autoScrollTitle(from: _indexPath(of: oldIndex), to: indexPath, animated: true)
         _autoScrollContent(from: _indexPath(of: oldIndex), to: indexPath, animated: true)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard collectionView === titleCollectionView else { return }
         _resetTitleSelection(forCell: cell, at: indexPath)
@@ -158,12 +158,12 @@ extension TweakSegmentedViewController: UIScrollViewDelegate {
         _updateCurrentIndex(with: state)
         _recordScrollState(state)
     }
-    
+
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         guard scrollView === contentCollectionView else { return }
         _recordContentOffset()
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard scrollView === contentCollectionView else { return }
         if duringTransition || duringAutoScrolling { return }
@@ -174,7 +174,7 @@ extension TweakSegmentedViewController: UIScrollViewDelegate {
             _correctTitleProgress()
         }
     }
-    
+
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         guard scrollView === contentCollectionView else { return }
         _endAutoScrolling()
@@ -198,7 +198,7 @@ private extension TweakSegmentedViewController {
             contentCollectionView.backgroundView = Constants.UI.tweakEmptyView
         }
     }
-    
+
     func _layoutUI() {
         titleCollectionView.frame.size = .init(width: view.frame.width, height: 36)
         if needsTitle {
@@ -215,15 +215,15 @@ private extension TweakSegmentedViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(_handleRotation), name: UIDevice.orientationDidChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(_handleDismiss), name: .willDismissTweakWindow, object: context)
     }
-    
+
     func _unregisterNotifications() {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     @objc func _handleRotation(_ notification: Notification) {
         _endTransition()
     }
-    
+
     @objc func _handleDismiss(_ notification: Notification) {
         // always remember list
         _rememberList()
@@ -233,23 +233,23 @@ private extension TweakSegmentedViewController {
 private extension TweakSegmentedViewController {
     func _initiateLocating() {
         _beginInitialLocating()
-        
+
         guard let list = initialTweak?.list ?? initialList else {
             _endInitialLocating(animated: false)
             return
         }
-        
+
         let oldIndex = currentIndex
         guard let index = context.lists.firstIndex(where: { $0 === list }) else {
             _endInitialLocating(animated: false)
             return
         }
-        
+
         if oldIndex == index, initialTweak == nil {
             _endInitialLocating(animated: true)
             return
         }
-        
+
         currentIndex = index
         // wait for title and content collection views layout
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [unowned self] in
@@ -269,7 +269,7 @@ private extension TweakSegmentedViewController {
             }
         }
     }
-    
+
     func _scroll(to tweak: AnyTweak, at index: Int) {
         guard contentCollectionView.cellVisibility(at: .init(item: index, section: 0)) == 1 else { return }
         let cell = contentCollectionView.visibleCells[0] as? TweakSegmentContentCell
@@ -281,33 +281,33 @@ private extension TweakSegmentedViewController {
     func _beginTransition() {
         duringTransition = true
     }
-    
+
     func _endTransition() {
         duringTransition = false
     }
-    
+
     func _beginAutoScrolling() {
         contentCollectionView.isScrollEnabled = false
         duringAutoScrolling = true
     }
-    
+
     func _endAutoScrolling() {
         duringAutoScrolling = false
         contentCollectionView.isScrollEnabled = true
     }
-    
+
     func _beginInitialLocating() {
         view.isUserInteractionEnabled = false
         view.alpha = 0
     }
-    
+
     func _endInitialLocating(animated: Bool) {
         guard animated else {
             view.alpha = 1
             view.isUserInteractionEnabled = true
             return
         }
-        
+
         UIView.animate(withDuration: 0.25, animations: { [unowned self] in
             view.alpha = 1
         }, completion: { [unowned self] _ in
@@ -318,7 +318,7 @@ private extension TweakSegmentedViewController {
     func _rememberList() {
         context.lastShowingList = _list(at: currentIndex)
     }
-    
+
     func _keepContentUponRotation() {
         titleCollectionView.collectionViewLayout.invalidateLayout()
         contentCollectionView.collectionViewLayout.invalidateLayout()
@@ -335,12 +335,12 @@ private extension TweakSegmentedViewController {
             }
         }
     }
-    
+
     func _resetTitleSelection(forCell cell: UICollectionViewCell, at indexPath: IndexPath) {
         guard let cell = cell as? TweakSegmentTitleCell else { return }
         cell.configProgress(indexPath.item == currentIndex ? 1 : 0)
     }
-    
+
     func _autoScrollTitle(from old: IndexPath, to new: IndexPath, animated: Bool) {
         if let oldCell = titleCollectionView.cellForItem(at: old) as? TweakSegmentTitleCell {
             if animated {
@@ -351,7 +351,7 @@ private extension TweakSegmentedViewController {
                 oldCell.configProgress(0)
             }
         }
-        
+
         if let layout = titleCollectionView.collectionViewLayout as? UICollectionViewFlowLayout,
            let frame = layout.layoutAttributesForItem(at: new)?.frame {
             let rightMostOffsetX = titleCollectionView.contentSize.width - titleCollectionView.frame.width
@@ -365,7 +365,7 @@ private extension TweakSegmentedViewController {
                 titleCollectionView.contentOffset.x = max(0, min(frame.midX - titleCollectionView.frame.midX, rightMostOffsetX))
             }
         }
-        
+
         if let newCell = titleCollectionView.cellForItem(at: new) as? TweakSegmentTitleCell {
             if animated {
                 UIView.transition(with: newCell, duration: 0.3, options: [.transitionCrossDissolve, .beginFromCurrentState], animations: {
@@ -376,11 +376,11 @@ private extension TweakSegmentedViewController {
             }
         }
     }
-    
+
     func _autoScrollContent(from old: IndexPath, to new: IndexPath, animated: Bool) {
         contentCollectionView.scrollToItem(at: new, at: .left, animated: animated)
     }
-    
+
     func _recordContentOffset() {
         previousOffsetX = contentCollectionView.contentOffset.x
     }
@@ -389,7 +389,7 @@ private extension TweakSegmentedViewController {
         let offsetX = contentCollectionView.contentOffset.x
         let width = contentCollectionView.frame.width
         let count = contentCollectionView.numberOfItems(inSection: 0)
-        
+
         let offsetRatio = offsetX / width
         var progress = (offsetRatio - floor(offsetRatio))
         var sourceIndex: Int
@@ -409,18 +409,18 @@ private extension TweakSegmentedViewController {
             }
             progress = 1.0 - progress
         }
-        
+
         return .init(sourceIndex: sourceIndex, targetIndex: targetIndex, progress: progress)
     }
-    
+
     func _recordScrollState(_ state: ContentScrollState) {
         previousScrollState = state
     }
-    
+
     func _clearScrollState() {
         previousScrollState = nil
     }
-    
+
     func _updateIndicator(with state: ContentScrollState) {
         guard let layout = titleCollectionView.collectionViewLayout as? UICollectionViewFlowLayout,
             let sourceFrame = layout.layoutAttributesForItem(at: _indexPath(of: state.sourceIndex))?.frame,
@@ -431,7 +431,7 @@ private extension TweakSegmentedViewController {
         indicator.frame.size.width = width
         indicator.frame.origin.x = centerX - width.half
     }
-    
+
     func _updateTitle(with state: ContentScrollState) {
         if let oldCell = titleCollectionView.cellForItem(at: _indexPath(of: state.sourceIndex)) as? TweakSegmentTitleCell {
             UIView.transition(with: oldCell, duration: 0.3, options: [.transitionCrossDissolve, .beginFromCurrentState], animations: {
@@ -444,10 +444,10 @@ private extension TweakSegmentedViewController {
             })
         }
     }
-    
+
     func _updateCurrentIndex(with state: ContentScrollState) {
         let isNewIndex: Bool
-        
+
         if let previousState = previousScrollState {
             let delta = abs(state.progress - previousState.progress)
             // the contentOffset change is not that continuous when pan too fast
@@ -464,19 +464,19 @@ private extension TweakSegmentedViewController {
         guard isNewIndex, currentIndex != state.targetIndex else { return }
         currentIndex = state.targetIndex
     }
-    
+
     func _revealTitleAfterPaging() {
         let indexPath = _indexPath(of: currentIndex)
         guard titleCollectionView.cellVisibility(at: indexPath) < 1 else { return }
         titleCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
-    
+
     func _correctIndicatorAfterPaging() {
         let targetFrame = _indicatorFrame(of: currentIndex)
         if indicator.frame == targetFrame { return }
         indicator.frame = targetFrame
     }
-    
+
     func _correctTitleProgress() {
         for indexPath in titleCollectionView.indexPathsForVisibleItems {
             let cell = titleCollectionView.cellForItem(at: indexPath) as? TweakSegmentTitleCell
@@ -491,11 +491,11 @@ private extension TweakSegmentedViewController {
         let targetIndex: Int
         let progress: CGFloat
     }
-    
+
     var needsTitle: Bool {
         context.lists.count > 1
     }
-    
+
     var hasList: Bool {
         !context.lists.isEmpty
     }
@@ -503,15 +503,15 @@ private extension TweakSegmentedViewController {
     func _list(at index: Int) -> TweakList {
         context.lists[index]
     }
-    
+
     func _title(at index: Int) -> String {
         _list(at: index).name
     }
-    
+
     func _indexPath(of index: Int) -> IndexPath {
         .init(item: index, section: 0)
     }
-    
+
     func _width(of title: String) -> CGFloat {
         if let width = titleWidthCache[title] {
             return width
@@ -521,7 +521,7 @@ private extension TweakSegmentedViewController {
             return width
         }
     }
-    
+
     func _indicatorFrame(of index: Int) -> CGRect {
         guard let layout = titleCollectionView.collectionViewLayout as? UICollectionViewFlowLayout,
             let frame = layout.layoutAttributesForItem(at: _indexPath(of: index))?.frame
@@ -546,7 +546,7 @@ private extension TweakSegmentedViewController {
         cv.register(cell: TweakSegmentTitleCell.self)
         return cv
     }
-    
+
     func _contentCollectionView() -> UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -563,13 +563,13 @@ private extension TweakSegmentedViewController {
         cv.register(cell: TweakSegmentContentCell.self)
         return cv
     }
-    
+
     func _separator() -> UIView {
         let v = UIView()
         v.backgroundColor = Constants.Color.separator
         return v
     }
-    
+
     func _indicator() -> UIView {
         let v = UIView()
         v.backgroundColor = Constants.Color.actionBlue
@@ -583,7 +583,7 @@ private extension TweakSegmentedViewController {
 
 private final class TweakSegmentTitleCollectionView: UICollectionView {
     private var indicator: UIView?
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         // always keep indicator in the top most
@@ -606,21 +606,21 @@ extension TweakSegmentTitleCollectionView {
 
 private final class TweakSegmentTitleCell: UICollectionViewCell {
     private lazy var label = _label()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(label)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         label.frame = contentView.bounds
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         label.textColor = Constants.Color.labelSecondary
@@ -631,7 +631,7 @@ extension TweakSegmentTitleCell {
     func configTitle(_ title: String) {
         label.text = title
     }
-    
+
     func configProgress(_ progress: CGFloat) {
         // progress: 0 - not selected, 1 - selected
         if progress.isEqual(to: 0) {

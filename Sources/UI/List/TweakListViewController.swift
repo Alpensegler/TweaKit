@@ -14,7 +14,7 @@ final class TweakListViewController: UITableViewController {
     private var emptyView: TweakListEmptyView?
     private lazy var debouncer = Debouncer(dueTime: 0.1)
     private(set) lazy var primaryViewRecycler = TweakPrimaryViewRecycler()
-    
+
     private var locatedIndexPath: IndexPath?
 
     private var floatingSection: Int?
@@ -23,12 +23,12 @@ final class TweakListViewController: UITableViewController {
     private var floatingSectionSnapshot: CALayer?
     private var floatingIcon: CALayer?
     private var floatingIconBackground: CALayer?
-    
+
     init(scene: TweakListViewScene) {
         self.scene = scene
         super.init(style: scene.isFloating ? .plain : .grouped)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -43,25 +43,25 @@ extension TweakListViewController {
             fatalError("unmatched scene: \(self.scene) -> \(scene)")
         }
     }
-    
+
     func setTweaks(_ tweaks: [[AnyTweak]], in context: TweakContext, scrollToTop: Bool = false) {
         if self.tweaks.isEmpty && tweaks.isEmpty {
             _reloadEmptyView()
             return
         }
-        
+
         guard self.tweaks.count != tweaks.count || self.tweaks.flatMap({ $0.map(\.id) }) != tweaks.flatMap({ $0.map(\.id) }) else {
             if scrollToTop, !tweaks.isEmpty {
                 tableView.scrollToRow(at: .init(row: 0, section: 0), at: .bottom, animated: false)
             }
             return
         }
-        
+
         self.tweaks = tweaks
         self.context = context
         _reload()
     }
-    
+
     func scrollTo(tweak: AnyTweak, at position: UITableView.ScrollPosition, animated: Bool, highlight: Bool) {
         guard let section = tweaks.firstIndex(where: { $0.first?.section === tweak.section }) else { return }
         guard let row = tweaks[section].firstIndex(where: { $0 === tweak }) else { return }
@@ -75,7 +75,7 @@ extension TweakListViewController {
             }
         }
     }
-    
+
     func iconFrame(in section: Int) -> CGRect {
         let indexPath = IndexPath(item: 0, section: section)
         if tableView.indexPathsForVisibleRows?.contains(indexPath) == true {
@@ -98,11 +98,11 @@ extension TweakListViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         tweaks.count
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tweaks[section].count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cell: TweakListViewCell.self, for: indexPath)
         let sectionTweaks = tweaks[indexPath.section]
@@ -122,7 +122,7 @@ extension TweakListViewController {
             return header
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as! TweakListViewCell
@@ -144,19 +144,19 @@ extension TweakListViewController: TweakListSectionHeaderDelegate {
     var headerHostViewController: UIViewController {
         self
     }
-    
+
     func sectionHeader(_ header: TweakListSectionHeader, titleForSection section: Int) -> String {
         tweaks[section].first?.section?.name ?? "Section"
     }
-    
+
     func sectionHeader(_ header: TweakListSectionHeader, tweaksForSection section: Int) -> [AnyTweak] {
         tweaks[section]
     }
-    
+
     func sectionHeader(_ header: TweakListSectionHeader, contextForSection section: Int) -> TweakContext {
         context
     }
-    
+
     func sectionHeader(_ header: TweakListSectionHeader, didActivateFloatingForSection section: Int) {
         floatingSection = section
         floatingHeader = header
@@ -173,7 +173,7 @@ extension TweakListViewController: TweakListViewCellDelegate {
             return context.showingWindow?.rootViewController ?? self
         }
     }
-    
+
     func tweakListViewCellNeedsLayout(_ cell: TweakListViewCell) {
         // trigger cell height update
         // 1. no need to update invisible cells
@@ -197,21 +197,21 @@ extension TweakListViewController: TweakFloatingPrimaryParticipant {
         case .floating: return .normalList
         }
     }
-    
+
     func prepareTransition(to category: TweakFloatingParticipantCategory) {
         guard category == . ball, let section = floatingSection else { return }
         if tableView.isDecelerating || tableView.isTracking || tableView.isDragging { return }
         _toggleIsFloating(to: true)
         _fakeFloatingSection(section)
     }
-    
+
     func transit(to category: TweakFloatingParticipantCategory) {
         guard category == .ball else { return }
         guard let ballPosition = context.floatingTransitioner?.ballPosition() else { return }
         _showBallAnimationUI()
         _animateToBall(position: ballPosition)
     }
-    
+
     func prepareTransition(from category: TweakFloatingParticipantCategory) {
         guard let section = floatingSection else { return }
         switch category {
@@ -221,7 +221,7 @@ extension TweakListViewController: TweakFloatingPrimaryParticipant {
             break
         }
     }
-    
+
     func transit(from category: TweakFloatingParticipantCategory) {
         switch category {
         case .ball:
@@ -232,13 +232,13 @@ extension TweakListViewController: TweakFloatingPrimaryParticipant {
             break
         }
     }
-    
+
     func completeTransition(from category: TweakFloatingParticipantCategory) {
         _toggleIsFloating(to: false)
         _endTransition()
         _endFloating()
     }
-    
+
     func completeTransition(to category: TweakFloatingParticipantCategory) {
         _endTransition()
     }
@@ -270,15 +270,15 @@ private extension TweakListViewController {
         _reloadData()
         _reloadEmptyView()
     }
-    
+
     func _cancelCellUpdate() {
         debouncer.cancel()
     }
-    
+
     func _reloadData() {
         tableView.reloadData()
     }
-    
+
     func _reloadEmptyView() {
         tableView.emptyView?.isHidden = !tweaks.isEmpty
         switch scene {
@@ -298,7 +298,7 @@ private extension TweakListViewController {
             break
         }
     }
-    
+
     func _highlightLocatedTweak(at indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? TweakListViewCell else { return }
         cell.handleBeingLocated()
@@ -309,7 +309,7 @@ private extension TweakListViewController {
     func _toggleIsFloating(to flag: Bool) {
         context.showingWindow?.markIsFloating(flag)
     }
-    
+
     func _endTransition() {
         floatingSectionCover?.removeFromSuperview()
         floatingSectionCover = nil
@@ -320,12 +320,12 @@ private extension TweakListViewController {
         floatingIconBackground?.removeFromSuperlayer()
         floatingIconBackground = nil
     }
-    
+
     func _endFloating() {
         floatingHeader = nil
         floatingSection = nil
     }
-    
+
     func _fakeFloatingSection(_ section: Int) {
         floatingSectionCover = _makeFloatingCover(sectionFrame: _calculateSectionCoverFrame(forSection: section))
         tableView.addSubview(floatingSectionCover!)
@@ -338,11 +338,11 @@ private extension TweakListViewController {
         floatingSectionSnapshot?.addSublayer(background)
         floatingSectionSnapshot?.addSublayer(icon)
     }
-    
+
     func _calculateSectionCoverFrame(forSection section: Int) -> CGRect {
         tableView.rect(forSection: section)
     }
-    
+
     func _makeFloatingCover(sectionFrame: CGRect) -> UIView {
         let view = UIView(frame: sectionFrame)
         view.backgroundColor = Constants.Color.backgroundPrimary
@@ -350,7 +350,7 @@ private extension TweakListViewController {
         view.alpha = 0
         return view
     }
-    
+
     func _calculateSectionSnapshotFrame(forSection section: Int) -> CGRect {
         let sectionRect = tableView.rect(forSection: section)
         let visibleRect: CGRect = .init(
@@ -380,7 +380,7 @@ private extension TweakListViewController {
             )
         }
     }
-    
+
     func _makeFloatingSnapshot(sectionFrame: CGRect) -> CALayer {
         let image = UIGraphicsImageRenderer(bounds: tableView.bounds).image { _ in
             tableView.drawHierarchy(in: tableView.bounds, afterScreenUpdates: true)
@@ -389,7 +389,7 @@ private extension TweakListViewController {
         let croppingRect = sectionFrame
             .offsetBy(dx: 0, dy: -tableView.contentOffset.y)
             .scaled(by: scale)
-        
+
         let layer = CALayer()
         layer.masksToBounds = true
         layer.frame = tableView.convert(sectionFrame, to: nil)
@@ -397,7 +397,7 @@ private extension TweakListViewController {
         layer.opacity = 0
         return layer
     }
-    
+
     func _calculateIconFrame(for section: Int, snapshot: UIView) -> CGRect {
         if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: section)) as? TweakListViewCell {
             return cell.contentView.convert(cell.iconFrame, to: snapshot)
@@ -415,7 +415,7 @@ private extension TweakListViewController {
             return .zero
         }
     }
-    
+
     func _makeIcon(section: Int, frame: CGRect) -> (icon: CALayer, background: CALayer) {
         let tweak = tweaks[section][0]
         let icon = CALayer()
@@ -431,18 +431,18 @@ private extension TweakListViewController {
         background.opacity = 0
         return (icon, background)
     }
-    
+
     func _showBallAnimationUI() {
         floatingSectionCover?.alpha = 1
         floatingSectionSnapshot?.opacity = 1
         floatingIconBackground?.opacity = 1
         floatingIcon?.opacity = 1
     }
-    
+
     func _animateToBall(position: CGPoint) {
         guard let snapshot = floatingSectionSnapshot else { return }
         let duration: TimeInterval = Constants.UI.Floating.ballAnimationDuration
-        
+
         if let icon = floatingIcon {
             let scale = Constants.UI.Floating.ballIconSize / Constants.UI.ListView.iconSize
             let scaleAnim = CABasicAnimation(keyPath: "transform.scale", toValue: scale, duration: duration)
@@ -457,7 +457,7 @@ private extension TweakListViewController {
             let anim = CABasicAnimation(keyPath: "transform.scale", toValue: backgroundScale, duration: duration)
             background.add(anim, forKey: "background-scale")
         }
-        
+
         let positionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), fromValue: snapshot.position, toValue: position, duration: duration)
         snapshot.add(positionAnim, forKey: "snapshot-position")
         let ballSize = CGSize(width: Constants.UI.Floating.ballSize, height: Constants.UI.Floating.ballSize)
@@ -466,11 +466,11 @@ private extension TweakListViewController {
         let cornerAnim = CABasicAnimation(keyPath: #keyPath(CALayer.cornerRadius), fromValue: 0, toValue: Constants.UI.Floating.ballSize.half, duration: duration)
         snapshot.add(cornerAnim, forKey: "snapshot-corner")
     }
-    
+
     func _animateFromBall(position: CGPoint) {
         guard let snapshot = floatingSectionSnapshot else { return }
         let duration = Constants.UI.Floating.ballAnimationDuration
-        
+
         if let icon = floatingIcon {
             let scale = Constants.UI.Floating.ballIconSize / Constants.UI.ListView.iconSize
             let scaleAnim = CABasicAnimation(keyPath: "transform.scale", fromValue: scale, toValue: 1, duration: duration)
@@ -479,13 +479,13 @@ private extension TweakListViewController {
             let positionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), fromValue: position, toValue: icon.position, duration: duration)
             icon.add(positionAnim, forKey: "icon-position")
         }
-        
+
         if let background = floatingIconBackground {
             let backgroundScale = ceil(max(snapshot.frame.width / background.frame.halfWidth, snapshot.frame.height / background.frame.halfHeight))
             let anim = CABasicAnimation(keyPath: "transform.scale", fromValue: backgroundScale, toValue: 1, duration: duration)
             background.add(anim, forKey: "background-scale")
         }
-        
+
         let positionAnim = CABasicAnimation(keyPath: #keyPath(CALayer.position), fromValue: position, toValue: snapshot.position, duration: duration)
         snapshot.add(positionAnim, forKey: "snapshot-position")
         let ballSize = CGSize(width: Constants.UI.Floating.ballSize, height: Constants.UI.Floating.ballSize)

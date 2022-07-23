@@ -9,7 +9,7 @@ import UIKit
 
 protocol TweakListSectionHeaderDelegate: AnyObject {
     var headerHostViewController: UIViewController { get }
-    
+
     func sectionHeader(_ header: TweakListSectionHeader, titleForSection section: Int) -> String
     func sectionHeader(_ header: TweakListSectionHeader, tweaksForSection section: Int) -> [AnyTweak]
     func sectionHeader(_ header: TweakListSectionHeader, contextForSection section: Int) -> TweakContext
@@ -21,16 +21,16 @@ final class TweakListSectionHeader: UITableViewHeaderFooterView {
     private lazy var nameLabel = _nameLabel()
     private lazy var floatButton = _floatButton()
     private lazy var moreButton = _moreButton()
-    
+
     private var section: Int?
     private weak var delegate: TweakListSectionHeaderDelegate?
-    
+
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         _setupUI()
         _layoutUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -49,7 +49,7 @@ extension TweakListSectionHeader {
         super.layoutSubviews()
         _calibrateShadow()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         _toggleShadow()
@@ -64,7 +64,7 @@ private extension TweakListSectionHeader {
         contentView.addSubview(floatButton)
         contentView.addSubview(moreButton)
     }
-    
+
     func _layoutUI() {
         contentView.autoresizingMask = []
         contentView.clipsToBounds = true
@@ -87,7 +87,7 @@ private extension TweakListSectionHeader {
             floatButton.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -Constants.UI.ListView.contentLeading),
         ])
     }
-    
+
     func _calibrateShadow() {
         // background.bounds is still zero even upon layoutSubviews invocation
         let backgroundBounds = CGRect(
@@ -103,7 +103,7 @@ private extension TweakListSectionHeader {
         )
         background.layer.shadowPath = path.cgPath
     }
-    
+
     func _toggleShadow() {
         background.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
@@ -120,7 +120,7 @@ private extension TweakListSectionHeader {
         guard let section = section else { return }
         delegate?.sectionHeader(self, didActivateFloatingForSection: section)
     }
-    
+
     @objc private func _activateMoreOptions(_ gesture: UIButton) {
         let actions: [UIAlertAction] = [
             UIAlertAction(title: "Export Tweaks", style: .default) { [unowned self] _ in initiateExport() },
@@ -134,21 +134,21 @@ extension TweakListSectionHeader: TweakExportInitiator {
     var fromVC: UIViewController? {
         delegate?.headerHostViewController
     }
-    
+
     var context: TweakContext? {
         guard let section = section else { return nil }
         return delegate?.sectionHeader(self, contextForSection: section)
     }
-    
+
     var sender: UIView {
         background
     }
-    
+
     var exportAlertTitle: String? {
         guard let section = section, let delegate = delegate else { return nil }
         return "Export \(delegate.sectionHeader(self, titleForSection: section)) To..."
     }
-    
+
     var exportableTweaks: [AnyTradableTweak] {
         guard let section = section, let delegate = delegate else { return [] }
         return delegate.sectionHeader(self, tweaksForSection: section).compactMap { $0 as? AnyTradableTweak }
@@ -160,7 +160,7 @@ extension TweakListSectionHeader: TweakResetInitiator {
         guard let section = section, let delegate = delegate else { return nil }
         return "Reset \(delegate.sectionHeader(self, titleForSection: section))?"
     }
-    
+
     var resetableTweaks: [AnyTweak] {
         guard let section = section, let delegate = delegate else { return [] }
         return delegate.sectionHeader(self, tweaksForSection: section)
@@ -175,7 +175,7 @@ private extension TweakListSectionHeader {
         v.layer.addShadow(color: Constants.UI.ListView.shadowColor, y: Constants.UI.ListView.shadowY, radius: Constants.UI.ListView.shadowRadius)
         return v
     }
-    
+
     func _nameLabel() -> UILabel {
         let l = UILabel()
         l.numberOfLines = 0
@@ -183,7 +183,7 @@ private extension TweakListSectionHeader {
         l.textColor = Constants.Color.labelPrimary
         return l
     }
-    
+
     func _floatButton() -> UIButton {
         let b = HitOutsideButton(type: .system)
         b.extendInset = .init(inset: -11)
@@ -191,7 +191,7 @@ private extension TweakListSectionHeader {
         b.addTarget(self, action: #selector(_activateFloating), for: .touchUpInside)
         return b
     }
-    
+
     func _moreButton() -> UIButton {
         let b = HitOutsideButton(type: .system)
         b.extendInset = .init(inset: -11)

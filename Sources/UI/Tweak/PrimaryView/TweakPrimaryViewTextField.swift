@@ -10,13 +10,13 @@ import UIKit
 final class TweakPrimaryViewTextField: TweakTextField {
     private weak var tweak: AnyTweak?
     private var startingText: String?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         _setupUI()
         _setupEditing()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -24,28 +24,28 @@ final class TweakPrimaryViewTextField: TweakTextField {
 
 extension TweakPrimaryViewTextField: TweakPrimaryView {
     static let reuseID = "tweak-text-view"
-    
+
     var reuseID: String {
         Self.reuseID
     }
-    
+
     func reload(withTweak tweak: AnyTweak, manually: Bool) -> Bool {
         guard let value = tweak.currentValue as? String else { return false }
         self.tweak = tweak
         _reloadInteraction(withTweak: tweak)
         return _reloadText(withText: value)
     }
-    
+
     func reset() {
         tweak = nil
         startingText = nil
     }
-    
+
     func _reloadInteraction(withTweak tweak: AnyTweak) {
         isUserInteractionEnabled = tweak.isUserInteractionEnabled
         alpha = isUserInteractionEnabled ? 1 : Constants.UI.PrimaryView.disableAlpha
     }
-    
+
     func _reloadText(withText newText: String) -> Bool {
         let oldText = startingText
         startingText = newText
@@ -65,7 +65,7 @@ private extension TweakPrimaryViewTextField {
     @objc func _beginEditing(_ sender: TweakPrimaryViewTextField) {
         startingText = sender.actualText
     }
-    
+
     @objc func _endEditing(_ sender: TweakPrimaryViewTextField) {
         let actualText = sender.actualText
         guard let tweak = tweak, actualText != startingText else { return }
@@ -86,7 +86,7 @@ private extension TweakPrimaryViewTextField {
             .font: font!,
         ])
     }
-    
+
     func _setupEditing() {
         addTarget(self, action: #selector(_beginEditing), for: .editingDidBegin)
         addTarget(self, action: #selector(_endEditing), for: .editingDidEnd)

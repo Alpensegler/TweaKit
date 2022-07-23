@@ -5,13 +5,13 @@
 //  Created by cokile
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 /// Methods for configuring trade, search and UI related behaviors in a context.
 public protocol TweakContextDelegate: AnyObject {
     // MARK: - Trade
-    
+
     /// Asks the delegate for the trade sources of the context during import.
     ///
     /// If this method is not implemented, then the return value is assumed to be no sources.
@@ -28,9 +28,9 @@ public protocol TweakContextDelegate: AnyObject {
     ///   - context: The context asking the trade destinations.
     /// - Returns: An array of ``TweakTradeDestination`` objects.
     func tradeDestinations(for context: TweakContext) -> [TweakTradeDestination]
-    
+
     // MARK: - Search
-    
+
     /// Asks the delegate whether performs fuzzy search when searching tweaks.
     ///
     /// If this method is not implemented, then the return value is assumed to be true.
@@ -73,9 +73,9 @@ public protocol TweakContextDelegate: AnyObject {
     ///   - context: The context requesting this information.
     /// - Returns: The debounce due time (in seconds) to perform search when inputting keywords.
     func searchDebounceDueTime(for context: TweakContext) -> TimeInterval
-    
+
     // MARK: - UI
-    
+
     /// Informs the delegate when the window of the context will show.
     ///
     /// - Parameters:
@@ -135,7 +135,7 @@ extension TweakContext {
     func tradeSources() -> [TweakTradeSource] {
         delegate?.tradeSources(for: self) ?? []
     }
-    
+
     func tradeDestinations() -> [TweakTradeDestination] {
         delegate?.tradeDestinations(for: self) ?? []
     }
@@ -145,19 +145,19 @@ extension TweakContext {
     func shouldFuzzySearch() -> Bool {
         delegate?.shouldFuzzySearch(for: self) ?? true
     }
-    
+
     func shouldSmartcaseSearch() -> Bool {
         delegate?.shouldSmartcaseSearch(for: self) ?? false
     }
-    
+
     func shouldCaseSensitiveSearch() -> Bool {
         delegate?.shouldCaseSensitiveSearch(for: self) ?? false
     }
-    
+
     func maxSearchHistoryCount() -> Int {
         delegate?.maxSearchHistoryCount(for: self) ?? Constants.UI.Search.maxHistoryCount
     }
-    
+
     func searchDebounceDueTime() -> TimeInterval {
         delegate?.searchDebounceDueTime(for: self) ?? Constants.UI.Search.debounceDueTime
     }

@@ -17,11 +17,11 @@ public final class TweakSection {
     ///
     /// `name` is also the id of the section which means there are no two sections that have the same name in one list.
     public let name: String
-    
+
     let tweaks: [AnyTweak]
 
     weak var list: TweakList?
-    
+
     /// Creates and initializes a tweak section with the given name and the tweaks.
     ///
     /// The tweaks of the sections are sorted by alphabetic order and tweaks with duplicated names are filtered.
@@ -31,7 +31,7 @@ public final class TweakSection {
     ///   - tweaks: A builder that creates the tweaks of the section.
     public init(_ name: String, @AnyTweakBuilder _ tweaks: () -> [AnyTweak]) {
         assert(!name.contains(Constants.idSeparator), "TweakSection name should not have \(Constants.idSeparator)")
-        
+
         self.name = name
         self.tweaks = tweaks()
         self.tweaks.forEach { $0.section = self }

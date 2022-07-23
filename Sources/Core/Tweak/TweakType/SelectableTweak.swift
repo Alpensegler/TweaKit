@@ -26,7 +26,7 @@ public extension TweakType where Base == Tweak<Value>, Value: Selectable {
 
 final class SelectableTweak<Value: Selectable>: Tweak<Value> {
     let options: [Value]
-    
+
     override var primaryViewReuseID: String {
         TweakPrimaryViewDisclosurer.reuseID
     }
@@ -44,15 +44,15 @@ final class SelectableTweak<Value: Selectable>: Tweak<Value> {
     override var secondaryView: TweakSecondaryView? {
         TweakSecondaryViewSelector<Value>()
     }
-    
+
     init(name: String, defaultValue: Value, options: [Value]) {
         assert(!options.isEmpty, "Must have at least 1 option for selection")
         assert(options.contains(defaultValue), "Options does not contains default value")
-        
+
         self.options = options
         super.init(name: name, default: defaultValue)
     }
-    
+
     override var rawValue: Value {
         if let storedValue = super.storedValue, options.contains(storedValue) {
             return storedValue
@@ -60,7 +60,7 @@ final class SelectableTweak<Value: Selectable>: Tweak<Value> {
             return defaultValue
         }
     }
-    
+
     override func validate(unmarshaled: Value) -> Bool where Value: TradedTweakable {
         options.contains(unmarshaled)
     }

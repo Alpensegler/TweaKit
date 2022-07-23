@@ -21,7 +21,7 @@ public protocol TweakSecondaryView: UIViewController, TweakView {
     ///
     /// If this method is not implemented, then the return value is assumed to be a default height.
     var estimatedHeight: CGFloat { get }
-    
+
     /// Reload the view with a tweak.
     ///
     /// - Parameters:

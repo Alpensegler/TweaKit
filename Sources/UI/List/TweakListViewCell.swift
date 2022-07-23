@@ -10,7 +10,7 @@ import UIKit
 protocol TweakListViewCellDelegate: AnyObject {
     var cellHostViewController: UIViewController { get }
     var primaryViewRecycler: TweakPrimaryViewRecycler { get }
-    
+
     func tweakListViewCellNeedsLayout(_ cell: TweakListViewCell)
 }
 
@@ -21,20 +21,20 @@ final class TweakListViewCell: UITableViewCell {
     private lazy var nameLabel = _nameLabel()
     private lazy var icon = _icon()
     private lazy var primaryViewContainer = _primaryViewContainer()
-    
+
     private var topBackgroundBottomConstraint: NSLayoutConstraint?
     private let topBackgroundBaseBottomPadding: CGFloat = 10
-    
+
     private unowned var tweak: AnyTweak!
     private unowned var delegate: TweakListViewCellDelegate!
     private var isLast = false
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         _setupUI()
         _layoutUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -44,7 +44,7 @@ extension TweakListViewCell {
     var iconFrame: CGRect {
         topBackground.convert(icon.frame, to: contentView)
     }
-    
+
     func config(with tweak: AnyTweak, isLast: Bool, scene: TweakListViewScene, delegate: TweakListViewCellDelegate) {
         self.tweak = tweak
         self.isLast = isLast
@@ -55,11 +55,11 @@ extension TweakListViewCell {
         _configPrimaryViewContainerWith(tweak: tweak)
         _setNeedsRelayout()
     }
-    
+
     func handleSelection(for tweak: AnyTweak) {
         _handleSelection(for: tweak)
     }
-    
+
     func handleBeingLocated() {
         _highlightForAWhile()
     }
@@ -70,23 +70,23 @@ extension TweakListViewCell {
         super.layoutSubviews()
         _calibrateUI()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         _toggleShadow()
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         _recyclePrimaryView()
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         guard _checkCanManuallyHighlight() else { return }
         _setHighlight(selected, animated: animated)
     }
-    
+
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
         guard _checkCanManuallyHighlight() else { return }
@@ -107,7 +107,7 @@ private extension TweakListViewCell {
         topBackground.addSubview(nameLabel)
         topBackground.addSubview(primaryViewContainer)
     }
-    
+
     func _layoutUI() {
         let nameVerticalPadding: CGFloat = 19
         let contentPadding: CGFloat = 20
@@ -140,7 +140,7 @@ private extension TweakListViewCell {
             primaryViewContainer.widthAnchor.constraint(greaterThanOrEqualToConstant: 12),
         ])
     }
-    
+
     func _calibrateUI() {
         bottomBackground.frame = .init(
             x: Constants.UI.ListView.horizontalPadding,
@@ -158,13 +158,13 @@ private extension TweakListViewCell {
         } else {
             bottomBackground.layer.shadowPath = UIBezierPath(rect: bottomBackground.bounds).cgPath
         }
-        
+
         highlightBackground.frame.size = .init(
             width: bottomBackground.frame.width,
             height: bottomBackground.frame.height - topBackgroundBaseBottomPadding
         )
     }
-    
+
     func _toggleShadow() {
         bottomBackground.layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
@@ -175,36 +175,36 @@ private extension TweakListViewCell {
         icon.backgroundColor = Constants.UI.shapeColor(of: tweak)
         icon.image = Constants.UI.shapeImage(of: tweak)
     }
-    
+
     func _configLabelWith(tweak: AnyTweak) {
         nameLabel.text = tweak.name
     }
-    
+
     func _configBGWith(tweak: AnyTweak, isLast: Bool, scene: TweakListViewScene) {
         bottomBackground.layer.cornerRadius = isLast ? Constants.UI.ListView.cornerRadius : 0
         bottomBackground.isHidden = scene.isFloating
-        
+
         let paddingFactor: CGFloat = isLast ? 1 : 0
         topBackgroundBottomConstraint?.constant = -topBackgroundBaseBottomPadding - Constants.UI.ListView.verticalPadding * paddingFactor
     }
-    
+
     func _configPrimaryViewContainerWith(tweak: AnyTweak) {
         primaryViewContainer.reloadWith(tweak: tweak, recycler: delegate.primaryViewRecycler)
     }
-    
+
     func _setNeedsRelayout() {
         setNeedsUpdateConstraints()
         setNeedsLayout()
     }
-    
+
     func _recyclePrimaryView() {
         primaryViewContainer.recycle(by: delegate.primaryViewRecycler)
     }
-    
+
     func _checkCanManuallyHighlight() -> Bool {
         tweak.isUserInteractionEnabled && tweak.hasSecondaryView
     }
-    
+
     func _setHighlight(_ flag: Bool, animated: Bool) {
         if animated {
             UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: { [unowned self] in
@@ -214,7 +214,7 @@ private extension TweakListViewCell {
             highlightBackground.alpha = flag ? 0.1 : 0
         }
     }
-    
+
     func _highlightForAWhile() {
         UIView.animate(withDuration: 0.25, delay: 0, options: [.beginFromCurrentState, .curveEaseIn], animations: { [unowned self] in
             highlightBackground.alpha = 0.1
@@ -233,7 +233,7 @@ private extension TweakListViewCell {
         _setHighlight(false, animated: false)
         _showLongPressOptions()
     }
-    
+
     func _showLongPressOptions() {
         let actions: [UIAlertAction] = [
             UIAlertAction(title: "Export Tweak", style: .default) { [unowned self] _ in initiateExport() },
@@ -241,12 +241,12 @@ private extension TweakListViewCell {
         ]
         UIAlertController.actionSheet(actions: actions, view: topBackground, fromVC: delegate.cellHostViewController)
     }
-    
+
     func _handleSelection(for tweak: AnyTweak) {
         guard tweak.isUserInteractionEnabled else { return }
         _showSecondaryView(for: tweak)
     }
-    
+
     func _showSecondaryView(for tweak: AnyTweak) {
         guard tweak.hasSecondaryView, let secondaryView = tweak.secondaryView else { return }
         let container = TweakSecondaryViewContainer(tweak: tweak, secondaryView: secondaryView)
@@ -267,19 +267,19 @@ extension TweakListViewCell: TweakExportInitiator {
     var fromVC: UIViewController? {
         delegate.cellHostViewController
     }
-    
+
     var context: TweakContext? {
         tweak.context
     }
-    
+
     var sender: UIView {
         topBackground
     }
-    
+
     var exportAlertTitle: String? {
         "Export \(tweak.name) To..."
     }
-    
+
     var exportableTweaks: [AnyTradableTweak] {
         guard let tweak = tweak as? AnyTradableTweak else { return [] }
         return [tweak]
@@ -290,7 +290,7 @@ extension TweakListViewCell: TweakResetInitiator {
     var resetAlertTitle: String? {
         "Reset \(tweak.name)?"
     }
-    
+
     var resetableTweaks: [AnyTweak] {
         [tweak]
     }
@@ -304,7 +304,7 @@ private extension TweakListViewCell {
         v.layer.addShadow(color: Constants.UI.ListView.shadowColor, y: Constants.UI.ListView.shadowY, radius: Constants.UI.ListView.shadowRadius)
         return v
     }
-    
+
     func _topBackground() -> UIView {
         let v = UIView()
         v.backgroundColor = Constants.Color.backgroundElevatedSecondary
@@ -314,7 +314,7 @@ private extension TweakListViewCell {
         v.addGestureRecognizer(longPress)
         return v
     }
-    
+
     func _highlightBackground() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false
@@ -322,7 +322,7 @@ private extension TweakListViewCell {
         v.alpha = 0
         return v
     }
-    
+
     func _nameLabel() -> UILabel {
         let l = UILabel()
         l.numberOfLines = 0
@@ -331,14 +331,14 @@ private extension TweakListViewCell {
         l.textColor = Constants.Color.labelPrimary
         return l
     }
-    
+
     func _icon() -> UIImageView {
         let iv = UIImageView()
         iv.contentMode = .center
         iv.layer.addCorner(radius: Constants.UI.ListView.iconCornerRadius)
         return iv
     }
-    
+
     func _primaryViewContainer() -> TweakPrimaryViewContainer {
         let v = TweakPrimaryViewContainer(delegate: self)
         return v

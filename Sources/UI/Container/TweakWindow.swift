@@ -10,17 +10,17 @@ import UIKit
 final class TweakWindow: UIWindow {
     private unowned let context: TweakContext
     private(set) var isFloating = false
-    
+
     init(context: TweakContext, locateAt tweak: AnyTweak?) {
         self.context = context
         super.init(frame: UIScreen.main.bounds)
         windowLevel = UIWindow.Level.statusBar + 100
         backgroundColor = Constants.UI.windowBackgroundColor
         rootViewController = UINavigationController(rootViewController: TweakRootViewController(context: context, locateAt: tweak))
-        
+
         Self._setupOnce()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -35,11 +35,11 @@ extension TweakWindow {
 
 extension TweakWindow {
     private(set) static var showingWindow: TweakWindow?
-    
+
     func show(completion: @escaping () -> Void) {
         precondition(Self.showingWindow == nil, "The is already a showing window.")
         Self.showingWindow = self
-        
+
         NotificationCenter.default.post(name: .willShowTweakWindow, object: context)
         let animation = CABasicAnimation(keyPath: "transform.translation.y", fromValue: bounds.height, toValue: 0)
         CATransaction.begin()
@@ -53,11 +53,11 @@ extension TweakWindow {
         layer.add(animation, forKey: "show")
         CATransaction.commit()
     }
-    
+
     func dismiss(completion: @escaping () -> Void) {
         precondition(Self.showingWindow === self, "The dismissing window is not the showing window.")
         Self.showingWindow = nil
-        
+
         NotificationCenter.default.post(name: .willDismissTweakWindow, object: context)
         let animation = CABasicAnimation(keyPath: "transform.translation.y", fromValue: 0, toValue: bounds.height)
         CATransaction.begin()
@@ -82,15 +82,15 @@ extension TweakWindow {
 
 private extension TweakWindow {
     static var didSetup = false
-    
+
     static func _setupOnce() {
         dispatchPrecondition(condition: .onQueue(.main))
         if didSetup { return }
         didSetup = true
-        
+
         _setupStatusBar()
     }
-    
+
     static func _setupStatusBar() {
         // workaround to restore status bar when floating
         let selector = NSSelectorFromString(_decodeText("^b`m@eedbsRs`strA`q@ood`q`mbd", shift: 1))
@@ -98,7 +98,7 @@ private extension TweakWindow {
         let imp = method_getImplementation(method)
         class_addMethod(self, selector, imp, method_getTypeEncoding(method))
     }
-    
+
     static func _decodeText(_ text: String, shift: Int) -> String {
         var result = ""
         for c in text.unicodeScalars {
@@ -112,7 +112,7 @@ private extension TweakWindow {
     @objc func _takeoverStatusBarAppearance() -> Bool {
         !isFloating
     }
-    
+
     func _setNeedsUpdateStatusBarAppearance() {
         rootViewController?.setNeedsStatusBarAppearanceUpdate()
     }

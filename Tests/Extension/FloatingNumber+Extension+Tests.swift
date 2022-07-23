@@ -5,8 +5,8 @@
 //  Created by cokile
 //
 
-import XCTest
 @testable import TweaKit
+import XCTest
 
 class FloatingNumberExtensionTests: XCTestCase {
     func testFloatRound() {
@@ -32,7 +32,7 @@ class FloatingNumberExtensionTests: XCTestCase {
         XCTAssertEqual(number.rounded(to: .hundredth), 0.5, accuracy: Float.ulpOfOne)
         number = 0.555
         XCTAssertEqual(number.rounded(to: .hundredth), 0.56, accuracy: Float.ulpOfOne)
-        
+
         number = 0.00001
         XCTAssertEqual(number.rounded(to: .thousandth), 0, accuracy: Float.ulpOfOne)
         number = 0.0001
@@ -48,7 +48,7 @@ class FloatingNumberExtensionTests: XCTestCase {
         number = 0.49999999
         XCTAssertEqual(number.rounded(to: .thousandth), 0.5, accuracy: Float.ulpOfOne)
     }
-    
+
     func testDoubleRound() {
         var number: Double = 0.1
         XCTAssertEqual(number.rounded(to: .integer), 0, accuracy: Double.ulpOfOne)
@@ -72,7 +72,7 @@ class FloatingNumberExtensionTests: XCTestCase {
         XCTAssertEqual(number.rounded(to: .hundredth), 0.5, accuracy: Double.ulpOfOne)
         number = 0.555
         XCTAssertEqual(number.rounded(to: .hundredth), 0.56, accuracy: Double.ulpOfOne)
-        
+
         number = 0.00001
         XCTAssertEqual(number.rounded(to: .thousandth), 0, accuracy: Double.ulpOfOne)
         number = 0.0001
@@ -88,7 +88,7 @@ class FloatingNumberExtensionTests: XCTestCase {
         number = 0.49999999
         XCTAssertEqual(number.rounded(to: .thousandth), 0.5, accuracy: Double.ulpOfOne)
     }
-    
+
     func testCGFloatRound() {
         var number: CGFloat = 0.1
         XCTAssertEqual(number.rounded(to: .integer), 0, accuracy: CGFloat.ulpOfOne)
@@ -112,7 +112,7 @@ class FloatingNumberExtensionTests: XCTestCase {
         XCTAssertEqual(number.rounded(to: .hundredth), 0.5, accuracy: CGFloat.ulpOfOne)
         number = 0.555
         XCTAssertEqual(number.rounded(to: .hundredth), 0.56, accuracy: CGFloat.ulpOfOne)
-        
+
         number = 0.00001
         XCTAssertEqual(number.rounded(to: .thousandth), 0, accuracy: CGFloat.ulpOfOne)
         number = 0.0001

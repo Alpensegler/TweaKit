@@ -12,7 +12,7 @@ enum Haptic {
         case selection
         case impact(UIImpactFeedbackGenerator.FeedbackStyle = .light)
     }
-    
+
     static func occur(_ feedback: Feedback) {
         switch feedback {
         case .selection:

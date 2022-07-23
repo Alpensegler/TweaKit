@@ -5,8 +5,8 @@
 //  Created by cokile
 //
 
-import XCTest
 @testable import TweaKit
+import XCTest
 
 class MatcherTests: XCTestCase {
     func testEmptyKeywordSearch() {
@@ -25,7 +25,7 @@ class MatcherTests: XCTestCase {
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
-    
+
     func testMatchCaseSearch() {
         let trials: [SearchTrail] = [
             ("AbC", false, false, false, true),
@@ -42,7 +42,7 @@ class MatcherTests: XCTestCase {
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
-    
+
     func testLowerCaseSearch() {
         let trials: [SearchTrail] = [
             ("abc", false, false, false, true),
@@ -59,7 +59,7 @@ class MatcherTests: XCTestCase {
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
-    
+
     func testUpperCaseSearch() {
         let trials: [SearchTrail] = [
             ("ABC", false, false, false, true),
@@ -76,7 +76,7 @@ class MatcherTests: XCTestCase {
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
-    
+
     func testMixedCaseSearch() {
         let trials: [SearchTrail] = [
             ("abC", false, false, false, true),
@@ -93,7 +93,7 @@ class MatcherTests: XCTestCase {
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
-    
+
     func testFuzzySearch() {
         let trials: [SearchTrail] = [
             ("Ab1", false, false, false, false),
@@ -104,7 +104,7 @@ class MatcherTests: XCTestCase {
             ("Ab1", true, false, true, true),
             ("Ab1", false, true, true, false),
             ("Ab1", true, true, true, true),
-            
+
             ("CG3", false, false, false, false),
             ("CG3", true, false, false, true),
             ("CG3", false, true, false, false),
@@ -119,16 +119,16 @@ class MatcherTests: XCTestCase {
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
-    
+
     func testDiacriticMarks() {
         let haystack = "AbcDé"
-        
+
         let trials: [(needle: String, isCaseSensitive: Bool, matched: Bool)] = [
             ("e", true, true),
             ("e", false, true),
             ("E", true, false),
             ("E", false, true),
-            
+
             ("é", true, true),
             ("é", false, true),
             ("É", true, false),
@@ -144,7 +144,7 @@ class MatcherTests: XCTestCase {
             XCTAssertEqual(result.isMatched, trial.matched)
         }
     }
-    
+
     func testPerformance() {
         measure {
             _ = Matcher.match(haystack: "A Sample Tweak Section", with: "se", isFuzzy: true, isSmartcase: true, isCaseSensitive: false)
@@ -154,6 +154,6 @@ class MatcherTests: XCTestCase {
 
 private extension MatcherTests {
     var haystack: String { "AbCdEfG 1234567" }
-    
+
     typealias SearchTrail = (needle: String, isFuzzy: Bool, isSmartcase: Bool, isCaseSensitive: Bool, matched: Bool)
 }

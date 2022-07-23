@@ -5,8 +5,8 @@
 //  Created by cokile
 //
 
-import XCTest
 @testable import TweaKit
+import XCTest
 
 // swiftlint:disable weak_delegate
 
@@ -28,13 +28,13 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
         return searcher
     }()
     private(set) var currentKeyword: String?
-    
+
     override func setUp() {
         super.setUp()
         currentKeyword = nil
         searcher.reset(unbind: true)
     }
-    
+
     func testSearchInstantly() {
         var didShowLoading = false
         var tweakResults: [String] = []
@@ -50,14 +50,14 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
                 break
             }
         }
-        
+
         didShowLoading = false
         tweakResults = ["PLACEHOLDER"]
         search(with: "BC", debounce: false)
         XCTAssertTrue(didShowLoading)
         XCTAssertEqual(tweakResults, ["ABC", "BCD"])
         XCTAssertEqual(searchingKeyword, "BC")
-        
+
         didShowLoading = false
         tweakResults = ["PLACEHOLDER"]
         search(with: "XYZ", debounce: false)
@@ -65,7 +65,7 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
         XCTAssertTrue(tweakResults.isEmpty)
         XCTAssertEqual(searchingKeyword, "XYZ")
     }
-    
+
     func testSearchDebounced() {
         let exp = XCTestExpectation(description: "debounced search")
         var didShowLoading = false
@@ -84,15 +84,15 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
                 break
             }
         }
-        
+
         search(with: "AB", debounce: true)
         search(with: "BC", debounce: true)
         XCTAssertTrue(didShowLoading)
         XCTAssertTrue(tweakResults.isEmpty)
-        
+
         wait(for: [exp], timeout: debounceDueTime + 0.1)
     }
-    
+
     func testSearchCancel() {
         let exp = XCTestExpectation(description: "cancel search")
         exp.isInverted = true
@@ -104,12 +104,12 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
                 break
             }
         }
-        
+
         search(with: "BC", debounce: true)
         searcher.cancel()
         wait(for: [exp], timeout: debounceDueTime * 4)
     }
-    
+
     func testSearchHistoryRecordedForInstantSearch() {
         var historyResult: [String] = []
         searcher.bind { event in
@@ -120,14 +120,14 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
                 break
             }
         }
-        
+
         XCTAssertTrue(historyResult.isEmpty)
         search(with: "AB", debounce: false)
         XCTAssertEqual(historyResult, ["AB"])
         search(with: "BC", debounce: false)
         XCTAssertEqual(historyResult, ["BC", "AB"])
     }
-    
+
     func testSearchHistoryRecordedForDebouncedSearch() {
         var historyResult: [String] = []
         let exp = XCTestExpectation(description: "search histories")
@@ -140,11 +140,11 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
                 break
             }
         }
-        
+
         search(with: "AB", debounce: true)
         search(with: "BC", debounce: true)
         XCTAssertTrue(historyResult.isEmpty)
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + debounceDueTime + 0.1) {
             XCTAssertEqual(historyResult, ["BC"])
             self.search(with: "CD", debounce: true)
@@ -155,10 +155,10 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
             XCTAssertEqual(historyResult, ["CD", "BC"])
             exp.fulfill()
         }
-        
+
         wait(for: [exp], timeout: debounceDueTime * 5)
     }
-    
+
     func testSearchHistoryOrderLatestFirst() {
         var historyResult: [String] = []
         searcher.bind { event in
@@ -169,7 +169,7 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
                 break
             }
         }
-        
+
         XCTAssertTrue(historyResult.isEmpty)
         search(with: "AB", debounce: false)
         XCTAssertEqual(historyResult, ["AB"])
@@ -178,7 +178,7 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
         search(with: "AB", debounce: false)
         XCTAssertEqual(historyResult, ["AB", "BC"])
     }
-    
+
     func testSearchHistoryMaxCount() {
         var historyResult: [String] = []
         searcher.bind { event in
@@ -189,7 +189,7 @@ class TweakSearcherTests: XCTestCase, TweakSearcherDelegate {
                 break
             }
         }
-        
+
         XCTAssertTrue(historyResult.isEmpty)
         search(with: "AB", debounce: false)
         XCTAssertLessThanOrEqual(historyResult.count, historyMaxCount)
@@ -223,7 +223,7 @@ private class SearcherTestContextDelegate: TweakContextDelegate {
     func searchDebounceDueTime(for context: TweakContext) -> TimeInterval {
         debounceDueTime
     }
-    
+
     func maxSearchHistoryCount(for context: TweakContext) -> Int {
         historyMaxCount
     }

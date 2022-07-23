@@ -10,30 +10,30 @@ import UIKit
 final class TweakSecondaryViewReorderer<Item: TweakSecondaryViewItemConvertible>: UITableViewController {
     private weak var currentTweak: AnyTweak?
     private var items: [Item] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         _setupUI()
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         items.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cell: Cell.self, for: indexPath)
         cell.configContent(items[indexPath.row])
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         .none
     }
-    
+
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         false
     }
-    
+
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         if sourceIndexPath == destinationIndexPath { return }
         let item = items[sourceIndexPath.row]
@@ -80,7 +80,7 @@ private extension TweakSecondaryViewReorderer {
             _setupUI()
             _layoutUI()
         }
-        
+
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
@@ -100,7 +100,7 @@ private extension TweakSecondaryViewReorderer.Cell {
         contentView.addSubview(separator)
         contentView.addSubview(displayTextLabel)
     }
-    
+
     func _layoutUI() {
         contentView.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -126,7 +126,7 @@ private extension TweakSecondaryViewReorderer.Cell {
         l.font = .systemFont(ofSize: 18)
         return l
     }
-    
+
     func _separator() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false

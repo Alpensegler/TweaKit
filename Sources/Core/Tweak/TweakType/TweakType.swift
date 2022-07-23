@@ -32,7 +32,7 @@ public protocol TweakType {
     associatedtype Value
     /// the concrete tweak type.
     associatedtype Base = Self
-    
+
     /// Creates and initializes a tweak with the given concrete type.
     ///
     /// - Parameters:
@@ -60,7 +60,7 @@ public protocol AnyTweak: AnyObject {
     var info: TweakInfo { get }
     /// The current value of the tweak.
     var currentValue: Storable { get }
-    
+
     /// The primary view reuse id of the tweak.
     ///
     /// Every tweak must have a primary view.
@@ -93,7 +93,7 @@ public protocol AnyTweak: AnyObject {
     ///
     /// For more information about secondary view please checkout ``TweakSecondaryView``.
     var secondaryView: TweakSecondaryView? { get }
-    
+
     /// Registers the tweak in the context.
     /// - Parameters:
     ///   - context: The context in which the tweak is registered.
@@ -106,7 +106,7 @@ extension AnyTweak {
         let names: [String?] = [list?.name, section?.name, name]
         return names.compactMap { $0 }.joined(separator: Constants.idSeparator)
     }
-    
+
     var list: TweakList? { section?.list }
     var context: TweakContext? { list?.context }
 }

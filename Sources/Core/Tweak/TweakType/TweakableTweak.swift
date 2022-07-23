@@ -32,10 +32,10 @@ class TweakableTweak<Value: Tweakable>: Tweak<Value> {
     override var secondaryView: TweakSecondaryView? {
         Value.secondaryView
     }
-    
+
     override init(name: String, default: Value) {
         assert(`default`.validateAsDefaultValue(), "Invalid default value: \(`default`) for \(name)")
-        
+
         super.init(name: name, default: `default`)
     }
 }

@@ -10,21 +10,21 @@ import UIKit
 final class TweakFloatingBall: UIView {
     private unowned var context: TweakContext
     private var tweaks: [AnyTweak] = []
-    
+
     private lazy var dashLayer = _dashLayer()
     private lazy var iconLayer = _iconLayer()
     private lazy var pan = _pan()
     private lazy var tap = _tap()
     private lazy var longPress = _longPress()
-    
+
     private var snapAnimator: UIDynamicAnimator?
     private var snapBehavior: UISnapBehavior?
     private var dynamicItemBehavior: UIDynamicItemBehavior?
-    
+
     deinit {
         _unregisterNotifications()
     }
-    
+
     init(context: TweakContext) {
         self.context = context
         super.init(frame: .init(x: 0, y: 0, width: Constants.UI.Floating.ballSize, height: Constants.UI.Floating.ballSize))
@@ -33,7 +33,7 @@ final class TweakFloatingBall: UIView {
         _calibrateUI()
         _reposition()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -44,7 +44,7 @@ extension TweakFloatingBall {
         super.layoutSubviews()
         _layoutUI()
     }
-    
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         _calibrateUI()
@@ -53,18 +53,18 @@ extension TweakFloatingBall {
 
 extension TweakFloatingBall: TweakFloatingSecondaryParticipant {
     var category: TweakFloatingParticipantCategory { .ball }
-    
+
     func transit(to category: TweakFloatingParticipantCategory) {
         _willTransitAway()
     }
-    
+
     func transit(from category: TweakFloatingParticipantCategory) {
     }
-    
+
     func completeTransition(from category: TweakFloatingParticipantCategory) {
         _didTransitIn()
     }
-    
+
     func reload(withTweaks tweaks: [AnyTweak]) {
         self.tweaks = tweaks
         _reload()
@@ -81,7 +81,7 @@ extension TweakFloatingBall: UIDynamicAnimatorDelegate {
 extension TweakFloatingBall {
     // normalized position
     private static var lastPosition: CGPoint?
-    
+
     static func position(in window: TweakWindow) -> CGPoint {
         let viablePositionFrame = _viablePositionFrame(in: window)
         if let position = lastPosition {
@@ -93,7 +93,7 @@ extension TweakFloatingBall {
             return .init(x: viablePositionFrame.maxX, y: viablePositionFrame.maxY)
         }
     }
-    
+
     private static func _viablePositionFrame(in  window: TweakWindow) -> CGRect {
         UIApplication.tk_shared.isLandscape
             ? window.bounds
@@ -103,7 +103,7 @@ extension TweakFloatingBall {
                 .insetBy(dx: Constants.UI.Floating.ballHorizontalPadding, dy: Constants.UI.Floating.ballVerticalPadding)
                 .insetBy(dx: Constants.UI.Floating.ballSize.half, dy: Constants.UI.Floating.ballSize.half)
     }
-    
+
     private static func _savePosition(_ position: CGPoint, in window: TweakWindow) {
         let viablePositionFrame = _viablePositionFrame(in: window)
         let x = (position.x - viablePositionFrame.minX) / viablePositionFrame.width
@@ -118,18 +118,18 @@ private extension TweakFloatingBall {
         layer.addCorner(radius: frame.halfHeight)
         layer.addSublayer(dashLayer)
         layer.addSublayer(iconLayer)
-        
+
         addGestureRecognizer(pan)
         addGestureRecognizer(tap)
         addGestureRecognizer(longPress)
     }
-    
+
     func _layoutUI() {
         dashLayer.frame = bounds.insetBy(dx: 4, dy: 4)
         dashLayer.path = UIBezierPath(roundedRect: dashLayer.bounds, cornerRadius: dashLayer.frame.halfHeight).cgPath
         iconLayer.position = .init(x: bounds.halfWidth, y: bounds.halfHeight)
     }
-    
+
     func _calibrateUI() {
         layer.shadowOpacity = traitCollection.userInterfaceStyle == .dark ? 0 : 1
     }
@@ -139,11 +139,11 @@ private extension TweakFloatingBall {
     func _registerNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(_onDidChangeOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
-    
+
     func _unregisterNotifications() {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     @objc func _onDidChangeOrientation(_ notification: Notification) {
         _reposition()
     }
@@ -157,15 +157,15 @@ private extension TweakFloatingBall {
             Constants.UI.shapeImage(of: tweak).draw(in: iconLayer.bounds)
         }.cgImage
     }
-    
+
     func _reposition() {
         layer.position = context.showingWindow.map(Self.position(in:)) ?? .zero
     }
-    
+
     func _willTransitAway() {
         removeFromSuperview()
     }
-    
+
     func _didTransitIn() {
         context.showingWindow?.addSubview(self)
     }
@@ -187,12 +187,12 @@ private extension TweakFloatingBall {
             break
         }
     }
-    
+
     @objc func _handleTap(_ tap: UITapGestureRecognizer) {
         guard tap.state == .ended else { return }
         _toPanel()
     }
-    
+
     @objc func _handleLongPress(_ longPress: UITapGestureRecognizer) {
         guard longPress.state == .began else { return }
         _toList()
@@ -208,7 +208,7 @@ private extension TweakFloatingBall {
             )
         }
     }
-    
+
     func _snapToClosestEdge(viablePositionFrame: CGRect) {
         guard let window = context.showingWindow else { return }
         let snapPoint: CGPoint = layer.position.x >= window.frame.halfWidth
@@ -222,19 +222,19 @@ private extension TweakFloatingBall {
         snapAnimator?.addBehavior(dynamicItemBehavior!)
         snapAnimator?.delegate = self
     }
-    
+
     func _cancelSnap() {
         snapAnimator?.removeAllBehaviors()
         snapAnimator = nil
         snapBehavior = nil
         dynamicItemBehavior = nil
     }
-    
+
     func _toPanel() {
         isUserInteractionEnabled = false
         context.floatingTransitioner?.animateTransition(from: self, to: TweakFloatingPanel(context: context), tweaks: tweaks)
     }
-    
+
     func _toList() {
         isUserInteractionEnabled = false
         context.floatingTransitioner?.animateBackToPrimary(from: self)
@@ -251,7 +251,7 @@ private extension TweakFloatingBall {
         l.lineDashPattern = [4, 4]
         return l
     }
-    
+
     func _iconLayer() -> CALayer {
         let l = CALayer()
         l.frame.size = .init(width: Constants.UI.Floating.ballIconSize, height: Constants.UI.Floating.ballIconSize)
@@ -259,17 +259,17 @@ private extension TweakFloatingBall {
         l.contentsGravity = .center
         return l
     }
-    
+
     func _pan() -> UIPanGestureRecognizer {
         let p = UIPanGestureRecognizer(target: self, action: #selector(_handlePan))
         return p
     }
-    
+
     func _tap() -> UITapGestureRecognizer {
         let t = UITapGestureRecognizer(target: self, action: #selector(_handleTap))
         return t
     }
-    
+
     func _longPress() -> UILongPressGestureRecognizer {
         let l = UILongPressGestureRecognizer(target: self, action: #selector(_handleLongPress))
         return l

@@ -5,10 +5,12 @@
 //  Created by cokile
 //
 
-// The Matcher implementation is a modification base on objc.io:
-// https://www.objc.io/blog/2020/08/18/fuzzy-search/
-// https://github.com/objcio/S01E214-quick-open-from-recursion-to-loops
+// swiftlint:disable line_length
 /*
+ The Matcher implementation is a modification base on objc.io:
+ https://www.objc.io/blog/2020/08/18/fuzzy-search/
+ https://github.com/objcio/S01E214-quick-open-from-recursion-to-loops
+
  MIT License
  
  Copyright (c) 2019 objc.io
@@ -19,6 +21,7 @@
  
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+// swiftlint:enable line_length
 
 import Foundation
 
@@ -36,15 +39,15 @@ enum Matcher {
 
 private extension Matcher {
     static let locale = Locale(identifier: "en_US_POSIX")
-    
+
     static func _validate(haystack: String, needle: String) -> Bool {
         !haystack.isEmpty && !needle.isEmpty
     }
-    
+
     static func _normalize(haystack: String, needle: String, isFuzzy: Bool, isSmartcase: Bool, isCaseSensitive: Bool) -> (haystack: String, needle: String) {
         var haystack = haystack
         var needle = needle
-        
+
         if isCaseSensitive || (isSmartcase && needle.contains(where: { $0.isUppercase })) {
             haystack = haystack.folding(options: [.widthInsensitive, .diacriticInsensitive], locale: locale)
             needle = needle.folding(options: [.widthInsensitive, .diacriticInsensitive], locale: locale)
@@ -54,27 +57,27 @@ private extension Matcher {
         }
         return (haystack, needle)
     }
-    
+
     static func _exactMatch(haystack: String, needle: String) -> Result {
         haystack.contains(needle) ? .exactMatched : .notMatched
     }
-    
+
     static func _fuzzyMatch(haystack: String, needle: String) -> Result {
         let haystackCount = haystack.count
         let needleCount = needle.count
-        
+
         if haystackCount < needleCount {
             return .notMatched
         }
-        
+
         if haystack == needle {
             return .exactMatched
         }
-        
+
         let matrix = ScoreMatrix(width: haystackCount, height: needleCount)
         for (row, needleChar) in needle.enumerated() {
             var didMatch = false
-            
+
             let previousMatchIndex: Int
             if row == 0 {
                 previousMatchIndex = -1
@@ -101,7 +104,7 @@ private extension Matcher {
             }
             guard didMatch else { return .notMatched }
         }
-        
+
         return matrix[row: needleCount - 1]
             .compactMap { $0 }
             .max()
@@ -112,11 +115,11 @@ private extension Matcher {
 
 extension Matcher {
     typealias Score = Int16
-    
+
     struct Result {
         let score: Score
         let isMatched: Bool
-        
+
         static let notMatched = Result(score: .min, isMatched: false)
         static let exactMatched = Result(score: .max, isMatched: true)
     }
@@ -127,18 +130,18 @@ private extension Matcher {
         let width: Int
         let height: Int
         private var storage: [Score?]
-        
+
         init(width: Int, height: Int) {
             self.width = width
             self.height = height
             self.storage = .init(repeating: nil, count: width * height)
         }
-        
+
         subscript(column: Int, row: Int) -> Score? {
             get { storage[row * width + column] }
             set { storage[row * width + column] = newValue }
         }
-        
+
         subscript(row row: Int) -> [Score?] {
             Array(storage[row * width..<(row + 1) * width])
         }

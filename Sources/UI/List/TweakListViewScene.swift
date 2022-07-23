@@ -20,7 +20,7 @@ extension TweakListViewScene {
         case .search: return Constants.UI.tweakEmptyResultView
         }
     }
-    
+
     var isFloating: Bool {
         switch self {
         case .list, .search: return false

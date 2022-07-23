@@ -18,7 +18,7 @@ enum TweakFloatingParticipantCategory {
 
 protocol TweakFloatingParticipant: AnyObject {
     var category: TweakFloatingParticipantCategory { get }
-    
+
     func prepareTransition(to category: TweakFloatingParticipantCategory)
     func prepareTransition(from category: TweakFloatingParticipantCategory)
     func transit(to category: TweakFloatingParticipantCategory)
@@ -59,7 +59,7 @@ extension TweakFloatingAudience {
     func startListeningFloating(in context: TweakContext) {
         context.floatingTransitioner?.addAudience(self)
     }
-    
+
     func stopListeningFloating(in context: TweakContext) {
         context.floatingTransitioner?.removeAudience(self)
     }

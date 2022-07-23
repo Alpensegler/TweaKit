@@ -17,11 +17,11 @@ public final class TweakList {
     ///
     /// `name` is also the id of the list which means there are no two lists that have the same name in one context.
     public let name: String
-    
+
     let sections: [TweakSection]
-    
+
     weak var context: TweakContext?
-    
+
     /// Creates and initializes a tweak list with the given name and the tweak sections.
     ///
     /// The sections of the list are sorted by alphabetic order and sections with duplicated names are filtered.
@@ -31,7 +31,7 @@ public final class TweakList {
     ///   - sections: A builder that creates the sections of the list.
     public init(_ name: String, @TweakContainerBuilder<TweakSection> _ sections: () -> [TweakSection]) {
         assert(!name.contains(Constants.idSeparator), "TweakList name should not have \(Constants.idSeparator)")
-        
+
         self.name = name
         self.sections = sections()
         self.sections.forEach { $0.list = self }

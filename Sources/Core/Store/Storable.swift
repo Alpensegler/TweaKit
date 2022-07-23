@@ -31,7 +31,7 @@ extension Storable where Self: Numeric {
         assert(size == MemoryLayout.size(ofValue: value))
         return value
     }
-    
+
     public func convertToData() -> Data {
         var value = self
         return .init(bytes: &value, count: MemoryLayout<Self>.size)
@@ -62,7 +62,7 @@ extension Bool: Storable {
             return nil
         }
     }
-    
+
     public func convertToData() -> Data {
         if self {
             return Int8(1).convertToData()
@@ -76,7 +76,7 @@ extension String: Storable {
     public static func convert(from data: Data) -> String? {
         String(data: data, encoding: .utf8)
     }
-    
+
     public func convertToData() -> Data {
         data(using: .utf8) ?? .init()
     }
@@ -86,7 +86,7 @@ extension UIColor: Storable {
     public static func convert(from data: Data) -> Self? {
         String.convert(from: data).flatMap { UIColor(hexString: $0) as? Self }
     }
-    
+
     public func convertToData() -> Data {
         toRGBHexString(includeAlpha: true).convertToData()
     }
@@ -98,7 +98,7 @@ extension Array: Storable where Element: Storable {
         let array = data?.compactMap { Element.convert(from: $0) }
         return array?.count == data?.count ? array : nil
     }
-    
+
     // swiftlint:disable force_try
     public func convertToData() -> Data {
         try! JSONEncoder().encode(map { $0.convertToData() })
@@ -110,7 +110,7 @@ extension Storable where Self: RawRepresentable, RawValue: Storable {
     public static func convert(from data: Data) -> Self? {
         RawValue.convert(from: data).flatMap { self.init(rawValue: $0) }
     }
-    
+
     public func convertToData() -> Data {
         rawValue.convertToData()
     }

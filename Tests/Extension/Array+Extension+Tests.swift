@@ -5,8 +5,8 @@
 //  Created by cokile
 //
 
-import XCTest
 @testable import TweaKit
+import XCTest
 
 class ArrayExtensionTests: XCTestCase {
     func testUniqued() throws {
@@ -14,7 +14,7 @@ class ArrayExtensionTests: XCTestCase {
         XCTAssertEqual(objects.uniqued { $0.seq == $1.seq }, objects)
         XCTAssertEqual(objects.uniqued { $0.code == $1.code }, objects)
         XCTAssertEqual(objects.uniqued { $0.seq == $1.seq && $0.code == $1.code }, objects)
-        
+
         let o1 = Object(seq: 1, code: 1)
         let o2 = Object(seq: 2, code: 1)
         let o3 = Object(seq: 2, code: 2)

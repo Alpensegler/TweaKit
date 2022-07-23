@@ -13,18 +13,18 @@ final class TweakSecondaryViewContainer: UIViewController {
     private var notifyToken: NotifyToken? {
         didSet { oldValue?.invalidate() }
     }
-    
+
     private lazy var animator = TweakSecondaryViewAnimator(delegate: self)
 
     private lazy var titleLabel = _titleLabel()
     private lazy var resetButton = _resetButton()
     private lazy var dismissButton = _dismissButton()
     private lazy var hairline = _hairline()
-    
+
     deinit {
         notifyToken?.invalidate()
     }
-    
+
     init(tweak: AnyTweak, secondaryView: TweakSecondaryView) {
         self.tweak = tweak
         self.secondaryView = secondaryView
@@ -32,7 +32,7 @@ final class TweakSecondaryViewContainer: UIViewController {
         modalPresentationStyle = .custom
         transitioningDelegate = self
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -44,12 +44,12 @@ extension TweakSecondaryViewContainer {
         _setupBasicUI()
         _setupSecondaryView()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         _layoutUI()
     }
-    
+
     override var shouldAutorotate: Bool {
         false
     }
@@ -59,7 +59,7 @@ extension TweakSecondaryViewContainer: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         animator
     }
-    
+
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         animator
     }
@@ -73,7 +73,7 @@ extension TweakSecondaryViewContainer: TweakSecondaryViewAnimatorDelegate {
         let maxHeight = UIScreen.main.bounds.height - UIApplication.tk_shared.statusBarHeight - Constants.UI.SecondaryView.navigationBarHeight
         return (topInset + secondaryView.estimatedHeight + bottomInset).clamped(from: minHeight, to: maxHeight)
     }
-    
+
     func animatorDidTapBlankArea(_ animator: TweakSecondaryViewAnimator) {
         _initiateDismiss()
     }
@@ -83,11 +83,11 @@ extension TweakSecondaryViewContainer: TweakResetInitiator {
     var fromVC: UIViewController? {
         self
     }
-    
+
     var resetableTweaks: [AnyTweak] {
         [tweak]
     }
-    
+
     var resetAlertTitle: String? {
         "Reset \(tweak.name)?"
     }
@@ -102,7 +102,7 @@ private extension TweakSecondaryViewContainer {
         view.addSubview(dismissButton)
         view.addSubview(hairline)
     }
-    
+
     func _setupSecondaryView() {
         secondaryView.reload(withTweak: tweak, manually: false)
         addChildViewController(secondaryView)
@@ -111,7 +111,7 @@ private extension TweakSecondaryViewContainer {
             self.secondaryView.reload(withTweak: self.tweak, manually: manually)
         }
     }
-    
+
     func _layoutUI() {
         resetButton.frame.origin = .init(
             x: secondaryView.horizontalPadding,
@@ -146,18 +146,18 @@ private extension TweakSecondaryViewContainer {
     @objc func _dismiss(_ sender: UIButton) {
         _initiateDismiss()
     }
-    
+
     @objc func _reset(_ sender: UIButton) {
         _initiateReset()
     }
-    
+
     func _initiateDismiss() {
         let view = secondaryView
         dismiss(animated: true) {
             view.removeFromParentController()
         }
     }
-    
+
     func _initiateReset() {
         initiateReset()
     }
@@ -174,7 +174,7 @@ private extension TweakSecondaryViewContainer {
         l.sizeToFit()
         return l
     }
-    
+
     func _resetButton() -> UIButton {
         let b = HitOutsideButton(type: .system)
         // A mimic of system destructive style color
@@ -185,7 +185,7 @@ private extension TweakSecondaryViewContainer {
         b.sizeToFit()
         return b
     }
-    
+
     func _dismissButton() -> UIButton {
         let b = HitOutsideButton(type: .system)
         b.tintColor = Constants.Color.actionBlue
@@ -195,7 +195,7 @@ private extension TweakSecondaryViewContainer {
         b.sizeToFit()
         return b
     }
-    
+
     func _hairline() -> UIView {
         let v = UIView()
         v.backgroundColor = Constants.Color.separator
@@ -208,7 +208,7 @@ extension Constants.UI {
         fileprivate static let titleHeight: CGFloat = 60
         fileprivate static let hairlineHeight: CGFloat = 1
         fileprivate static let navigationBarHeight: CGFloat = 44
-        
+
         static let defaultEstimatedHeight: CGFloat = 455
         static let horizontalPadding: CGFloat = 17
     }

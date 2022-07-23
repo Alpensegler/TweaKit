@@ -16,23 +16,23 @@ final class TweakSecondaryViewSelector<Item: Selectable>: UITableViewController 
         super.viewDidLoad()
         _setupUI()
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         items.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(cell: Cell.self, for: indexPath)
         cell.configContent(items[indexPath.row])
         cell.configIsSelected(indexPath.row == selectedIndex)
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? Cell else { return }
         cell.configIsSelected(indexPath.row == selectedIndex)
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let tweak = currentTweak, indexPath.row != selectedIndex else { return }
@@ -78,27 +78,27 @@ private extension TweakSecondaryViewSelector {
         private lazy var tickImageView = _tickImageView()
         private lazy var separator = _separator()
         private lazy var highlightBackground = _highlightBackground()
-        
+
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             _setupUI()
             _layoutUI()
         }
-        
+
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-        
+
         override func layoutSubviews() {
             super.layoutSubviews()
             _calibrateUI()
         }
-        
+
         override func setSelected(_ selected: Bool, animated: Bool) {
             super.setSelected(selected, animated: animated)
             _setHighlight(selected, animated: animated)
         }
-        
+
         override func setHighlighted(_ highlighted: Bool, animated: Bool) {
             super.setHighlighted(highlighted, animated: animated)
             _setHighlight(highlighted, animated: animated)
@@ -110,7 +110,7 @@ extension TweakSecondaryViewSelector.Cell {
     func configContent(_ item: Item) {
         displayTextLabel.text = item.displayText
     }
-    
+
     func configIsSelected(_ flag: Bool) {
         tickImageView.isHidden = !flag
     }
@@ -125,7 +125,7 @@ private extension TweakSecondaryViewSelector.Cell {
         contentView.addSubview(displayTextLabel)
         contentView.addSubview(tickImageView)
     }
-    
+
     func _layoutUI() {
         contentView.subviews.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -143,11 +143,11 @@ private extension TweakSecondaryViewSelector.Cell {
             separator.heightAnchor.constraint(equalToConstant: 1),
         ])
     }
-    
+
     func _calibrateUI() {
         highlightBackground.frame = contentView.bounds
     }
-    
+
     func _setHighlight(_ flag: Bool, animated: Bool) {
         if animated {
             UIView.animate(withDuration: 0.25, delay: 0, options: .beginFromCurrentState, animations: { [unowned self] in
@@ -169,21 +169,21 @@ private extension TweakSecondaryViewSelector.Cell {
         l.font = .systemFont(ofSize: 18)
         return l
     }
-    
+
     func _tickImageView() -> UIImageView {
         let v = UIImageView()
         v.isHidden = true
         v.image = Constants.Assets.tick
         return v
     }
-    
+
     func _separator() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false
         v.backgroundColor = Constants.Color.separator
         return v
     }
-    
+
     func _highlightBackground() -> UIView {
         let v = UIView()
         v.isUserInteractionEnabled = false
