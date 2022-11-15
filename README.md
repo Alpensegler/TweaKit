@@ -35,7 +35,7 @@ pod 'TweaKit', '~> 1.0'
 ### Carthage
 
 ```ogdl
-github 'Alpensegler/TweaKit' ~> 1.0
+github "Alpensegler/TweaKit" ~> 1.0
 ```
 
 ### Swift Package Manager
