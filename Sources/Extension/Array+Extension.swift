@@ -20,10 +20,8 @@ extension Array {
         if count == 1 { return self }
 
         var buffer: [Element] = .init(capacity: count)
-        for one in self {
-            if !buffer.contains(where: { another in isSame(one, another) }) {
-                buffer.append(one)
-            }
+        for one in self where !buffer.contains(where: { another in isSame(one, another) }) {
+            buffer.append(one)
         }
         return buffer
     }
