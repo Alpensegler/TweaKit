@@ -132,7 +132,13 @@ extension TweakListViewController {
 
 extension TweakListViewController {
     public override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        super.scrollViewDidEndScrollingAnimation(scrollView)
+        if #unavailable(iOS 16.0) {
+            // Starting from iOS 16, calling super.scrollViewDidEndScrollingAnimation(scrollView) would result in a unrecognized selector exception
+            // This is an optional method from the UIScrollViewDelegate, so probably UITableViewController does not implement this method anymore
+            // There is no need call it with super then
+            super.scrollViewDidEndScrollingAnimation(scrollView)
+        }
+
         if let indexPath = locatedIndexPath {
             _highlightLocatedTweak(at: indexPath)
             locatedIndexPath = nil
