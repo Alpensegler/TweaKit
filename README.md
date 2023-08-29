@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-<a href="https://img.shields.io/badge/Swift-5.4_5.5_5.6_5.7-orange?style=flat"><img src="https://img.shields.io/badge/Swift-5.4_5.5_5.6_5.7-Orange?style=flat"></a>
+<a href="https://img.shields.io/badge/Swift-5.4_5.5_5.6_5.7_5.8-orange?style=flat"><img src="https://img.shields.io/badge/Swift-5.4_5.5_5.6_5.7_5.8-Orange?style=flat"></a>
 <a href="https://cocoapods.org/pods/TweaKit"><img src="https://img.shields.io/cocoapods/v/TweaKit.svg?style=flat"></a>
 <a href="https://github.com/Carthage/Carthage/"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
 <a href="https://swift.org/package-manager/"><img src="https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat"></a>
