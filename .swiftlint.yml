@@ -5,8 +5,10 @@ included:
 # general
 # sort in alphabetical order
 disabled_rules:
+  - blanket_disable_command
   - force_cast
   - nesting
+  - notification_center_detachment
   - trailing_comma
 
 opt_in_rules:

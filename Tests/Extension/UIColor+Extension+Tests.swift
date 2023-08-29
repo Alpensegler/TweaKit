@@ -5,6 +5,8 @@
 //  Created by cokile
 //
 
+// swiftlint:disable large_tuple
+
 @testable import TweaKit
 import XCTest
 

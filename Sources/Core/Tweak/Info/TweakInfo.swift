@@ -40,7 +40,9 @@ extension TweakInfo {
 
     func setPersistent<Value: Storable>(_ value: Value?, forKey key: Key<KeyType.Persistent>, override: Bool) {
         let forceSet = (override || value == nil)
+        // swiftlint:disable unused_optional_binding
         if !forceSet, let _: Value = persistent(forKey: key) { return }
+        // swiftlint:enable unused_optional_binding
 
         if let store = tweak?.context?.store {
             let key = _persistentKey(forKey: key)

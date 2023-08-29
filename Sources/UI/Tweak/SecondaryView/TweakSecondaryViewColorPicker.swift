@@ -757,9 +757,11 @@ private extension TextField {
 
 // MARK: - Helpers
 
+// swiftlint:disable large_tuple
 private typealias Color = (uiColor: UIColor, rgba: RGBA, hex: String)
 
 private typealias RGBA = (r: Int, g: Int, b: Int, a: Int)
+// swiftlint:enable large_tuple
 private extension UIColor.RGBA {
     var ui: RGBA {
         (
