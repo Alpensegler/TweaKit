@@ -9,6 +9,7 @@ import UIKit
 
 final class TweakFloatingBall: UIView {
     private unowned var context: TweakContext
+    private let origin: TweakFloatingOrigin
     private var tweaks: [AnyTweak] = []
 
     private lazy var dashLayer = _dashLayer()
@@ -27,8 +28,9 @@ final class TweakFloatingBall: UIView {
         _unregisterNotifications()
     }
 
-    init(context: TweakContext) {
+    init(context: TweakContext, origin: TweakFloatingOrigin) {
         self.context = context
+        self.origin = origin
         super.init(frame: .init(x: 0, y: 0, width: Constants.UI.Floating.ballSize, height: Constants.UI.Floating.ballSize))
         _registerNotifications()
         _setupUI()
@@ -236,7 +238,7 @@ private extension TweakFloatingBall {
 
     func _toPanel() {
         isUserInteractionEnabled = false
-        context.floatingTransitioner?.animateTransition(from: self, to: TweakFloatingPanel(context: context), tweaks: tweaks)
+        context.floatingTransitioner?.animateTransition(from: self, to: TweakFloatingPanel(context: context, origin: origin), tweaks: tweaks)
     }
 
     func _toList() {

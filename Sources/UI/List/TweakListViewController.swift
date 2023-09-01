@@ -166,7 +166,17 @@ extension TweakListViewController: TweakListSectionHeaderDelegate {
     func sectionHeader(_ header: TweakListSectionHeader, didActivateFloatingForSection section: Int) {
         floatingSection = section
         floatingHeader = header
-        context.floatingTransitioner?.animateTransition(from: self, to: TweakFloatingBall(context: context), tweaks: tweaks[section])
+
+        let floatingOrigin: TweakFloatingOrigin
+        switch scene {
+        case .list:
+            floatingOrigin = .list
+        case .search:
+            floatingOrigin = .search
+        case .floating:
+            fatalError("Activating floating from floating")
+        }
+        context.floatingTransitioner?.animateTransition(from: self, to: TweakFloatingBall(context: context, origin: floatingOrigin), tweaks: tweaks[section])
     }
 }
 
@@ -175,8 +185,18 @@ extension TweakListViewController: TweakListViewCellDelegate {
         switch scene {
         case .list, .search:
             return parent ?? self
-        case .floating:
-            return context.showingWindow?.rootViewController ?? self
+        case .floating(let origin):
+            switch origin {
+            case .list:
+                // using the root navigation controller as host view controller
+                // we should not use the parent view controller(the floating panel) as parent is a detached view controller
+                return context.showingWindow?.rootViewController ?? self
+            case .search:
+                // using the search view controller as host view controller
+                // we cannot use the window root view controller in this case
+                // as the root view controller has already presented the search view controller
+                return context.showingWindow?.rootViewController?.presentedViewController ?? self
+            }
         }
     }
 

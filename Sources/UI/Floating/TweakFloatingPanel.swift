@@ -24,9 +24,11 @@ final class TweakFloatingPanel: UIViewController {
     private var heightLevel: HeightLevel = .medium
 
     private unowned let context: TweakContext
+    private let origin: TweakFloatingOrigin
 
-    init(context: TweakContext) {
+    init(context: TweakContext, origin: TweakFloatingOrigin) {
         self.context = context
+        self.origin = origin
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -423,7 +425,7 @@ private extension TweakFloatingPanel {
 
 private extension TweakFloatingPanel {
     @objc func _transitToBall(_ sender: UIButton) {
-        context.floatingTransitioner?.animateTransition(from: self, to: TweakFloatingBall(context: context), tweaks: tweaks)
+        context.floatingTransitioner?.animateTransition(from: self, to: TweakFloatingBall(context: context, origin: origin), tweaks: tweaks)
     }
 
     @objc func _transitToList(_ sender: UIButton) {
@@ -480,7 +482,7 @@ private extension TweakFloatingPanel {
     }
 
     func _tweakListViewController() -> TweakListViewController {
-        let v = TweakListViewController(scene: .floating)
+        let v = TweakListViewController(scene: .floating(origin: origin))
         v.tableView.showsVerticalScrollIndicator = false
         return v
     }

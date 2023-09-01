@@ -10,7 +10,12 @@ import Foundation
 enum TweakListViewScene {
     case list(name: String)
     case search(keyword: String)
-    case floating
+    case floating(origin: TweakFloatingOrigin)
+}
+
+enum TweakFloatingOrigin {
+    case list
+    case search
 }
 
 extension TweakListViewScene {
